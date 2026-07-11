@@ -6,6 +6,14 @@ window.CW_CONFIG = {
   // Shop title shown in the header and browser tab
   SITE_NAME: "City Wide Vendor Shop",
 
+  // MASTER CATALOG: a Google Sheet published as CSV.
+  // Edit products, prices, stocked status, and stock_qty in the Sheet and the
+  // live site picks it up automatically (Google refreshes the published copy
+  // every few minutes). Leave blank ("") to use the catalog.csv in this repo.
+  // If the Sheet is ever unreachable, the site automatically falls back to
+  // the repo's catalog.csv.
+  CATALOG_URL: "",
+
   // Where orders are sent.
   // Option A (recommended): create a free form endpoint at https://formspree.io,
   //   then paste its URL here, e.g. "https://formspree.io/f/abcdwxyz".

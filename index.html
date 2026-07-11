@@ -71,6 +71,8 @@ main{max-width:1200px; margin:0 auto; padding:16px;}
 }
 .badge.wh{background:var(--cw-red); color:#fff;}
 .badge.so{background:var(--cw-light-grey); color:var(--cw-grey); border:1px solid var(--cw-border);}
+.badge.oos{background:var(--cw-grey); color:#fff;}
+.stockct{font-size:9px; color:var(--cw-grey); margin-left:6px; font-weight:700;}
 
 /* Product grid */
 .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px;}
@@ -250,20 +252,35 @@ function sizePrice(p,size){
 }
 const fmt = n => "$"+n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",");
 
-async function load(){
+async function fetchCatalogText(){
+  // Primary source: the master Google Sheet (published as CSV), if configured.
+  if(CFG.CATALOG_URL){
+    try{
+      const res = await fetch(CFG.CATALOG_URL+(CFG.CATALOG_URL.includes("?")?"&":"?")+"cachebust="+Date.now());
+      if(res.ok){
+        const t = await res.text();
+        if(t && t.split("\n")[0].includes("id")) return t;
+      }
+    }catch(e){ /* fall through to bundled catalog */ }
+  }
   const res = await fetch("catalog.csv?v="+Date.now());
-  const rows = parseCSV(await res.text());
+  return res.text();
+}
+async function load(){
+  const rows = parseCSV(await fetchCatalogText());
   const hd = rows[0];
   const idx = k => hd.indexOf(k);
   PRODUCTS = rows.slice(1).map(r=>{
     const sp={};
     (r[idx("size_prices")]||"").split("|").forEach(x=>{ const [k,v]=x.split("="); if(k&&v) sp[k.trim()]=parseFloat(v); });
+    const stockRaw = idx("stock_qty")>=0 ? String(r[idx("stock_qty")]||"").trim() : "";
     return {
       id:r[idx("id")], name:r[idx("name")], sku:r[idx("sku")],
       categories:(r[idx("categories")]||"").split(";").map(s=>s.trim()).filter(Boolean),
       fulfillment:r[idx("fulfillment")], source:r[idx("source")],
       cost:parseFloat(r[idx("cost")])||0, margin_pct:r[idx("margin_pct")],
       price:parseFloat(r[idx("price")])||0,
+      stock:stockRaw===""?null:(parseInt(stockRaw)||0),
       sizes:(r[idx("sizes")]||"").split(",").map(s=>s.trim()).filter(Boolean),
       size_prices:sp,
       image:r[idx("image")], description:r[idx("description")],
@@ -335,9 +352,12 @@ function cardHTML(p){
   const sizes=p.sizes.length?`<select class="size-sel" id="size-${p.id}">${p.sizes.map(s=>{
       const extra=p.size_prices[s]?` (${fmt(p.size_prices[s])})`:"";
       return `<option value="${s}">${s}${extra}</option>`;}).join("")}</select>`:"";
-  const badge=p.fulfillment==="Warehouse"
-    ?'<span class="badge wh">In Stock at City Wide</span>'
-    :'<span class="badge so">Supplier Order</span>';
+  const oos = p.fulfillment==="Warehouse" && p.stock!==null && p.stock<=0;
+  let badge;
+  if(p.fulfillment!=="Warehouse") badge='<span class="badge so">Special Order</span>';
+  else if(oos) badge='<span class="badge oos">Out of Stock</span>';
+  else badge='<span class="badge wh">In Stock at City Wide</span>'
+    +(p.stock!==null?'<span class="stockct">'+p.stock+' on hand</span>':"");
   const needsMore=p.description.length>110;
   return `<div class="card" data-id="${p.id}">
     <div class="imgwrap"><img loading="lazy" src="${p.image}" alt="" onerror="this.style.display='none'"></div>
@@ -356,7 +376,9 @@ function cardHTML(p){
       ${sizes}
     </div>
     <div class="controls" style="margin-top:8px">
-      <button class="add-btn" onclick="addToCart('${p.id}',this)">Add to Cart</button>
+      ${oos
+        ?'<button class="add-btn" disabled style="background:var(--cw-grey);cursor:not-allowed">Out of Stock</button>'
+        :`<button class="add-btn" onclick="addToCart('${p.id}',this)">Add to Cart</button>`}
     </div>
   </div>`;
 }
