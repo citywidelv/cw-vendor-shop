@@ -521,6 +521,20 @@ function orderText(info){
     `Payment: Pay deduction (authorized at checkout)`,
   ].filter(x=>x!==null).join("\n");
 }
+function logOrderToSheet(info){
+  // Fire-and-forget append to the Orders tab of the master Google Sheet.
+  if(!CFG.ORDERS_WEBHOOK) return;
+  try{
+    fetch(CFG.ORDERS_WEBHOOK,{
+      method:"POST", mode:"no-cors",
+      headers:{"Content-Type":"text/plain"},
+      body:JSON.stringify({
+        vendor:info, total:+cartTotal().toFixed(2),
+        items:cartLines().map(l=>({sku:l.p.sku,name:l.p.name,size:l.size,qty:l.qty,unit:l.unit})),
+      }),
+    });
+  }catch(e){ /* logging must never block an order */ }
+}
 async function submitOrder(){
   const info={
     name:val("f-name"), company:val("f-company"), email:val("f-email"),
@@ -549,6 +563,7 @@ async function submitOrder(){
         }),
       });
       if(!res.ok) throw new Error("HTTP "+res.status);
+      logOrderToSheet(info);
       orderSuccess();return;
     }catch(e){
       btn.disabled=false;btn.textContent="Submit Order";
@@ -557,6 +572,7 @@ async function submitOrder(){
     }
   }
   // No endpoint configured: mail fallback
+  logOrderToSheet(info);
   location.href="mailto:"+(CFG.ORDER_EMAIL||"")+"?"+(CFG.ORDER_EMAIL_CC?"cc="+encodeURIComponent(CFG.ORDER_EMAIL_CC)+"&":"")+"subject="+encodeURIComponent("Vendor Order: "+info.company)+"&body="+encodeURIComponent(text);
   orderSuccess(true);
 }

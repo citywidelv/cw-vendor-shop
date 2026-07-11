@@ -22,6 +22,11 @@ window.CW_CONFIG = {
   //   vendor's email app with a pre-written order email to ORDER_EMAIL.
   ORDER_ENDPOINT: "https://formspree.io/f/xaqrwqlz",
 
+  // Order log: a Google Apps Script webhook that appends every order to the
+  // "Orders" tab of the CW Vendor Shop Catalog sheet (with Order Placed /
+  // Picked Up checkboxes). Leave blank ("") to disable sheet logging.
+  ORDERS_WEBHOOK: "https://script.google.com/macros/s/AKfycbyrv4xLgquJcIhPGrg46bgEfXEsod3Iv5wmWD6dnDF9ivVIiudc0vte79-2sq1L9NMY/exec",
+
   // Fallback / notification address for orders (used if the endpoint is unreachable)
   ORDER_EMAIL: "LVservicecall@gocitywide.com",
   // CC on fallback order emails
