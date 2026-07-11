@@ -12,7 +12,7 @@ window.CW_CONFIG = {
   // every few minutes). Leave blank ("") to use the catalog.csv in this repo.
   // If the Sheet is ever unreachable, the site automatically falls back to
   // the repo's catalog.csv.
-  CATALOG_URL: "",
+  CATALOG_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQKNqUqE4xDUT24EmeEthfuPYSvAO7nl5Fb1LbaE3-nU3V5t_EhJYtdk4AETcFiMIcQj2zDrkXgOWEl/pub?output=csv",
 
   // Where orders are sent.
   // Option A (recommended): create a free form endpoint at https://formspree.io,
