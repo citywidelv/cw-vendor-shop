@@ -542,9 +542,10 @@ async function submitOrder(){
         headers:{"Content-Type":"application/json","Accept":"application/json"},
         body:JSON.stringify({
           _subject:`Vendor Order: ${info.company} (${fmt(cartTotal())})`,
+          _replyto:info.email,
           email:info.email, order:text,
-          items:cartLines().map(l=>({id:l.id,sku:l.p.sku,name:l.p.name,size:l.size,qty:l.qty,unit:l.unit,line:l.line})),
-          vendor:info, total:cartTotal(),
+          items:cartLines().map(l=>({id:l.id,sku:l.p.sku,name:l.p.name,size:l.size,qty:l.qty,unit:l.unit,line:+l.line.toFixed(2)})),
+          vendor:info, total:+cartTotal().toFixed(2),
         }),
       });
       if(!res.ok) throw new Error("HTTP "+res.status);
