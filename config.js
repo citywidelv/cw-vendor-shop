@@ -1,0 +1,36 @@
+// ============================================================
+// City Wide Vendor Shop - Site Configuration
+// Edit these values, save, and re-upload (or git push) to update the live site.
+// ============================================================
+window.CW_CONFIG = {
+  // Shop title shown in the header and browser tab
+  SITE_NAME: "City Wide Vendor Shop",
+
+  // Where orders are sent.
+  // Option A (recommended): create a free form endpoint at https://formspree.io,
+  //   then paste its URL here, e.g. "https://formspree.io/f/abcdwxyz".
+  //   Orders will arrive in your inbox as structured emails.
+  // Option B: leave blank ("") and the site falls back to opening the
+  //   vendor's email app with a pre-written order email to ORDER_EMAIL.
+  ORDER_ENDPOINT: "https://formspree.io/f/xaqrwqlz",
+
+  // Fallback / notification address for orders (used if the endpoint is unreachable)
+  ORDER_EMAIL: "LVservicecall@gocitywide.com",
+  // CC on fallback order emails
+  ORDER_EMAIL_CC: "rnservicecall@gocitywide.com",
+
+  // Default margin percent applied to any catalog row that has a "cost"
+  // value but no "price". Rows with an explicit "price" are shown as-is.
+  // Example: cost 100.00 with DEFAULT_MARGIN_PCT 25 displays as $125.00.
+  DEFAULT_MARGIN_PCT: 25,
+
+  // Sales tax estimate shown at checkout (0 to disable). 8.375 = Clark County NV.
+  TAX_RATE_PCT: 0,
+
+  // Text shown in the pricing notice at checkout
+  PRICING_NOTICE:
+    "This price list is for reference only and does not update automatically when supplier prices change. " +
+    "The actual price charged is based on current supplier cost at the time the order is placed and may be " +
+    "higher or lower than shown. By submitting an order you authorize City Wide to charge the current price " +
+    "and agree that order totals are settled by pay deduction on your next statement.",
+};
