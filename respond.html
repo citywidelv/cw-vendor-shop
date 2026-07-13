@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Respond to an Opportunity | City Wide Vendor Resource Center</title><meta name="description" content="Submit your interest letter or quote for an open City Wide opportunity."><style>
+:root{
+  --cw-red:#D22730; --cw-red-dark:#B01F27; --cw-black:#2D2A26; --cw-grey:#636466;
+  --cw-white:#FFFFFF; --cw-light:#F5F5F5; --cw-border:#E5E5E5; --cw-teal:#0AA6A9;
+  --sp-xs:4px; --sp-sm:8px; --sp-md:16px; --sp-lg:24px; --sp-xl:32px; --sp-2xl:48px;
+  --radius:10px; --shadow:0 1px 3px rgba(45,42,38,.08),0 4px 14px rgba(45,42,38,.06);
+  --shadow-lift:0 4px 10px rgba(45,42,38,.10),0 10px 28px rgba(45,42,38,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:Verdana,'Liberation Sans','DejaVu Sans',Geneva,Tahoma,sans-serif;
+  color:var(--cw-black);background:var(--cw-white);line-height:1.6;font-size:15px}
+img{max-width:100%;display:block}
+a{color:var(--cw-red);font-weight:700}
+a:hover{color:var(--cw-red-dark)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.content-wrap{max-width:860px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+.site-head{position:sticky;top:0;z-index:50;background:var(--cw-white);
+  border-bottom:1px solid var(--cw-border);box-shadow:0 1px 2px rgba(45,42,38,.05)}
+.site-head .bar{display:flex;align-items:center;gap:16px;height:64px}
+.site-head .bar>a:first-child{flex:none;display:block;line-height:0}
+.site-head img.logo{height:38px;width:auto;max-width:none;object-fit:contain}
+.site-head .site-name{font-size:13px;font-weight:700;color:var(--cw-grey);
+  border-left:2px solid var(--cw-border);padding-left:14px;letter-spacing:.02em;
+  text-transform:uppercase;white-space:nowrap}
+.site-head nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.site-head nav a{font-size:12.5px;font-weight:700;color:var(--cw-black);text-decoration:none;
+  padding:8px 10px;border-radius:6px;white-space:nowrap}
+.site-head nav a:hover{background:var(--cw-light);color:var(--cw-red)}
+.site-head nav a.active{color:var(--cw-red)}
+.site-head nav a.btn-order{background:var(--cw-red);color:#fff;padding:9px 16px}
+.site-head nav a.btn-order:hover{background:var(--cw-red-dark);color:#fff}
+.site-head nav a.nav-opps{color:var(--cw-red);position:relative}
+.site-head nav a.nav-opps::after{content:"";display:inline-block;width:7px;height:7px;
+  border-radius:50%;background:var(--cw-red);margin-left:6px;vertical-align:2px;
+  animation:oppPulse 2s infinite}
+@keyframes oppPulse{0%,100%{opacity:1}50%{opacity:.35}}
+.dd{position:relative}
+.dd>a.dd-label::after{content:" \25BE";font-size:10px;color:var(--cw-grey)}
+.dd-menu{display:none;position:absolute;top:100%;left:0;min-width:210px;background:#fff;
+  border:1px solid var(--cw-border);border-radius:10px;box-shadow:var(--shadow-lift);
+  padding:8px;z-index:60}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{display:block}
+.dd-menu a{display:block;padding:9px 12px;border-radius:6px;font-size:13px}
+.dd-menu .dd-head{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cw-grey);padding:8px 12px 4px}
+.menu-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--cw-border);
+  border-radius:6px;padding:8px 10px;cursor:pointer;font-size:16px;line-height:1;color:var(--cw-black)}
+@media(max-width:1080px){
+  .site-head .site-name{display:none}
+  .menu-toggle{display:block}
+  .site-head nav{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;
+    flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:2px;
+    border-bottom:1px solid var(--cw-border);box-shadow:0 12px 24px rgba(45,42,38,.12)}
+  .site-head nav.open{display:flex}
+  .site-head nav a{padding:12px 10px;border-radius:8px}
+  .site-head nav a.btn-order{text-align:center;margin-top:8px}
+  .dd{display:contents}
+  .dd>a.dd-label{display:none}
+  .dd-menu{display:block;position:static;border:none;box-shadow:none;padding:0;min-width:0}
+  .dd-menu a{padding:12px 10px;font-size:13px}
+  .dd-menu .dd-head{padding:10px 10px 2px}
+}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 44px;background:
+  linear-gradient(180deg,#fff 0%,#FAFAFA 100%)}
+.hero .kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cw-red);margin-bottom:14px}
+.hero .kicker::before{content:"";width:22px;height:3px;background:var(--cw-red);border-radius:2px}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:700;line-height:1.2;letter-spacing:.01em;
+  max-width:760px}
+.hero p.lede{margin-top:14px;font-size:clamp(14px,2vw,17px);color:var(--cw-grey);max-width:640px}
+.hero .cta-row{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;
+  font-weight:700;text-decoration:none;border-radius:8px;padding:12px 20px;cursor:pointer;
+  border:2px solid transparent;transition:all .15s}
+.btn-red{background:var(--cw-red);color:#fff}
+.btn-red:hover{background:var(--cw-red-dark);color:#fff;transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn-ghost{background:#fff;color:var(--cw-black);border-color:var(--cw-border)}
+.btn-ghost:hover{border-color:var(--cw-black);color:var(--cw-black)}
+.btn-pdf{background:#fff;color:var(--cw-red);border-color:var(--cw-red)}
+.btn-pdf:hover{background:var(--cw-red);color:#fff}
+.btn svg{flex:none}
+
+/* ---------- section + cards ---------- */
+.section{padding:40px 0}
+.section + .section{border-top:1px solid var(--cw-border)}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.section-head h2{font-size:20px;font-weight:700}
+.section-head .tag{font-size:11px;font-weight:700;color:var(--cw-grey);letter-spacing:.1em;
+  text-transform:uppercase}
+.section p.sub{color:var(--cw-grey);font-size:14px;max-width:640px;margin-bottom:22px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--cw-border);
+  border-radius:var(--radius);padding:22px;text-decoration:none;color:var(--cw-black);
+  transition:all .15s;box-shadow:var(--shadow)}
+.card:hover{box-shadow:var(--shadow-lift);transform:translateY(-2px);border-color:#d8d8d8;color:var(--cw-black)}
+.card .icon{width:44px;height:44px;border-radius:10px;background:var(--cw-light);display:flex;
+  align-items:center;justify-content:center;margin-bottom:14px;color:var(--cw-red)}
+.card.flag .icon{background:var(--cw-red);color:#fff}
+.card h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.card p{font-size:13px;color:var(--cw-grey);font-weight:400;flex:1}
+.card .go{margin-top:14px;font-size:13px;font-weight:700;color:var(--cw-red)}
+.card .go::after{content:" \2192"}
+.card .pdf-mini{position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;
+  letter-spacing:.08em;color:var(--cw-grey);border:1px solid var(--cw-border);border-radius:4px;
+  padding:2px 7px;text-transform:uppercase}
+.card.soon{background:var(--cw-light);box-shadow:none;border-style:dashed}
+.card.soon:hover{transform:none;box-shadow:none}
+.card.soon .icon{background:#fff;color:var(--cw-grey)}
+.badge-soon{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;background:var(--cw-black);color:#fff;border-radius:4px;
+  padding:3px 8px;margin-bottom:10px;width:max-content}
+
+/* ---------- guide page ---------- */
+.guide-hero{background:var(--cw-black);color:#fff;padding:40px 0 34px}
+.guide-hero .crumbs{font-size:12px;margin-bottom:14px}
+.guide-hero .crumbs a{color:#cfcdca;text-decoration:none;font-weight:400}
+.guide-hero .crumbs a:hover{color:#fff}
+.guide-hero .crumbs span{color:#8b8985;margin:0 6px}
+.guide-hero h1{font-size:clamp(24px,4vw,34px);line-height:1.25;max-width:720px}
+.guide-hero h1::after{content:"";display:block;width:56px;height:4px;background:var(--cw-red);
+  border-radius:2px;margin-top:16px}
+.guide-hero p.lede{margin-top:14px;color:#cfcdca;font-size:15px;max-width:640px}
+.guide-hero .cta-row{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+.guide-hero .btn-pdf{background:transparent;color:#fff;border-color:#fff}
+.guide-hero .btn-pdf:hover{background:#fff;color:var(--cw-black)}
+.guide-body{padding:40px 0 8px}
+.guide-body h2{font-size:20px;font-weight:700;margin:38px 0 12px;padding-top:6px}
+.guide-body h2:first-child{margin-top:0}
+.guide-body h2 .num{color:var(--cw-red);margin-right:8px}
+.guide-body h3{font-size:15px;font-weight:700;margin:24px 0 8px}
+.guide-body p{margin:0 0 14px;max-width:70ch}
+.guide-body ul,.guide-body ol{margin:0 0 16px 22px;max-width:70ch}
+.guide-body li{margin-bottom:7px}
+.guide-body li::marker{color:var(--cw-red);font-weight:700}
+
+/* callouts */
+.callout{border-left:4px solid var(--cw-red);background:var(--cw-light);border-radius:0 8px 8px 0;
+  padding:16px 18px;margin:20px 0;font-size:14px}
+.callout.warn{border-left-color:var(--cw-black)}
+.callout b.title{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cw-red);margin-bottom:5px}
+.callout.warn b.title{color:var(--cw-black)}
+.callout p:last-child{margin-bottom:0}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--cw-border);border-radius:8px;
+  box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:520px}
+thead th{background:var(--cw-black);color:#fff;text-align:left;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;padding:11px 14px;white-space:nowrap}
+tbody td{padding:11px 14px;border-top:1px solid var(--cw-border);vertical-align:top}
+tbody tr:nth-child(even){background:#FAFAFA}
+td.qty,th.qty{text-align:center;font-weight:700;white-space:nowrap}
+td.item{font-weight:700}
+td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margin-top:2px}
+
+/* color chips */
+.chip{display:inline-flex;align-items:center;gap:8px;font-weight:700;white-space:nowrap}
+.chip i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.15);flex:none}
+.c-red{background:#D0342C}.c-yellow{background:#F2C230}.c-blue{background:#2D69B3}
+.c-green{background:#3B9A46}.c-orange{background:#F68C28}.c-ltblue{background:#7FC3E8}
+.c-pink{background:#F08CA4}
+
+/* product figure row */
+.prod-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:20px 0 26px}
+.prod{border:1px solid var(--cw-border);border-radius:10px;background:#fff;padding:12px;text-align:center;
+  box-shadow:var(--shadow)}
+.prod .ph{height:110px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.prod img{max-height:110px;width:auto;margin:0 auto}
+.prod figcaption{font-size:11.5px;font-weight:700;line-height:1.4}
+.prod figcaption small{display:block;font-weight:400;color:var(--cw-grey);margin-top:2px}
+
+/* checklist */
+.checklist{list-style:none;margin:16px 0 24px;padding:0;max-width:70ch}
+.checklist li{position:relative;padding:10px 12px 10px 40px;border:1px solid var(--cw-border);
+  border-radius:8px;margin-bottom:8px;background:#fff;font-size:14px}
+.checklist li::before{content:"";position:absolute;left:12px;top:12px;width:16px;height:16px;
+  border:2px solid var(--cw-red);border-radius:4px}
+.checklist li::marker{content:""}
+
+/* planner controls */
+.picker{margin:6px 0 18px}
+.picker .lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cw-grey);margin-bottom:8px;display:block}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{font-family:inherit;font-size:13px;font-weight:700;color:var(--cw-black);
+  background:#fff;border:2px solid var(--cw-border);border-radius:8px;padding:10px 14px;
+  cursor:pointer;transition:all .12s;line-height:1.35}
+.seg button small{display:block;font-weight:400;color:var(--cw-grey);font-size:11px}
+.seg button:hover{border-color:var(--cw-grey)}
+.seg button.on{border-color:var(--cw-red);background:var(--cw-red);color:#fff}
+.seg button.on small{color:rgba(255,255,255,.85)}
+.planner-panel{border:1px solid var(--cw-border);border-radius:12px;padding:22px;margin:22px 0 30px;
+  background:#fff;box-shadow:var(--shadow)}
+.planner-panel h3{margin:0 0 4px;font-size:16px}
+.planner-panel .meta{font-size:12.5px;color:var(--cw-grey);margin-bottom:12px}
+.type-notes{margin:14px 0 4px}
+.type-notes li{font-size:13.5px}
+
+/* opportunities band (hub) */
+.opps-band{background:linear-gradient(120deg,var(--cw-black) 0%,#3a3733 100%);color:#fff;
+  border-top:4px solid var(--cw-red)}
+.opps-band .inner{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:24px 0}
+.opps-band .dot{width:10px;height:10px;border-radius:50%;background:var(--cw-red);flex:none;
+  animation:oppPulse 2s infinite}
+.opps-band .txt{flex:1;min-width:220px}
+.opps-band .txt b{display:block;font-size:17px}
+.opps-band .txt span{font-size:13px;color:#cfcdca}
+.opps-band .btn-red{background:var(--cw-red)}
+
+/* footer */
+.site-foot{margin-top:56px;background:var(--cw-black);color:#cfcdca;padding:34px 0 30px;font-size:13px}
+.site-foot .cols{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+.site-foot a{color:#fff;text-decoration:none}
+.site-foot a:hover{color:#fff;text-decoration:underline}
+.site-foot .fine{margin-top:14px;font-size:11.5px;color:#8b8985}
+.next-link{display:flex;justify-content:space-between;gap:12px;margin:44px 0 10px;flex-wrap:wrap}
+</style>
+<style>
+.r-wrap{max-width:760px;margin:0 auto;padding:0 20px}
+.r-hero{background:linear-gradient(120deg,#2D2A26 0%,#3a3733 100%);color:#fff;padding:34px 0 30px;
+  border-top:5px solid var(--cw-red)}
+.r-hero .crumb{font-size:12px;margin-bottom:10px}
+.r-hero .crumb a{color:#cfcdca;text-decoration:none;font-weight:400}
+.r-hero h1{font-size:clamp(22px,4vw,30px);line-height:1.25}
+.r-hero p{color:#cfcdca;font-size:14px;margin-top:8px}
+.r-card{background:#fff;border:1px solid var(--cw-border);border-radius:12px;
+  box-shadow:var(--shadow);padding:24px;margin:22px 0}
+.r-card h2{font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.r-card h2 .n{width:24px;height:24px;border-radius:50%;background:var(--cw-red);color:#fff;
+  font-size:12px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.r-card .sub{font-size:12.5px;color:var(--cw-grey);margin-bottom:16px}
+.r-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.r-grid .full{grid-column:1/-1}
+@media(max-width:640px){.r-grid{grid-template-columns:1fr}}
+.r-card label{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--cw-grey);margin-bottom:5px}
+.r-card label .req{color:var(--cw-red)}
+.r-card input,.r-card select,.r-card textarea{width:100%;font-family:inherit;font-size:14px;
+  color:var(--cw-black);border:1.5px solid var(--cw-border);border-radius:8px;
+  padding:10px 12px;background:#fff}
+.r-card textarea{min-height:80px;resize:vertical}
+.r-card input:focus,.r-card select:focus,.r-card textarea:focus{outline:none;border-color:var(--cw-red)}
+.p-sum{border-left:5px solid var(--cw-red)}
+.p-sum .badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.p-sum .badges span{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  border-radius:4px;padding:3px 9px;background:var(--cw-light);border:1px solid var(--cw-border)}
+.p-sum .badges span:first-child{background:var(--cw-black);color:#fff;border:none}
+.p-sum h3{font-size:17px;margin-bottom:2px}
+.p-sum .meta{font-size:13px;color:var(--cw-grey)}
+.p-sum .pay{font-size:20px;font-weight:700;color:var(--cw-red);margin-top:8px}
+.p-sum .dl{font-size:13px;font-weight:700;color:var(--cw-red);margin-top:6px}
+.quote-band{background:#FBF3D6;border:1px solid var(--cw-gold);border-radius:8px;
+  padding:10px 14px;font-size:13px;font-weight:700;margin-bottom:14px}
+.r-submit{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:6px 0 40px}
+#rmsg{font-size:13px;font-weight:700}
+#rmsg.err{color:var(--cw-red)}
+.r-state{background:#fff;border:1px dashed var(--cw-border);border-radius:12px;
+  padding:44px 24px;text-align:center;color:var(--cw-grey);margin:30px 0 50px}
+.r-state b{display:block;color:var(--cw-black);font-size:17px;margin-bottom:6px}
+.r-success{background:#fff;border:2px solid #1E7B34;border-radius:12px;padding:28px;
+  text-align:center;margin:26px 0 50px}
+.r-success h2{color:#1E7B34;font-size:19px;margin-bottom:8px;justify-content:center;display:flex}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+</style>
+</head><body><header class="site-head"><div class="wrap bar"><a href="resources.html"><img class="logo" src="https://emailer.emfluence.com/clients/citywide/uploadedfiles/signature_logo.png" alt="City Wide Facility Solutions"></a><button class="menu-toggle" aria-label="Menu">&#9776;</button><nav><a href="resources.html">Home</a><a href="opportunities.html" class="nav-opps active">Open Opportunities</a><div class="dd"><a class="dd-label" href="#" onclick="return false;">Guides</a><div class="dd-menu"><div class="dd-head">Crew Guides</div><a href="planner.html">New Building Planner</a><a href="workloading.html">Workloading & Crew Sizing</a><a href="equipment.html">Choosing Your Equipment</a><a href="color-coding.html">Color Coding System</a><a href="medical.html">Medical Facility Cleaning</a><a href="cleanroom.html">Clean Room Cleaning</a><a href="gmp.html">GMP & Food Facility Cleaning</a></div></div><a class="btn-order" href="index.html">Order Supplies</a></nav></div></header><section class="r-hero"><div class="r-wrap"><div class="crumb"><a href="opportunities.html">&larr; Open Opportunities</a></div><h1 id="rtitle">Loading&hellip;</h1><p>Answer everything below and your response goes straight to the City Wide team. No email needed.</p></div></section><div class="r-wrap" id="rmain"><div class="r-state">Loading the posting&hellip;</div></div><footer class="site-foot"><div class="wrap"><div class="cols"><div><b style="color:#fff">City Wide Facility Solutions</b> &middot; Las Vegas &amp; Northern Nevada<br>Vendor Resource Center</div><div><a href="index.html">Order Supplies</a> &nbsp;&nbsp; <a href="resources.html">Resource Center</a> &nbsp;&nbsp; <a href="https://www.gocitywide.com" target="_blank" rel="noopener">GoCityWide.com</a></div></div><div class="fine">For crew and vendor reference. Quantities and methods are guidance; your account scope of work always comes first. Questions? Contact your City Wide Facility Solutions representative.</div></div></footer>
+<script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.querySelector('.site-head nav');
+  if(t&&n){t.addEventListener('click',function(){n.classList.toggle('open');});}
+})();
+</script>
+
+<script>
+var FEED = "https://script.google.com/macros/s/AKfycbzfNnrpidCbWB1DeUNgXvRhDFMQgApfpn-3C9GU45wMEHcJpWFl8ZQVo6PUBSRfEVfRdg/exec";
+function esc(s){var d=document.createElement("div");d.textContent=String(s==null?"":s);return d.innerHTML;}
+function qs(k){return new URLSearchParams(location.search).get(k)||"";}
+function state(html){document.getElementById("rmain").innerHTML=html;}
+var POSTING=null, FORM=null;
+
+function defaultForm(p){
+  return { mode: p.pay_type==="quote"?"quote":"interest",
+    pricing: p.type==="contract"?"per month":"per job (total)", unit:"",
+    blocks:{staffing:true,equipment:true}, questions:[] };
+}
+function basisLabel(f){
+  if(f.pricing==="per unit") return f.unit||"per unit";
+  return f.pricing||"per month";
+}
+function input(id,label,req,ph,type){
+  return '<div><label>'+label+(req?' <span class="req">*</span>':"")+'</label>'+
+    '<input type="'+(type||"text")+'" id="'+id+'" placeholder="'+(ph||"")+'"></div>';
+}
+function area(id,label,req,ph){
+  return '<div class="full"><label>'+label+(req?' <span class="req">*</span>':"")+'</label>'+
+    '<textarea id="'+id+'" placeholder="'+(ph||"")+'"></textarea></div>';
+}
+function render(){
+  var p=POSTING, f=FORM;
+  var isQuote=f.mode==="quote";
+  var pay = p.pay_type==="quote" ? '<div class="quote-band">Quote Requested: price it '+esc(basisLabel(f))+'</div>'
+    : (p.pay_amount?'<div class="pay">'+esc(fmtPay(p.pay_amount))+' <span style="font-size:13px;color:var(--cw-grey);font-weight:400">'+esc(p.pay_period||"")+'</span></div>':"");
+  var sum = '<div class="r-card p-sum"><div class="badges"><span>'+esc(p.region)+'</span><span>'+esc(p.trade)+'</span><span>'+esc(p.id)+'</span></div>'+
+    '<h3>'+esc(p.title)+'</h3><div class="meta">'+esc(p.facility_type)+(p.area?" &middot; "+esc(p.area):"")+
+    (p.sqft?" &middot; "+esc(p.sqft)+" sq ft":"")+(p.frequency&&p.frequency!=="One-time"?" &middot; "+esc(p.frequency):"")+'</div>'+
+    (p.pay_type!=="quote"?pay:pay)+(p.deadline?'<div class="dl">Respond by '+esc(p.deadline)+'</div>':"")+'</div>';
+
+  var c=1;
+  var base = '<div class="r-card"><h2><span class="n">'+(c++)+'</span>Your Company</h2>'+
+    '<div class="sub">Who should we call when we like what we see?</div><div class="r-grid">'+
+    input("company","Company Name",true,"Your company")+
+    input("contact_name","Your Name",true,"First Last")+
+    input("email","Email",true,"you@company.com","email")+
+    input("phone","Phone",false,"(702) 555-1234","tel")+
+    '<div><label>Vendor Packet on File With City Wide? <span class="req">*</span></label>'+
+    '<select id="packet_on_file"><option>Yes</option><option>No, I need one</option><option>Not sure</option></select></div>'+
+    input("earliest_start","Earliest Start Date",false,"e.g., Monday, or immediately")+
+    '</div></div>';
+
+  var staffing = f.blocks&&f.blocks.staffing ? '<div class="r-card"><h2><span class="n">'+(c++)+'</span>Staffing &amp; Supervision</h2>'+
+    '<div class="sub">We prefer crews with trusted, existing team members.</div><div class="r-grid">'+
+    '<div><label>How Will You Staff This? <span class="req">*</span></label>'+
+    '<select id="staffing_sel"><option>Existing crew adds it to their route</option>'+
+    '<option>Owner will handle it personally</option><option>I will hire for this account</option>'+
+    '<option>Mix of existing crew and new hires</option></select></div>'+
+    input("crew_size","Planned Crew Size",false,"e.g., 2")+
+    area("supervision_plan","Supervision Plan: Who Performs the Final Walk Each Visit?",true,
+      "The owner, or a trained crew supervisor? How do you keep oversight consistent?")+
+    area("training_plan","Who Trains the Crew for This Account?",false,"")+
+    '</div></div>' : "";
+
+  var equip = f.blocks&&f.blocks.equipment ? '<div class="r-card"><h2><span class="n">'+(c++)+'</span>Equipment</h2>'+
+    '<div class="r-grid">'+area("equipment","What Equipment Will You Bring to This Account?",true,
+    "Vacuums, mop systems, machines, truck, anything relevant")+'</div></div>' : "";
+
+  var qhtml="";
+  if(f.questions&&f.questions.length){
+    qhtml='<div class="r-card"><h2><span class="n">'+(c++)+'</span>A Few Specifics</h2><div class="r-grid">';
+    f.questions.forEach(function(q,i){ qhtml+=area("q_"+i,esc(q),true,""); });
+    qhtml+='</div></div>';
+  }
+
+  var quote = isQuote ? '<div class="r-card"><h2><span class="n">'+(c++)+'</span>Your Quote</h2>'+
+    '<div class="sub">Price it exactly as asked: <b>'+esc(basisLabel(f))+'</b>.</div><div class="r-grid">'+
+    input("quote_amount","Your Price ("+esc(basisLabel(f))+")",true,"e.g., $1,850.00")+
+    area("quote_details","What Your Price Includes",false,"Labor, supplies, equipment, trip minimums, exclusions")+
+    '</div></div>' : "";
+
+  var comments='<div class="r-card"><h2><span class="n">'+(c++)+'</span>Anything Else?</h2><div class="r-grid">'+
+    area("comments","Comments or Questions",false,"")+'</div></div>';
+
+  state(sum+base+staffing+equip+qhtml+quote+comments+
+    '<input class="hp" type="text" id="website" tabindex="-1" autocomplete="off">'+
+    '<div class="r-submit"><button class="btn btn-red" id="rgo">'+
+    (isQuote?"Submit My Quote":"Submit My Interest")+'</button><span id="rmsg"></span></div>');
+  document.getElementById("rgo").addEventListener("click", submit);
+}
+function fmtPay(v){
+  var n=Number(String(v).replace(/[$,]/g,""));
+  if(!isNaN(n)&&n>0)return "$"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+  return String(v);
+}
+function v(id){var el=document.getElementById(id);return el?el.value.trim():"";}
+function submit(){
+  var msg=document.getElementById("rmsg");msg.className="";msg.textContent="";
+  var f=FORM,isQuote=f.mode==="quote";
+  var need={company:"Company name",contact_name:"Your name",email:"Email"};
+  if(f.blocks&&f.blocks.staffing) need.supervision_plan="Supervision plan";
+  if(f.blocks&&f.blocks.equipment) need.equipment="Equipment";
+  if(isQuote) need.quote_amount="Your price";
+  for(var k in need){ if(!v(k)){msg.className="err";msg.textContent=need[k]+" is required.";return;} }
+  if(f.questions&&f.questions.length){
+    for(var i=0;i<f.questions.length;i++){
+      if(!v("q_"+i)){msg.className="err";msg.textContent="Please answer: "+f.questions[i];return;}
+    }
+  }
+  var confirmations=(f.questions||[]).map(function(q,i){return q+" => "+v("q_"+i);}).join("\n");
+  var data={kind:"response",posting_id:POSTING.id,mode:f.mode,website:v("website"),
+    company:v("company"),contact_name:v("contact_name"),email:v("email"),phone:v("phone"),
+    packet_on_file:v("packet_on_file")||document.getElementById("packet_on_file").value,
+    earliest_start:v("earliest_start"),
+    staffing_plan:f.blocks&&f.blocks.staffing?document.getElementById("staffing_sel").value:"",
+    supervision_plan:v("supervision_plan"),training_plan:v("training_plan"),crew_size:v("crew_size"),
+    equipment:v("equipment"),confirmations:confirmations,custom_answers:"",
+    quote_amount:isQuote?v("quote_amount"):"",quote_basis:isQuote?basisLabel(f):"",
+    quote_details:isQuote?v("quote_details"):"",comments:v("comments")};
+  var btn=document.getElementById("rgo");btn.disabled=true;msg.textContent="Sending...";
+  fetch(FEED,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(data)})
+    .then(function(r){return r.text();})
+    .then(function(t){var r;try{r=JSON.parse(t);}catch(e){r={ok:true,id:"received"};}
+      if(r&&r.ok){
+        state('<div class="r-success"><h2>Sent!</h2>'+
+          '<p>Your '+(isQuote?"quote":"interest letter")+' for <b>'+esc(POSTING.title)+'</b> went straight to the City Wide team (reference '+esc(r.id)+').</p>'+
+          '<p>We review responses in the order they arrive and will reach out to schedule the walkthrough.</p>'+
+          '<p style="margin-top:14px"><a class="btn btn-ghost" href="opportunities.html">Back to Open Opportunities</a></p></div>');
+        window.scrollTo(0,0);
+      } else {
+        btn.disabled=false;msg.className="err";
+        msg.textContent=(r&&r.error)?r.error:"Something went wrong. Try again.";
+      }
+    })
+    .catch(function(){btn.disabled=false;msg.className="err";
+      msg.textContent="Could not send. Check your connection and try again.";});
+}
+document.addEventListener("DOMContentLoaded",function(){
+  var id=qs("id");
+  if(!id){state('<div class="r-state"><b>No posting selected</b><a href="opportunities.html">Back to the board</a></div>');return;}
+  fetch(FEED).then(function(r){return r.json();}).then(function(r){
+    var items=(r&&r.items)||[];
+    POSTING=items.filter(function(o){return String(o.id)===id;})[0];
+    if(!POSTING){
+      state('<div class="r-state"><b>This opportunity is no longer open</b>It may have been filled. '+
+        '<a href="opportunities.html">See what else is available</a>.</div>');
+      document.getElementById("rtitle").textContent="Opportunity Closed";
+      return;
+    }
+    try{FORM=POSTING.response_form?JSON.parse(POSTING.response_form):defaultForm(POSTING);}
+    catch(e){FORM=defaultForm(POSTING);}
+    if(!FORM.mode)FORM=defaultForm(POSTING);
+    document.getElementById("rtitle").textContent=
+      FORM.mode==="quote"?"Submit Your Quote":"Raise Your Hand";
+    render();
+  }).catch(function(){
+    state('<div class="r-state"><b>Could not load this posting</b>Refresh the page, or call (702) 483-1874.</div>');
+  });
+});
+</script>
+</body></html>

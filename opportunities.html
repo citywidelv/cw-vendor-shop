@@ -307,16 +307,11 @@ function kv(label,val){
   if(!val) return "";
   return '<div class="kv"><b>'+label+"</b>"+esc(val)+"</div>";
 }
-function mailtoFor(o){
-  var subj="Interested: "+o.title+" ["+o.id+"]";
-  var body="Hi "+(o.contact_name||"City Wide")+",%0D%0A%0D%0A"+
-    "I am interested in "+encodeURIComponent(o.title)+" ("+o.id+").%0D%0A%0D%0A"+
-    "1. Staffing plan (existing crew, owner, or new hires):%0D%0A%0D%0A"+
-    "2. Supervision plan (who performs the final walk each visit):%0D%0A%0D%0A"+
-    "3. Equipment I will bring:%0D%0A%0D%0A"+
-    "Company:%0D%0APhone:%0D%0A";
-  return "mailto:"+(o.contact_email||"lvservicecall@gocitywide.com")+
-    "?subject="+encodeURIComponent(subj)+"&body="+body;
+function respondMeta(o){
+  var mode = o.pay_type==="quote" ? "quote" : "interest";
+  try{ var f=JSON.parse(o.response_form||""); if(f&&f.mode) mode=f.mode; }catch(e){}
+  return { href: "respond.html?id="+encodeURIComponent(o.id),
+           label: mode==="quote" ? "Submit Your Quote" : "I&rsquo;m Interested: Apply Now" };
 }
 function fmtPay(v){
   if(v===null||v===undefined||v==="") return "";
@@ -350,10 +345,11 @@ function card(o){
     + '<div class="opp-facts">'+facts+"</div>"
     + (o.deadline ? '<div class="opp-deadline">Respond by '+esc(o.deadline)+"</div>" : "")
     + '<details class="opp-more"><summary>Full details &amp; requirements</summary>'+more+"</details>"
-    + '<div class="opp-cta"><a class="btn btn-red" href="'+mailtoFor(o)+'">I&rsquo;m Interested: Email '
-    + esc((o.contact_name||"City Wide").split(" ")[0])+"</a>"
-    + (o.contact_phone ? '<a class="btn btn-ghost" href="tel:'+esc(o.contact_phone).replace(/[^0-9+]/g,"")+'">Call '+esc(o.contact_phone)+"</a>" : "")
-    + "</div></article>";
+    + (function(){ var m=respondMeta(o);
+        return '<div class="opp-cta"><a class="btn btn-red" href="'+m.href+'">'+m.label+"</a>"
+        + (o.contact_phone ? '<a class="btn btn-ghost" href="tel:'+esc(o.contact_phone).replace(/[^0-9+]/g,"")+'">Call '+esc(o.contact_phone)+"</a>" : "")
+        + "</div>"; })()
+    + "</article>";
 }
 function render(items){
   var vis = items.filter(function(o){return REGION==="all"||o.region===REGION;});
