@@ -318,10 +318,16 @@ function mailtoFor(o){
   return "mailto:"+(o.contact_email||"lvservicecall@gocitywide.com")+
     "?subject="+encodeURIComponent(subj)+"&body="+body;
 }
+function fmtPay(v){
+  if(v===null||v===undefined||v==="") return "";
+  var n = Number(String(v).replace(/[$,]/g,""));
+  if(!isNaN(n) && n>0) return "$"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+  return String(v);
+}
 function card(o){
   var pay = o.pay_type==="quote"
     ? '<div class="opp-pay"><span class="quote">Quote Requested: name your price</span></div>'
-    : (o.pay_amount ? '<div class="opp-pay"><span class="amt">'+esc(o.pay_amount)+
+    : (o.pay_amount ? '<div class="opp-pay"><span class="amt">'+esc(fmtPay(o.pay_amount))+
        '</span><span class="per">'+esc(o.pay_period||"")+"</span></div>" : "");
   var facts = fact("Square Feet", o.sqft && Number(o.sqft) ? Number(o.sqft).toLocaleString()+" sq ft" : o.sqft)
     + fact("Frequency", o.frequency==="One-time" ? "One-time project" : o.frequency)
