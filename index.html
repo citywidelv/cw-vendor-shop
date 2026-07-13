@@ -28,6 +28,7 @@ header{
 }
 .hdr-inner{max-width:1200px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; gap:16px;}
 .hdr-logo img{height:42px; display:block;}
+.hdr-res{font-size:13px;font-weight:700;color:#2D2A26;text-decoration:none;border:1.5px solid #E5E5E5;border-radius:8px;padding:9px 14px;white-space:nowrap;}.hdr-res:hover{color:#D22730;border-color:#D22730;}@media(max-width:700px){.hdr-res{padding:8px 10px;font-size:12px;}}
 .hdr-title{font-weight:700; font-size:15px; letter-spacing:.02em; white-space:nowrap;}
 .hdr-title small{display:block; font-weight:400; color:var(--cw-grey); font-size:10px;}
 .hdr-search{flex:1; display:flex; max-width:520px;}
@@ -169,6 +170,7 @@ footer b{color:var(--cw-black);}
       <input id="search" type="search" placeholder="Search products, SKUs, keywords..." autocomplete="off">
       <button class="clear-btn" onclick="document.getElementById('search').value='';onSearch();">&#10005;</button>
     </div>
+        <a class="hdr-res" href="resources.html">Resources</a>
     <button class="cart-btn" onclick="openCart()">Cart <span class="count" id="cartCount">0</span></button>
   </div>
 </header>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Color Coding System | City Wide Vendor Resource Center</title><meta name="description" content="City Wide color coding for microfiber cloths and mops: red, yellow, blue, and green territories that stop cross contamination."><style>
+:root{
+  --cw-red:#D22730; --cw-red-dark:#B01F27; --cw-black:#2D2A26; --cw-grey:#636466;
+  --cw-white:#FFFFFF; --cw-light:#F5F5F5; --cw-border:#E5E5E5; --cw-teal:#0AA6A9;
+  --sp-xs:4px; --sp-sm:8px; --sp-md:16px; --sp-lg:24px; --sp-xl:32px; --sp-2xl:48px;
+  --radius:10px; --shadow:0 1px 3px rgba(45,42,38,.08),0 4px 14px rgba(45,42,38,.06);
+  --shadow-lift:0 4px 10px rgba(45,42,38,.10),0 10px 28px rgba(45,42,38,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:Verdana,'Liberation Sans','DejaVu Sans',Geneva,Tahoma,sans-serif;
+  color:var(--cw-black);background:var(--cw-white);line-height:1.6;font-size:15px}
+img{max-width:100%;display:block}
+a{color:var(--cw-red);font-weight:700}
+a:hover{color:var(--cw-red-dark)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.content-wrap{max-width:860px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+.site-head{position:sticky;top:0;z-index:50;background:var(--cw-white);
+  border-bottom:1px solid var(--cw-border);box-shadow:0 1px 2px rgba(45,42,38,.05)}
+.site-head .bar{display:flex;align-items:center;gap:16px;height:64px}
+.site-head img.logo{height:34px;width:auto}
+.site-head .site-name{font-size:13px;font-weight:700;color:var(--cw-grey);
+  border-left:2px solid var(--cw-border);padding-left:14px;letter-spacing:.02em;
+  text-transform:uppercase;white-space:nowrap}
+.site-head nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.site-head nav a{font-size:13px;font-weight:700;color:var(--cw-black);text-decoration:none;
+  padding:8px 12px;border-radius:6px}
+.site-head nav a:hover{background:var(--cw-light);color:var(--cw-red)}
+.site-head nav a.active{color:var(--cw-red)}
+.site-head nav a.btn-order{background:var(--cw-red);color:#fff;padding:9px 16px}
+.site-head nav a.btn-order:hover{background:var(--cw-red-dark);color:#fff}
+.menu-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--cw-border);
+  border-radius:6px;padding:8px 10px;cursor:pointer;font-size:16px;line-height:1;color:var(--cw-black)}
+@media(max-width:840px){
+  .site-head .site-name{display:none}
+  .menu-toggle{display:block}
+  .site-head nav{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;
+    flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:2px;
+    border-bottom:1px solid var(--cw-border);box-shadow:0 12px 24px rgba(45,42,38,.12)}
+  .site-head nav.open{display:flex}
+  .site-head nav a{padding:12px 10px;border-radius:8px}
+  .site-head nav a.btn-order{text-align:center;margin-top:8px}
+}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 44px;background:
+  linear-gradient(180deg,#fff 0%,#FAFAFA 100%)}
+.hero .kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cw-red);margin-bottom:14px}
+.hero .kicker::before{content:"";width:22px;height:3px;background:var(--cw-red);border-radius:2px}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:700;line-height:1.2;letter-spacing:.01em;
+  max-width:760px}
+.hero p.lede{margin-top:14px;font-size:clamp(14px,2vw,17px);color:var(--cw-grey);max-width:640px}
+.hero .cta-row{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;
+  font-weight:700;text-decoration:none;border-radius:8px;padding:12px 20px;cursor:pointer;
+  border:2px solid transparent;transition:all .15s}
+.btn-red{background:var(--cw-red);color:#fff}
+.btn-red:hover{background:var(--cw-red-dark);color:#fff;transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn-ghost{background:#fff;color:var(--cw-black);border-color:var(--cw-border)}
+.btn-ghost:hover{border-color:var(--cw-black);color:var(--cw-black)}
+.btn-pdf{background:#fff;color:var(--cw-red);border-color:var(--cw-red)}
+.btn-pdf:hover{background:var(--cw-red);color:#fff}
+.btn svg{flex:none}
+
+/* ---------- section + cards ---------- */
+.section{padding:40px 0}
+.section + .section{border-top:1px solid var(--cw-border)}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.section-head h2{font-size:20px;font-weight:700}
+.section-head .tag{font-size:11px;font-weight:700;color:var(--cw-grey);letter-spacing:.1em;
+  text-transform:uppercase}
+.section p.sub{color:var(--cw-grey);font-size:14px;max-width:640px;margin-bottom:22px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--cw-border);
+  border-radius:var(--radius);padding:22px;text-decoration:none;color:var(--cw-black);
+  transition:all .15s;box-shadow:var(--shadow)}
+.card:hover{box-shadow:var(--shadow-lift);transform:translateY(-2px);border-color:#d8d8d8;color:var(--cw-black)}
+.card .icon{width:44px;height:44px;border-radius:10px;background:var(--cw-light);display:flex;
+  align-items:center;justify-content:center;margin-bottom:14px;color:var(--cw-red)}
+.card.flag .icon{background:var(--cw-red);color:#fff}
+.card h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.card p{font-size:13px;color:var(--cw-grey);font-weight:400;flex:1}
+.card .go{margin-top:14px;font-size:13px;font-weight:700;color:var(--cw-red)}
+.card .go::after{content:" \2192"}
+.card .pdf-mini{position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;
+  letter-spacing:.08em;color:var(--cw-grey);border:1px solid var(--cw-border);border-radius:4px;
+  padding:2px 7px;text-transform:uppercase}
+.card.soon{background:var(--cw-light);box-shadow:none;border-style:dashed}
+.card.soon:hover{transform:none;box-shadow:none}
+.card.soon .icon{background:#fff;color:var(--cw-grey)}
+.badge-soon{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;background:var(--cw-black);color:#fff;border-radius:4px;
+  padding:3px 8px;margin-bottom:10px;width:max-content}
+
+/* ---------- guide page ---------- */
+.guide-hero{background:var(--cw-black);color:#fff;padding:40px 0 34px}
+.guide-hero .crumbs{font-size:12px;margin-bottom:14px}
+.guide-hero .crumbs a{color:#cfcdca;text-decoration:none;font-weight:400}
+.guide-hero .crumbs a:hover{color:#fff}
+.guide-hero .crumbs span{color:#8b8985;margin:0 6px}
+.guide-hero h1{font-size:clamp(24px,4vw,34px);line-height:1.25;max-width:720px}
+.guide-hero h1::after{content:"";display:block;width:56px;height:4px;background:var(--cw-red);
+  border-radius:2px;margin-top:16px}
+.guide-hero p.lede{margin-top:14px;color:#cfcdca;font-size:15px;max-width:640px}
+.guide-hero .cta-row{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+.guide-hero .btn-pdf{background:transparent;color:#fff;border-color:#fff}
+.guide-hero .btn-pdf:hover{background:#fff;color:var(--cw-black)}
+.guide-body{padding:40px 0 8px}
+.guide-body h2{font-size:20px;font-weight:700;margin:38px 0 12px;padding-top:6px}
+.guide-body h2:first-child{margin-top:0}
+.guide-body h2 .num{color:var(--cw-red);margin-right:8px}
+.guide-body h3{font-size:15px;font-weight:700;margin:24px 0 8px}
+.guide-body p{margin:0 0 14px;max-width:70ch}
+.guide-body ul,.guide-body ol{margin:0 0 16px 22px;max-width:70ch}
+.guide-body li{margin-bottom:7px}
+.guide-body li::marker{color:var(--cw-red);font-weight:700}
+
+/* callouts */
+.callout{border-left:4px solid var(--cw-red);background:var(--cw-light);border-radius:0 8px 8px 0;
+  padding:16px 18px;margin:20px 0;font-size:14px}
+.callout.warn{border-left-color:var(--cw-black)}
+.callout b.title{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cw-red);margin-bottom:5px}
+.callout.warn b.title{color:var(--cw-black)}
+.callout p:last-child{margin-bottom:0}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--cw-border);border-radius:8px;
+  box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:520px}
+thead th{background:var(--cw-black);color:#fff;text-align:left;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;padding:11px 14px;white-space:nowrap}
+tbody td{padding:11px 14px;border-top:1px solid var(--cw-border);vertical-align:top}
+tbody tr:nth-child(even){background:#FAFAFA}
+td.qty,th.qty{text-align:center;font-weight:700;white-space:nowrap}
+td.item{font-weight:700}
+td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margin-top:2px}
+
+/* color chips */
+.chip{display:inline-flex;align-items:center;gap:8px;font-weight:700;white-space:nowrap}
+.chip i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.15);flex:none}
+.c-red{background:#D0342C}.c-yellow{background:#F2C230}.c-blue{background:#2D69B3}
+.c-green{background:#3B9A46}.c-orange{background:#F68C28}.c-ltblue{background:#7FC3E8}
+.c-pink{background:#F08CA4}
+
+/* product figure row */
+.prod-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:20px 0 26px}
+.prod{border:1px solid var(--cw-border);border-radius:10px;background:#fff;padding:12px;text-align:center;
+  box-shadow:var(--shadow)}
+.prod .ph{height:110px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.prod img{max-height:110px;width:auto;margin:0 auto}
+.prod figcaption{font-size:11.5px;font-weight:700;line-height:1.4}
+.prod figcaption small{display:block;font-weight:400;color:var(--cw-grey);margin-top:2px}
+
+/* checklist */
+.checklist{list-style:none;margin:16px 0 24px;padding:0;max-width:70ch}
+.checklist li{position:relative;padding:10px 12px 10px 40px;border:1px solid var(--cw-border);
+  border-radius:8px;margin-bottom:8px;background:#fff;font-size:14px}
+.checklist li::before{content:"";position:absolute;left:12px;top:12px;width:16px;height:16px;
+  border:2px solid var(--cw-red);border-radius:4px}
+.checklist li::marker{content:""}
+
+/* planner controls */
+.picker{margin:6px 0 18px}
+.picker .lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cw-grey);margin-bottom:8px;display:block}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{font-family:inherit;font-size:13px;font-weight:700;color:var(--cw-black);
+  background:#fff;border:2px solid var(--cw-border);border-radius:8px;padding:10px 14px;
+  cursor:pointer;transition:all .12s;line-height:1.35}
+.seg button small{display:block;font-weight:400;color:var(--cw-grey);font-size:11px}
+.seg button:hover{border-color:var(--cw-grey)}
+.seg button.on{border-color:var(--cw-red);background:var(--cw-red);color:#fff}
+.seg button.on small{color:rgba(255,255,255,.85)}
+.planner-panel{border:1px solid var(--cw-border);border-radius:12px;padding:22px;margin:22px 0 30px;
+  background:#fff;box-shadow:var(--shadow)}
+.planner-panel h3{margin:0 0 4px;font-size:16px}
+.planner-panel .meta{font-size:12.5px;color:var(--cw-grey);margin-bottom:12px}
+.type-notes{margin:14px 0 4px}
+.type-notes li{font-size:13.5px}
+
+/* footer */
+.site-foot{margin-top:56px;background:var(--cw-black);color:#cfcdca;padding:34px 0 30px;font-size:13px}
+.site-foot .cols{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+.site-foot a{color:#fff;text-decoration:none}
+.site-foot a:hover{color:#fff;text-decoration:underline}
+.site-foot .fine{margin-top:14px;font-size:11.5px;color:#8b8985}
+.next-link{display:flex;justify-content:space-between;gap:12px;margin:44px 0 10px;flex-wrap:wrap}
+</style></head><body><header class="site-head"><div class="wrap bar"><a href="resources.html"><img class="logo" src="https://emailer.emfluence.com/clients/citywide/uploadedfiles/signature_logo.png" alt="City Wide Facility Solutions"></a><span class="site-name">Vendor Resource Center</span><button class="menu-toggle" aria-label="Menu">&#9776;</button><nav><a href="resources.html">Home</a><a href="planner.html">Building Planner</a><a href="equipment.html">Equipment</a><a href="color-coding.html" class="active">Color Coding</a><a href="medical.html">Medical</a><a href="cleanroom.html">Clean Room</a><a href="gmp.html">GMP</a><a class="btn-order" href="index.html">Order Supplies</a></nav></div></header><section class="guide-hero"><div class="content-wrap"><div class="crumbs"><a href="resources.html">Resource Center</a><span>/</span>The Color Coding System</div><h1>The Color Coding System</h1><p class="lede">Four colors, one rule: the cloth that touches a toilet never touches a desk. Color coding makes cross contamination control something you can see across the room.</p><div class="cta-row"><a class="btn btn-pdf" href="pdfs/color-coding-system.pdf" download><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Printable PDF</a></div></div></section><section class="guide-body"><div class="content-wrap"><h2>Why Color Coding Exists</h2><p>Germs do not stay where they started; they ride on cloths, mop heads, and gloves. One red cloth used in the wrong place can carry restroom bacteria to a break room table. Color coding stops that with a system so simple it works on the busiest night: every color has a territory, and colors never cross the line.</p><h2>Microfiber Cloths</h2><div class="prod-row"><figure class="prod"><span class="ph"><img src="https://assets-e518d5c0cd.cdn.insitecloud.net/a327fe7b1aa5d6b_md.jpg" alt="Red microfiber cloths" loading="lazy"></span><figcaption><span class="chip"><i class="c-red"></i>Red</span><small>Toilets &amp; urinals only</small></figcaption></figure><figure class="prod"><span class="ph"><img src="https://assets-e518d5c0cd.cdn.insitecloud.net/9aa8b8b9a813591_md.jpg" alt="Yellow microfiber cloths" loading="lazy"></span><figcaption><span class="chip"><i class="c-yellow"></i>Yellow</span><small>All other restroom surfaces</small></figcaption></figure><figure class="prod"><span class="ph"><img src="https://assets-e518d5c0cd.cdn.insitecloud.net/af5e03a4f8f548c_md.jpg" alt="Blue microfiber cloths" loading="lazy"></span><figcaption><span class="chip"><i class="c-blue"></i>Blue</span><small>Glass &amp; mirrors</small></figcaption></figure><figure class="prod"><span class="ph"><img src="https://assets-e518d5c0cd.cdn.insitecloud.net/4bf3d4655fa5b4e_md.jpg" alt="Green microfiber cloths" loading="lazy"></span><figcaption><span class="chip"><i class="c-green"></i>Green</span><small>General cleaning &amp; dusting</small></figcaption></figure></div><div class="tbl-wrap"><table><thead><tr><th>Color</th><th>Where It Cleans</th><th>Never Touches</th></tr></thead><tbody><tr><td><span class="chip"><i class="c-red"></i>Red / Pink</span></td><td>Toilets, urinals, and the surfaces right around them</td><td>Anything outside the restroom</td></tr><tr><td><span class="chip"><i class="c-yellow"></i>Yellow</span></td><td>Restroom sinks, counters, partitions, dispensers, and doors</td><td>Toilets and urinals; anything outside the restroom</td></tr><tr><td><span class="chip"><i class="c-blue"></i>Blue</span></td><td>Glass, mirrors, and polished surfaces</td><td>Restroom fixtures</td></tr><tr><td><span class="chip"><i class="c-green"></i>Green</span></td><td>Desks, tables, counters, dusting, and general surfaces</td><td>Restrooms</td></tr></tbody></table></div><h2>Mops Follow the Same Logic</h2><div class="tbl-wrap"><table><thead><tr><th>Mop Color</th><th>Territory</th></tr></thead><tbody><tr><td><span class="chip"><i class="c-green"></i>Green</span> or <span class="chip"><i class="c-blue"></i>Blue</span></td><td>Common areas: lobbies, hallways, break rooms, offices</td></tr><tr><td><span class="chip"><i class="c-red"></i>Red / Pink</span></td><td>Restrooms only. Red pads and red buckets live in the restroom rotation and nowhere else.</td></tr></tbody></table></div><h2>Specialty Facilities Add Zones</h2><p>Medical, clean room, and GMP food accounts extend the same idea with extra zone colors. The account's posted color map always wins; these are the common patterns:</p><div class="tbl-wrap"><table><thead><tr><th>Color</th><th>Medical</th><th>GMP / Food</th></tr></thead><tbody><tr><td><span class="chip"><i class="c-orange"></i>Orange</span></td><td>Treatment rooms</td><td>Production &amp; processing floor</td></tr><tr><td><span class="chip"><i class="c-yellow"></i>Yellow</span></td><td>Isolation rooms (dedicated kit)</td><td>Allergen control &amp; segregated zones (dedicated kit)</td></tr><tr><td><span class="chip"><i class="c-ltblue"></i>Light Blue</span></td><td>Glass &amp; viewing panels</td><td>Glass &amp; viewing panels</td></tr><tr><td><span class="chip"><i class="c-blue"></i>Blue</span></td><td>Break rooms &amp; offices</td><td>Break rooms &amp; offices</td></tr></tbody></table></div><h2>The Five Rules</h2><ul class="checklist"><li>One color, one territory. No exceptions, no borrowing when you run short.</li><li>Fold the cloth in quarters and rotate to a fresh face; 8 faces per cloth.</li><li>Retire the cloth when the zone is done or every face is used, whichever comes first.</li><li>Launder colors separately, and launder specialty zone colors (yellow zone kits) on their own.</li><li>When in doubt, throw it in the dirty bag. A clean cloth costs cents; a lost account costs everything.</li></ul><div class="next-link"><a class="btn btn-ghost" href="medical.html">Next: Medical Facility Cleaning</a><a class="btn btn-red" href="index.html">Order Microfiber</a></div></div></section><footer class="site-foot"><div class="wrap"><div class="cols"><div><b style="color:#fff">City Wide Facility Solutions</b> &middot; Las Vegas &amp; Northern Nevada<br>Vendor Resource Center</div><div><a href="index.html">Order Supplies</a> &nbsp;&nbsp; <a href="resources.html">Resource Center</a> &nbsp;&nbsp; <a href="https://www.gocitywide.com" target="_blank" rel="noopener">GoCityWide.com</a></div></div><div class="fine">For crew and vendor reference. Quantities and methods are guidance; your account scope of work always comes first. Questions? Contact your City Wide Facility Solutions representative.</div></div></footer>
+<script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.querySelector('.site-head nav');
+  if(t&&n){t.addEventListener('click',function(){n.classList.toggle('open');});}
+})();
+</script>
+</body></html>
