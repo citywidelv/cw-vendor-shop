@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Order Building Supplies | City Wide Vendor Resource Center</title><meta name="description" content="Order building consumables from City Wide Facility Solutions: paper products, soap, trash liners, air care, and restroom supplies for the buildings you service."><style>
+:root{
+  --cw-red:#D22730; --cw-red-dark:#B01F27; --cw-black:#2D2A26; --cw-grey:#636466;
+  --cw-white:#FFFFFF; --cw-light:#F5F5F5; --cw-border:#E5E5E5; --cw-teal:#0AA6A9;
+  --sp-xs:4px; --sp-sm:8px; --sp-md:16px; --sp-lg:24px; --sp-xl:32px; --sp-2xl:48px;
+  --radius:10px; --shadow:0 1px 3px rgba(45,42,38,.08),0 4px 14px rgba(45,42,38,.06);
+  --shadow-lift:0 4px 10px rgba(45,42,38,.10),0 10px 28px rgba(45,42,38,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:Verdana,'Liberation Sans','DejaVu Sans',Geneva,Tahoma,sans-serif;
+  color:var(--cw-black);background:var(--cw-white);line-height:1.6;font-size:15px}
+img{max-width:100%;display:block}
+a{color:var(--cw-red);font-weight:700}
+a:hover{color:var(--cw-red-dark)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.content-wrap{max-width:860px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+.site-head{position:sticky;top:0;z-index:50;background:var(--cw-white);
+  border-bottom:1px solid var(--cw-border);box-shadow:0 1px 2px rgba(45,42,38,.05)}
+.site-head .bar{display:flex;align-items:center;gap:16px;height:64px}
+.site-head .bar>a:first-child{flex:none;display:block;line-height:0}
+.site-head img.logo{height:38px;width:auto;max-width:none;object-fit:contain}
+.site-head .site-name{font-size:13px;font-weight:700;color:var(--cw-grey);
+  border-left:2px solid var(--cw-border);padding-left:14px;letter-spacing:.02em;
+  text-transform:uppercase;white-space:nowrap}
+.site-head nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.site-head nav a{font-size:12.5px;font-weight:700;color:var(--cw-black);text-decoration:none;
+  padding:8px 10px;border-radius:6px;white-space:nowrap}
+.site-head nav a:hover{background:var(--cw-light);color:var(--cw-red)}
+.site-head nav a.active{color:var(--cw-red)}
+.site-head nav a.btn-order{background:var(--cw-red);color:#fff;padding:9px 16px}
+.site-head nav a.btn-order:hover{background:var(--cw-red-dark);color:#fff}
+.site-head nav a.nav-opps{color:var(--cw-red);position:relative}
+.site-head nav a.nav-opps::after{content:"";display:inline-block;width:7px;height:7px;
+  border-radius:50%;background:var(--cw-red);margin-left:6px;vertical-align:2px;
+  animation:oppPulse 2s infinite}
+@keyframes oppPulse{0%,100%{opacity:1}50%{opacity:.35}}
+.dd{position:relative}
+.dd>a.dd-label::after{content:" \25BE";font-size:10px;color:var(--cw-grey)}
+.dd-menu{display:none;position:absolute;top:100%;left:0;min-width:210px;background:#fff;
+  border:1px solid var(--cw-border);border-radius:10px;box-shadow:var(--shadow-lift);
+  padding:8px;z-index:60}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{display:block}
+.dd-menu a{display:block;padding:9px 12px;border-radius:6px;font-size:13px}
+.dd-menu .dd-head{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cw-grey);padding:8px 12px 4px}
+.menu-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--cw-border);
+  border-radius:6px;padding:8px 10px;cursor:pointer;font-size:16px;line-height:1;color:var(--cw-black)}
+@media(max-width:1080px){
+  .site-head .site-name{display:none}
+  .menu-toggle{display:block}
+  .site-head nav{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;
+    flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:2px;
+    border-bottom:1px solid var(--cw-border);box-shadow:0 12px 24px rgba(45,42,38,.12)}
+  .site-head nav.open{display:flex}
+  .site-head nav a{padding:12px 10px;border-radius:8px}
+  .site-head nav a.btn-order{text-align:center;margin-top:8px}
+  .dd{display:contents}
+  .dd>a.dd-label{display:none}
+  .dd-menu{display:block;position:static;border:none;box-shadow:none;padding:0;min-width:0}
+  .dd-menu a{padding:12px 10px;font-size:13px}
+  .dd-menu .dd-head{padding:10px 10px 2px}
+}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 44px;background:
+  linear-gradient(180deg,#fff 0%,#FAFAFA 100%)}
+.hero .kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cw-red);margin-bottom:14px}
+.hero .kicker::before{content:"";width:22px;height:3px;background:var(--cw-red);border-radius:2px}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:700;line-height:1.2;letter-spacing:.01em;
+  max-width:760px}
+.hero p.lede{margin-top:14px;font-size:clamp(14px,2vw,17px);color:var(--cw-grey);max-width:640px}
+.hero .cta-row{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;
+  font-weight:700;text-decoration:none;border-radius:8px;padding:12px 20px;cursor:pointer;
+  border:2px solid transparent;transition:all .15s}
+.btn-red{background:var(--cw-red);color:#fff}
+.btn-red:hover{background:var(--cw-red-dark);color:#fff;transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn-ghost{background:#fff;color:var(--cw-black);border-color:var(--cw-border)}
+.btn-ghost:hover{border-color:var(--cw-black);color:var(--cw-black)}
+.btn-pdf{background:#fff;color:var(--cw-red);border-color:var(--cw-red)}
+.btn-pdf:hover{background:var(--cw-red);color:#fff}
+.btn svg{flex:none}
+
+/* ---------- section + cards ---------- */
+.section{padding:40px 0}
+.section + .section{border-top:1px solid var(--cw-border)}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.section-head h2{font-size:20px;font-weight:700}
+.section-head .tag{font-size:11px;font-weight:700;color:var(--cw-grey);letter-spacing:.1em;
+  text-transform:uppercase}
+.section p.sub{color:var(--cw-grey);font-size:14px;max-width:640px;margin-bottom:22px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--cw-border);
+  border-radius:var(--radius);padding:22px;text-decoration:none;color:var(--cw-black);
+  transition:all .15s;box-shadow:var(--shadow)}
+.card:hover{box-shadow:var(--shadow-lift);transform:translateY(-2px);border-color:#d8d8d8;color:var(--cw-black)}
+.card .icon{width:44px;height:44px;border-radius:10px;background:var(--cw-light);display:flex;
+  align-items:center;justify-content:center;margin-bottom:14px;color:var(--cw-red)}
+.card.flag .icon{background:var(--cw-red);color:#fff}
+.card h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.card p{font-size:13px;color:var(--cw-grey);font-weight:400;flex:1}
+.card .go{margin-top:14px;font-size:13px;font-weight:700;color:var(--cw-red)}
+.card .go::after{content:" \2192"}
+.card .pdf-mini{position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;
+  letter-spacing:.08em;color:var(--cw-grey);border:1px solid var(--cw-border);border-radius:4px;
+  padding:2px 7px;text-transform:uppercase}
+.card.soon{background:var(--cw-light);box-shadow:none;border-style:dashed}
+.card.soon:hover{transform:none;box-shadow:none}
+.card.soon .icon{background:#fff;color:var(--cw-grey)}
+.badge-soon{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;background:var(--cw-black);color:#fff;border-radius:4px;
+  padding:3px 8px;margin-bottom:10px;width:max-content}
+
+/* ---------- guide page ---------- */
+.guide-hero{background:var(--cw-black);color:#fff;padding:40px 0 34px}
+.guide-hero .crumbs{font-size:12px;margin-bottom:14px}
+.guide-hero .crumbs a{color:#cfcdca;text-decoration:none;font-weight:400}
+.guide-hero .crumbs a:hover{color:#fff}
+.guide-hero .crumbs span{color:#8b8985;margin:0 6px}
+.guide-hero h1{font-size:clamp(24px,4vw,34px);line-height:1.25;max-width:720px}
+.guide-hero h1::after{content:"";display:block;width:56px;height:4px;background:var(--cw-red);
+  border-radius:2px;margin-top:16px}
+.guide-hero p.lede{margin-top:14px;color:#cfcdca;font-size:15px;max-width:640px}
+.guide-hero .cta-row{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+.guide-hero .btn-pdf{background:transparent;color:#fff;border-color:#fff}
+.guide-hero .btn-pdf:hover{background:#fff;color:var(--cw-black)}
+.guide-body{padding:40px 0 8px}
+.guide-body h2{font-size:20px;font-weight:700;margin:38px 0 12px;padding-top:6px}
+.guide-body h2:first-child{margin-top:0}
+.guide-body h2 .num{color:var(--cw-red);margin-right:8px}
+.guide-body h3{font-size:15px;font-weight:700;margin:24px 0 8px}
+.guide-body p{margin:0 0 14px;max-width:70ch}
+.guide-body ul,.guide-body ol{margin:0 0 16px 22px;max-width:70ch}
+.guide-body li{margin-bottom:7px}
+.guide-body li::marker{color:var(--cw-red);font-weight:700}
+
+/* callouts */
+.callout{border-left:4px solid var(--cw-red);background:var(--cw-light);border-radius:0 8px 8px 0;
+  padding:16px 18px;margin:20px 0;font-size:14px}
+.callout.warn{border-left-color:var(--cw-black)}
+.callout b.title{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cw-red);margin-bottom:5px}
+.callout.warn b.title{color:var(--cw-black)}
+.callout p:last-child{margin-bottom:0}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--cw-border);border-radius:8px;
+  box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:520px}
+thead th{background:var(--cw-black);color:#fff;text-align:left;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;padding:11px 14px;white-space:nowrap}
+tbody td{padding:11px 14px;border-top:1px solid var(--cw-border);vertical-align:top}
+tbody tr:nth-child(even){background:#FAFAFA}
+td.qty,th.qty{text-align:center;font-weight:700;white-space:nowrap}
+td.item{font-weight:700}
+td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margin-top:2px}
+
+/* color chips */
+.chip{display:inline-flex;align-items:center;gap:8px;font-weight:700;white-space:nowrap}
+.chip i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.15);flex:none}
+.c-red{background:#D0342C}.c-yellow{background:#F2C230}.c-blue{background:#2D69B3}
+.c-green{background:#3B9A46}.c-orange{background:#F68C28}.c-ltblue{background:#7FC3E8}
+.c-pink{background:#F08CA4}
+
+/* product figure row */
+.prod-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:20px 0 26px}
+.prod{border:1px solid var(--cw-border);border-radius:10px;background:#fff;padding:12px;text-align:center;
+  box-shadow:var(--shadow)}
+.prod .ph{height:110px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.prod img{max-height:110px;width:auto;margin:0 auto}
+.prod figcaption{font-size:11.5px;font-weight:700;line-height:1.4}
+.prod figcaption small{display:block;font-weight:400;color:var(--cw-grey);margin-top:2px}
+
+/* checklist */
+.checklist{list-style:none;margin:16px 0 24px;padding:0;max-width:70ch}
+.checklist li{position:relative;padding:10px 12px 10px 40px;border:1px solid var(--cw-border);
+  border-radius:8px;margin-bottom:8px;background:#fff;font-size:14px}
+.checklist li::before{content:"";position:absolute;left:12px;top:12px;width:16px;height:16px;
+  border:2px solid var(--cw-red);border-radius:4px}
+.checklist li::marker{content:""}
+
+/* planner controls */
+.picker{margin:6px 0 18px}
+.picker .lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cw-grey);margin-bottom:8px;display:block}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{font-family:inherit;font-size:13px;font-weight:700;color:var(--cw-black);
+  background:#fff;border:2px solid var(--cw-border);border-radius:8px;padding:10px 14px;
+  cursor:pointer;transition:all .12s;line-height:1.35}
+.seg button small{display:block;font-weight:400;color:var(--cw-grey);font-size:11px}
+.seg button:hover{border-color:var(--cw-grey)}
+.seg button.on{border-color:var(--cw-red);background:var(--cw-red);color:#fff}
+.seg button.on small{color:rgba(255,255,255,.85)}
+.planner-panel{border:1px solid var(--cw-border);border-radius:12px;padding:22px;margin:22px 0 30px;
+  background:#fff;box-shadow:var(--shadow)}
+.planner-panel h3{margin:0 0 4px;font-size:16px}
+.planner-panel .meta{font-size:12.5px;color:var(--cw-grey);margin-bottom:12px}
+.type-notes{margin:14px 0 4px}
+.type-notes li{font-size:13.5px}
+
+/* opportunities band (hub) */
+.opps-band{background:linear-gradient(120deg,var(--cw-black) 0%,#3a3733 100%);color:#fff;
+  border-top:4px solid var(--cw-red)}
+.opps-band .inner{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:24px 0}
+.opps-band .dot{width:10px;height:10px;border-radius:50%;background:var(--cw-red);flex:none;
+  animation:oppPulse 2s infinite}
+.opps-band .txt{flex:1;min-width:220px}
+.opps-band .txt b{display:block;font-size:17px}
+.opps-band .txt span{font-size:13px;color:#cfcdca}
+.opps-band .btn-red{background:var(--cw-red)}
+
+/* footer */
+.site-foot{margin-top:56px;background:var(--cw-black);color:#cfcdca;padding:34px 0 30px;font-size:13px}
+.site-foot .cols{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+.site-foot a{color:#fff;text-decoration:none}
+.site-foot a:hover{color:#fff;text-decoration:underline}
+.site-foot .fine{margin-top:14px;font-size:11.5px;color:#8b8985}
+.next-link{display:flex;justify-content:space-between;gap:12px;margin:44px 0 10px;flex-wrap:wrap}
+</style>
+<style>
+.sup-hero{background:#2D2A26;padding:44px 0 34px}
+.sup-hero .content-wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+.sup-hero h1{color:#fff;font-size:clamp(24px,4vw,34px);line-height:1.15;margin:0 0 10px}
+.sup-hero h1::after{content:"";display:block;width:52px;height:4px;background:var(--cw-red);
+  border-radius:2px;margin-top:12px}
+.sup-hero p{color:#cfcdca;font-size:14.5px;max-width:680px;margin:10px 0 0}
+.sup-wrap{max-width:1060px;margin:0 auto;padding:26px 22px 120px}
+.sup-card{background:#fff;border:1px solid #E5E5E5;border-radius:12px;padding:24px;
+  margin-bottom:18px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.sup-card h2{font-size:16px;margin:0 0 14px;padding-bottom:8px;border-bottom:2px solid var(--cw-red)}
+.sup-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.sup-grid{grid-template-columns:1fr}}
+.f{display:flex;flex-direction:column;gap:5px}
+.f label{font-size:12px;font-weight:700;color:#2D2A26}
+.f label .req{color:var(--cw-red)}
+.f input,.f select,.f textarea{width:100%;font-family:inherit;font-size:14px;color:#2D2A26;
+  border:1.5px solid #E5E5E5;border-radius:8px;padding:10px 12px;background:#fff;box-sizing:border-box}
+.f textarea{min-height:70px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--cw-red)}
+.sup-note{background:#FBF3DC;border:1px solid #E5B423;border-radius:10px;padding:12px 14px;
+  font-size:12.5px;color:#2D2A26;margin-bottom:16px;line-height:1.5}
+.cat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.cat-chips button{font-family:inherit;font-size:12.5px;font-weight:700;border:1.5px solid #E5E5E5;
+  background:#fff;color:#636466;border-radius:18px;padding:8px 14px;cursor:pointer}
+.cat-chips button.on{background:var(--cw-red);border-color:var(--cw-red);color:#fff}
+.item{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #F0EFED}
+.item:last-child{border-bottom:none}
+.item .tx{flex:1;min-width:0}
+.item .nm{font-size:13.5px;font-weight:700;color:#2D2A26;line-height:1.35}
+.item .ds{font-size:12px;color:#636466;line-height:1.45;margin-top:2px}
+.item .pr{font-size:13px;font-weight:800;color:var(--cw-red);white-space:nowrap;width:104px;text-align:right}
+.item .pr .std{display:inline-block;font-size:10px;font-weight:700;color:#8a6d1a;background:#FBF3DC;
+  border:1px solid #E5B423;border-radius:9px;padding:2px 8px;text-transform:uppercase;letter-spacing:.04em}
+.qty{display:flex;align-items:center;gap:0;border:1.5px solid #E5E5E5;border-radius:8px;overflow:hidden}
+.qty button{width:32px;height:34px;border:none;background:#F6F5F3;color:#2D2A26;font-size:16px;
+  font-weight:700;cursor:pointer;font-family:inherit}
+.qty button:hover{background:var(--cw-red);color:#fff}
+.qty .n{width:34px;text-align:center;font-size:13.5px;font-weight:700;color:#2D2A26}
+.item.picked{background:#FDF7F7;border-radius:10px;border-bottom-color:transparent;padding-left:10px;padding-right:10px}
+@media(max-width:640px){.item{flex-wrap:wrap}.item .pr{width:auto}.item .tx{flex-basis:100%}}
+.sup-bar{position:fixed;left:0;right:0;bottom:0;background:#2D2A26;z-index:50;
+  box-shadow:0 -3px 14px rgba(0,0,0,.25)}
+.sup-bar .in{max-width:1060px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:16px}
+.sup-bar .ct{color:#fff;font-size:13.5px;font-weight:700;flex:1}
+.sup-bar .ct small{display:block;color:#cfcdca;font-weight:400;font-size:11.5px}
+.sup-bar button{background:var(--cw-red);color:#fff;border:none;border-radius:9px;
+  padding:12px 26px;font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap}
+.sup-bar button:hover{background:#b31f27}
+.sup-bar button:disabled{background:#636466;cursor:wait}
+.sup-err{display:none;background:#FDECEC;border:1px solid var(--cw-red);color:#8f1a20;
+  border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:14px}
+.sup-done{display:none;background:#fff;border:1px solid #E5E5E5;border-radius:14px;
+  padding:44px 30px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.sup-done .big{width:64px;height:64px;border-radius:50%;background:#EAF6EC;color:#2E7D32;
+  display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 16px}
+.sup-done h2{font-size:20px;margin:0 0 8px}
+.sup-done p{font-size:13.5px;color:#636466;max-width:540px;margin:0 auto 6px;line-height:1.6}
+.hp{position:absolute;left:-6000px;top:-6000px}
+</style>
+</head><body><header class="site-head"><div class="wrap bar"><a href="resources.html"><img class="logo" src="https://emailer.emfluence.com/clients/citywide/uploadedfiles/signature_logo.png" alt="City Wide Facility Solutions"></a><button class="menu-toggle" aria-label="Menu">&#9776;</button><nav><a href="resources.html">Home</a><a href="opportunities.html" class="nav-opps">Open Opportunities</a><div class="dd"><a class="dd-label" href="#" onclick="return false;">Guides</a><div class="dd-menu"><div class="dd-head">Crew Guides</div><a href="planner.html">New Building Planner</a><a href="workloading.html">Workloading & Crew Sizing</a><a href="equipment.html">Choosing Your Equipment</a><a href="color-coding.html">Color Coding System</a><a href="medical.html">Medical Facility Cleaning</a><a href="cleanroom.html">Clean Room Cleaning</a><a href="gmp.html">GMP & Food Facility Cleaning</a></div></div><a class="btn-order" href="index.html">Order Supplies</a></nav></div></header>
+<section class="sup-hero"><div class="content-wrap">
+<div class="crumbs" style="margin-bottom:10px"><a href="resources.html" style="color:#cfcdca">Resource Center</a> <span style="color:#777">/</span> <span style="color:#fff">Order Building Supplies</span></div>
+<h1>Order Building Supplies</h1>
+<p>Consumables for the buildings you service: paper, soap, liners, air care, and restroom
+stock. This is for client building supplies. Crew equipment, chemicals, and uniforms live in
+the <a href="index.html" style="color:#fff;text-decoration:underline">Vendor Shop</a>.</p>
+</div></section>
+
+<div class="sup-wrap">
+<div id="supForm">
+
+<div class="sup-note"><b>Standard items:</b> generic products marked "Standard" are matched to
+your building's dispensers and priced at fulfillment. If you are unsure which refill fits,
+reply to your confirmation email with photos of the dispensers and we will match them.</div>
+
+<div class="sup-card">
+<h2>Who &amp; Where</h2>
+<div class="sup-grid">
+<div class="f"><label>Your Name <span class="req">*</span></label><input id="requester" placeholder="First Last"></div>
+<div class="f"><label>Email <span class="req">*</span></label><input id="email" type="email" placeholder="you@company.com"></div>
+<div class="f"><label>Phone</label><input id="phone" type="tel" placeholder="(702) 555-1234"></div>
+<div class="f"><label>Building / Location Name <span class="req">*</span></label><input id="building" placeholder="The building this order is for"></div>
+<div class="f"><label>Region <span class="req">*</span></label>
+<select id="region"><option>Las Vegas</option><option>Northern Nevada</option></select></div>
+</div>
+</div>
+
+<div class="sup-card">
+<h2>Pick Your Items</h2>
+<div class="cat-chips" id="chips"></div>
+<div id="items"></div>
+</div>
+
+<div class="sup-card">
+<h2>Anything Else</h2>
+<div class="f"><label>Comments</label><textarea id="comments" placeholder="Dispenser brands, delivery notes, anything that helps us match products"></textarea></div>
+</div>
+
+<input class="hp" type="text" id="website" tabindex="-1" autocomplete="off">
+<div class="sup-err" id="supErr"></div>
+<p style="font-size:11.5px;color:#636466;margin-top:6px">Pricing may exclude applicable taxes.
+Standard items are priced when fulfilled.</p>
+</div>
+
+<div class="sup-done" id="supDone">
+<div class="big">&#10003;</div>
+<h2>Order Submitted</h2>
+<p id="doneMsg"></p>
+<p><b>Dispenser photos help.</b> If any item needs matching, reply to your confirmation
+email with photos of the dispensers and we will take it from there.</p>
+</div>
+</div>
+
+<div class="sup-bar" id="supBar" style="display:none"><div class="in">
+<span class="ct"><span id="barCount"></span><small id="barSub"></small></span>
+<button id="supBtn" onclick="submitOrder()">Submit Order</button>
+</div></div>
+
+<script>
+var WEBHOOK = "https://script.google.com/macros/s/AKfycbzfNnrpidCbWB1DeUNgXvRhDFMQgApfpn-3C9GU45wMEHcJpWFl8ZQVo6PUBSRfEVfRdg/exec";
+var CATALOG = [{"c": "Chemicals", "n": "H2Orange2 Hyper-Concentrate 112", "d": "EPA-registered multi-purpose cleaner, sanitizer, and virucide. Orange oil + hydrogen peroxide, neutral pH. Case of two 1-gallon bottles.", "p": 0}, {"c": "Paper Towels", "n": "Multifold Paper Towels (Standard)", "d": "Z-fold, C-fold, or M-fold for universal wall-mounted dispensers.", "p": 0}, {"c": "Paper Towels", "n": "Singlefold Towels (Standard)", "d": "Thicker single-fold paper, common in older buildings.", "p": 0}, {"c": "Paper Towels", "n": "Roll Towels for Manual Dispensers (Standard)", "d": "Hardwound roll towels (HRT) for manual pull dispensers. 7.5 to 8 inch rolls.", "p": 0}, {"c": "Paper Towels", "n": "Roll Towels for Automatic Dispensers (Standard)", "d": "Touchless systems like enMotion or Tork Elevation. Needs matching core or proprietary refill.", "p": 0}, {"c": "Paper Towels", "n": "Centerpull Towels (Standard)", "d": "Pulled from the center of the roll. Break rooms, kitchens, and utility sinks.", "p": 0}, {"c": "Paper Towels", "n": "Perforated Kitchen Roll Towels (Standard)", "d": "Household-style rolls for breakrooms and spill cleanup.", "p": 0}, {"c": "Paper Towels", "n": "KleenLine 1-Ply White Multifold Towels 16/250 (KL-853796)", "d": "Quality, performance, and value for restroom or kitchen towel needs.", "p": 43}, {"c": "Paper Towels", "n": "KleenLine 3085 2-Ply White Kitchen Roll Towel 30/85 (KL-855305)", "d": "Strength, softness, and absorbency for kitchens and breakrooms.", "p": 40}, {"c": "Paper Towels", "n": "KleenLine Essentials 2800 1-Ply Hardwound Roll Towel 6/800 (KL-850088)", "d": "Reliable performance at low cost. Fits most universal dispensers.", "p": 50}, {"c": "Toilet Paper", "n": "Toilet Paper Rolls (Standard)", "d": "Household-size rolls with higher sheet count for standard dispensers.", "p": 0}, {"c": "Toilet Paper", "n": "Jumbo Roll Toilet Paper JRT (Standard)", "d": "9 or 12 inch rolls for high-traffic restrooms. Needs a JRT dispenser.", "p": 0}, {"c": "Toilet Paper", "n": "Coreless Toilet Paper (Standard)", "d": "No core, more paper per roll, fewer changeouts. Needs a coreless dispenser.", "p": 0}, {"c": "Toilet Paper", "n": "Mini Jumbo Roll (Standard)", "d": "Between standard and jumbo. Often in dual-roll dispensers.", "p": 0}, {"c": "Toilet Paper", "n": "KleenLine 1957 2-Ply Bath Tissue 96/500 (KL-851167)", "d": "Soft 2-ply tissue, 96 rolls of 500 sheets. Fits most single-roll dispensers. FSC certified.", "p": 73}, {"c": "Toilet Paper", "n": "KleenLine Essentials 1985 2-Ply Jumbo Roll Tissue 12/1000 (KL-851308)", "d": "High-capacity JRT: 12 rolls at 1,000 feet. For high-traffic restrooms. FSC certified.", "p": 47}, {"c": "Soap & Sanitizer", "n": "Foaming Hand Soap Cartridges (Standard)", "d": "Must match the dispenser system: GOJO, Kimberly-Clark, Deb, Tork, and others.", "p": 0}, {"c": "Soap & Sanitizer", "n": "Bulk Pourable Soap (Standard)", "d": "Gallon jugs or 5-gallon buckets for refillable reservoir dispensers.", "p": 0}, {"c": "Soap & Sanitizer", "n": "Foam Hand Sanitizer Cartridges (Standard)", "d": "Touchless or manual. Must match proprietary systems like PURELL or Deb.", "p": 0}, {"c": "Soap & Sanitizer", "n": "Bulk Gallon Hand Sanitizer (Standard)", "d": "For pump bottles and large refillable dispensers.", "p": 0}, {"c": "Soap & Sanitizer", "n": "Softsoap Antibacterial Pump 11.25oz 6/case (CM9210)", "d": "Antibacterial liquid hand soap, counter-top pump bottles.", "p": 37}, {"c": "Trash Liners", "n": "Small Office Can Liners, 7 to 10 Gallon (Standard)", "d": "Desk-side cans and restroom stall bins. About 24x24 inches.", "p": 0}, {"c": "Trash Liners", "n": "Medium Trash Liners, 12 to 16 Gallon (Standard)", "d": "Under-sink breakroom cans and small kitchenettes. About 24x33 inches.", "p": 0}, {"c": "Trash Liners", "n": "Janitorial Can Liners, 40 to 45 Gallon (Standard)", "d": "Breakroom, kitchen, and restroom station cans. About 40x48 inches.", "p": 0}, {"c": "Trash Liners", "n": "Brute Rolling Container Liners, 44 to 55 Gallon (Standard)", "d": "Rolling Brute cans on carts and nightly bulk collection. About 38x58 inches.", "p": 0}, {"c": "Trash Liners", "n": "33 Gallon Black Low Density Liner 33x39 2mil (LA3941)", "d": "Medium cans handling wet or heavy waste.", "p": 53}, {"c": "Trash Liners", "n": "45 Gallon LDPE Liner 40x46 1.2mil Black 150/case (LE4122)", "d": "Larger kitchen and production area bins.", "p": 60}, {"c": "Trash Liners", "n": "55 to 60 Gallon Black Low Density Liner 38x58 2mil (LA2004)", "d": "Oversized outdoor and industrial bins.", "p": 35}, {"c": "Trash Liners", "n": "KleenLine Can Liner 24x33 6mic Clear, 20 rolls of 50 (KL-709040)", "d": "Light-duty clear liners for office cans.", "p": 36}, {"c": "Restroom", "n": "Toilet Seat Covers (Standard)", "d": "Half-fold covers for standard seat cover dispensers.", "p": 0}, {"c": "Air Care", "n": "Gem 2 Urinal Screen Cucumber Melon 10/box (CJ0124)", "d": "Deodorizing urinal screens.", "p": 30}, {"c": "Air Care", "n": "KleenLine Eco Clip Cucumber Melon 12/box (KL-160475)", "d": "Bowl and rim air care clips.", "p": 36}, {"c": "Air Care", "n": "Urinal Mat with Time Strip (CJ9000)", "d": "Floor mats that stop splash damage, with change-out time strip.", "p": 150}, {"c": "Feminine Hygiene", "n": "Hospeco Waxed Kraft Liners 10.5x9.38 Brown 250/carton (PO6141)", "d": "Receptacle liners for stall disposal units.", "p": 25}, {"c": "Feminine Hygiene", "n": "Tampax Tampons Individually Wrapped 500/case (PO0500)", "d": "Vendor machine and dispenser stock.", "p": 118}, {"c": "Feminine Hygiene", "n": "Hospeco Maxithins Sanitary Pads 250/case (PO0004)", "d": "Vendor machine and dispenser stock.", "p": 67}];
+var qtys = {};
+
+function cats(){
+  var seen = [], out = [];
+  CATALOG.forEach(function(it){ if (seen.indexOf(it.c) < 0) { seen.push(it.c); out.push(it.c); } });
+  return out;
+}
+var activeCat = "All";
+
+function renderChips(){
+  var el = document.getElementById('chips');
+  var all = ["All"].concat(cats());
+  el.innerHTML = "";
+  all.forEach(function(c){
+    var b = document.createElement('button');
+    b.type = "button"; b.textContent = c;
+    if (c === activeCat) b.className = "on";
+    b.onclick = function(){ activeCat = c; renderChips(); renderItems(); };
+    el.appendChild(b);
+  });
+}
+
+function renderItems(){
+  var host = document.getElementById('items');
+  host.innerHTML = "";
+  CATALOG.forEach(function(it, idx){
+    if (activeCat !== "All" && it.c !== activeCat) return;
+    var q = qtys[idx] || 0;
+    var d = document.createElement('div');
+    d.className = 'item' + (q > 0 ? ' picked' : '');
+    d.innerHTML =
+      '<div class="tx"><div class="nm">' + it.n + '</div><div class="ds">' + it.d + '</div></div>' +
+      '<div class="pr">' + (it.p > 0 ? '$' + it.p : '<span class="std">Standard</span>') + '</div>' +
+      '<div class="qty"><button type="button" aria-label="Less">&minus;</button>' +
+      '<span class="n">' + q + '</span><button type="button" aria-label="More">+</button></div>';
+    var btns = d.querySelectorAll('.qty button');
+    btns[0].onclick = function(){ qtys[idx] = Math.max(0, (qtys[idx]||0) - 1); renderItems(); renderBar(); };
+    btns[1].onclick = function(){ qtys[idx] = Math.min(99, (qtys[idx]||0) + 1); renderItems(); renderBar(); };
+    host.appendChild(d);
+  });
+}
+
+function renderBar(){
+  var count = 0, sub = 0, std = 0;
+  Object.keys(qtys).forEach(function(k){
+    var q = qtys[k]; if (!q) return;
+    count += q;
+    var it = CATALOG[k];
+    if (it.p > 0) sub += it.p * q; else std += q;
+  });
+  var bar = document.getElementById('supBar');
+  if (!count) { bar.style.display = 'none'; return; }
+  bar.style.display = 'block';
+  document.getElementById('barCount').textContent =
+    count + (count === 1 ? ' item' : ' items') + (sub > 0 ? ' | $' + sub.toFixed(2) + ' subtotal' : '');
+  document.getElementById('barSub').textContent =
+    std > 0 ? std + ' standard item' + (std === 1 ? '' : 's') + ' priced at fulfillment' : '';
+}
+
+function fail(msg){
+  var e = document.getElementById('supErr');
+  e.textContent = msg; e.style.display = 'block';
+  e.scrollIntoView({behavior:'smooth', block:'center'});
+  var b = document.getElementById('supBtn');
+  b.disabled = false; b.textContent = 'Submit Order';
+}
+
+function submitOrder(){
+  var e = document.getElementById('supErr'); e.style.display = 'none';
+  var v = function(id){ return document.getElementById(id).value.trim(); };
+  if (!v('requester')) return fail('Your name is required.');
+  var em = v('email');
+  if (!em || em.indexOf('@') < 1) return fail('A valid email is required for your order confirmation.');
+  if (!v('building')) return fail('Tell us which building this order is for.');
+  var items = [];
+  Object.keys(qtys).forEach(function(k){
+    if (qtys[k] > 0) items.push({ name: CATALOG[k].n, qty: qtys[k], price: CATALOG[k].p });
+  });
+  if (!items.length) return fail('Pick at least one item.');
+  var data = {
+    kind: 'supply_order', website: document.getElementById('website').value,
+    requester: v('requester'), email: em, phone: v('phone'),
+    building: v('building'), region: v('region'), items: items, comments: v('comments')
+  };
+  var b = document.getElementById('supBtn');
+  b.disabled = true; b.textContent = 'Submitting...';
+  fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'text/plain'},
+    body: JSON.stringify(data) })
+  .then(function(r){ return r.text(); })
+  .then(function(t){
+    var r; try { r = JSON.parse(t); } catch(err){ r = { ok:true }; }
+    if (!r.ok) return fail(r.error || 'Something went wrong. Please try again.');
+    document.getElementById('supForm').style.display = 'none';
+    document.getElementById('supBar').style.display = 'none';
+    document.getElementById('doneMsg').innerHTML =
+      'Reference <b>' + (r.id || '') + '</b>. Your order went to the City Wide team, and a ' +
+      'confirmation is on its way to <b>' + em + '</b>.';
+    var dn = document.getElementById('supDone');
+    dn.style.display = 'block';
+    dn.scrollIntoView({behavior:'smooth', block:'center'});
+  })
+  .catch(function(){ fail('Could not reach the server. Check your connection and try again.'); });
+}
+
+renderChips(); renderItems();
+</script>
+<footer class="site-foot"><div class="wrap"><div class="cols"><div><b style="color:#fff">City Wide Facility Solutions</b> &middot; Las Vegas &amp; Northern Nevada<br>Vendor Resource Center</div><div><a href="index.html">Order Supplies</a> &nbsp;&nbsp; <a href="resources.html">Resource Center</a> &nbsp;&nbsp; <a href="https://www.gocitywide.com" target="_blank" rel="noopener">GoCityWide.com</a></div></div><div class="fine">For crew and vendor reference. Quantities and methods are guidance; your account scope of work always comes first. Questions? Contact your City Wide Facility Solutions representative.</div></div></footer>
+<script>
+(function(){
+  var t=document.querySelector('.menu-toggle'),n=document.querySelector('.site-head nav');
+  if(t&&n){t.addEventListener('click',function(){n.classList.toggle('open');});}
+})();
+</script>
+</body></html>
