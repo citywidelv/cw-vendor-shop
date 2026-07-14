@@ -289,15 +289,15 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 <h1>Submit Your Monthly Invoice</h1>
 <p>One invoice per month, all your accounts on one page. City Wide Accounts Payable
 gets a clean PDF the moment you hit submit, and you get a confirmation copy for your records.
-Payment terms are Prox 10.</p>
+Payment terms are Net 10th Prox: due the 10th of the month after your invoice.</p>
 </div></section>
 
 <div class="inv-wrap">
 <div id="invForm">
 
 <div class="inv-note"><b>Before you start:</b> have your Exhibit A handy for contract amounts,
-and make sure you have the EC number, PO number, or Service Call number from the FSM for any
-extra charge or project work. Lines without a reference number can slow down payment.</div>
+and make sure you have the Work Order number from the FSM for any extra charge or project
+work. Lines without a Work Order number can slow down payment.</div>
 
 <div class="inv-card">
 <h2>Your Company</h2>
@@ -331,7 +331,7 @@ name in large type instead.</span></div>
 
 <div class="inv-card">
 <h2>Contracts &amp; Extra Work</h2>
-<div class="line-head"><span>Account / Address</span><span>Service</span><span>PO / EC / SC #</span><span>Amount</span><span></span></div>
+<div class="line-head"><span>Account / Address</span><span>Service</span><span>Work Order #</span><span>Amount</span><span></span></div>
 <div id="lines"></div>
 <button type="button" class="add-line" onclick="addLine()">+ Add another line</button>
 <div class="inv-total"><span class="lbl">TOTAL</span><span class="amt" id="grandTotal">$0.00</span></div>
@@ -346,14 +346,14 @@ name in large type instead.</span></div>
 <div class="inv-err" id="invErr"></div>
 <button class="inv-submit" id="invBtn" onclick="submitInvoice()">Submit Invoice</button>
 <p style="font-size:11.5px;color:#636466;text-align:center;margin-top:10px">
-Attention: Accounts Payable, City Wide Facility Solutions &middot; Payment Terms: Prox 10</p>
+Attention: Accounts Payable, City Wide Facility Solutions &middot; Payment Terms: Net 10th Prox</p>
 </div>
 
 <div class="inv-done" id="invDone">
 <div class="big">&#10003;</div>
 <h2>Invoice Submitted</h2>
 <p id="doneMsg"></p>
-<p>City Wide Accounts Payable pays on Prox 10 terms. Keep the confirmation email for your records.</p>
+<p>City Wide Accounts Payable pays on Net 10th Prox terms (the 10th of the month after your invoice). Keep the confirmation email for your records.</p>
 </div>
 </div>
 
@@ -387,7 +387,7 @@ function addLine(){
   d.className = 'line-row';
   d.innerHTML = '<input class="li-acct" placeholder="Account name or address">' +
     '<input class="li-svc" list="svcList" placeholder="Janitorial Contract">' +
-    '<input class="li-ref" placeholder="PO / EC / SC #">' +
+    '<input class="li-ref" placeholder="Work Order #">' +
     '<input class="li-amt" inputmode="decimal" placeholder="$0.00">' +
     '<button type="button" class="del" title="Remove line">&times;</button>';
   d.querySelector('.del').onclick = function(){ d.remove(); calcTotal(); };
