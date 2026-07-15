@@ -286,6 +286,22 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
   padding:20px 22px;margin:40px 0 10px}
 .packet-box h3{font-size:15px;margin-bottom:8px}
 .packet-box p{font-size:13.5px;margin-bottom:10px;max-width:70ch}
+/* first-night-ready flag + posting FSM strip (added 2026-07-15) */
+.kit-flag{display:flex;gap:12px;align-items:flex-start;background:#FBF3D6;border:2px solid var(--cw-red);
+  border-radius:10px;padding:12px 16px;margin:0 0 14px;font-size:13px;line-height:1.5}
+.kit-flag .ic{flex:none;width:34px;height:34px;border-radius:8px;background:var(--cw-red);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700}
+.kit-flag b.kf-head{color:var(--cw-red);text-transform:uppercase;letter-spacing:.06em;font-size:11px;display:block;margin-bottom:2px}
+.fsm-strip{display:flex;align-items:center;gap:14px;border-top:1px solid var(--cw-border);
+  margin-top:16px;padding-top:14px}
+.fsm-strip img{width:54px;height:58px;border-radius:8px;object-fit:cover;flex:none;margin:0}
+.fsm-strip .who{font-size:13px;line-height:1.45}
+.fsm-strip .who b{display:block;font-size:14px;color:var(--cw-black)}
+.fsm-strip .who span{color:var(--cw-grey);font-size:12px;display:block;font-weight:400}
+.fsm-strip .ptag{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--cw-grey);border:1px solid var(--cw-border);
+  border-radius:4px;padding:2px 8px;white-space:nowrap}
+
 </style>
 </head><body><header class="site-head"><div class="wrap bar"><a href="resources.html"><img class="logo" src="https://emailer.emfluence.com/clients/citywide/uploadedfiles/signature_logo.png" alt="City Wide Facility Solutions"></a><button class="menu-toggle" aria-label="Menu">&#9776;</button><nav><a href="resources.html">Home</a><a href="opportunities.html" class="nav-opps active">Open Opportunities</a><div class="dd"><a class="dd-label" href="#" onclick="return false;">Guides</a><div class="dd-menu"><div class="dd-head">Crew Guides</div><a href="planner.html">New Building Planner</a><a href="workloading.html">Workloading & Crew Sizing</a><a href="equipment.html">Choosing Your Equipment</a><a href="color-coding.html">Color Coding System</a><a href="medical.html">Medical Facility Cleaning</a><a href="cleanroom.html">Clean Room Cleaning</a><a href="gmp.html">GMP & Food Facility Cleaning</a></div></div><a class="btn-order" href="index.html">Order Supplies</a></nav></div></header><section class="opps-hero"><div class="wrap"><span class="live"><i></i><span id="liveCount">Loading the board&hellip;</span></span><h1>Open Opportunities</h1><p class="lede">Real accounts and projects that need a crew right now. When a posting fits your crew and your route, hit the button and tell us your staffing plan, your supervision plan, and the equipment you bring. First qualified answers get the walkthrough.</p></div></section><section class="section"><div class="wrap"><div class="opps-filter"><button class="on" data-r="all">All Regions</button><button data-r="Las Vegas">Las Vegas</button><button data-r="Northern Nevada">Northern Nevada</button></div><div class="opp-group"><h2>Recurring Contracts <span class="cnt" id="cCount">&hellip;</span></h2><p class="sub">Ongoing accounts: steady monthly work on a set schedule.</p><div class="opp-list" id="cList"><div class="opp-state">Loading&hellip;</div></div></div><div class="opp-group"><h2>One-Time Projects <span class="cnt" id="pCount">&hellip;</span></h2><p class="sub">Work orders: strip &amp; wax, post-construction, pressure washing, and other single jobs.</p><div class="opp-list" id="pList"><div class="opp-state">Loading&hellip;</div></div></div><div class="packet-box"><h3>Before You Raise Your Hand: the Vendor Packet</h3><p>To reserve a walkthrough slot you must have a signed vendor packet on file with City Wide. One packet covers you, unless you work both Las Vegas and Northern Nevada; then we need one on file with each office. Insurance and waiver documents are not required until you are awarded an account.</p><a class="btn btn-pdf" href="mailto:lvcompliance@gocitywide.com?subject=Vendor%20Packet%20Status%20Inquiry">Request or Check Your Packet</a></div></div></section><footer class="site-foot"><div class="wrap"><div class="cols"><div><b style="color:#fff">City Wide Facility Solutions</b> &middot; Las Vegas &amp; Northern Nevada<br>Vendor Resource Center</div><div><a href="index.html">Order Supplies</a> &nbsp;&nbsp; <a href="resources.html">Resource Center</a> &nbsp;&nbsp; <a href="https://www.gocitywide.com" target="_blank" rel="noopener">GoCityWide.com</a></div></div><div class="fine">For crew and vendor reference. Quantities and methods are guidance; your account scope of work always comes first. Questions? Contact your City Wide Facility Solutions representative.</div></div></footer>
 <script>
@@ -299,6 +315,26 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 var FEED = "https://script.google.com/macros/s/AKfycbzfNnrpidCbWB1DeUNgXvRhDFMQgApfpn-3C9GU45wMEHcJpWFl8ZQVo6PUBSRfEVfRdg/exec";
 var REGION = "all";
 function esc(s){var d=document.createElement("div");d.textContent=String(s==null?"":s);return d.innerHTML;}
+
+function kitFlag(o){
+  return '<div class="kit-flag"><span class="ic">!</span><div><b class="kf-head">Be First-Night Ready</b>'
+    + 'Before your first visit, open the <a href="planner.html">New Building Starter Kit</a> and dial in the list for a '
+    + '<b>' + esc(o.facility_type || 'building') + '</b>. Show up on night one with every chemical and piece of equipment this building needs.</div></div>';
+}
+function fsmStrip(o){
+  var f = o.fsm_info;
+  if (f && f.name){
+    return '<div class="fsm-strip"><img src="' + esc(f.photo) + '" alt="' + esc(f.name) + '">'
+      + '<div class="who"><b>' + esc(f.name) + '</b><span>' + esc(f.title) + '</span>'
+      + '<span>City Wide Facility Solutions &middot; ' + esc(f.region) + '</span></div>'
+      + '<span class="ptag">Posted by</span></div>';
+  }
+  if (o.contact_name){
+    return '<div class="fsm-strip"><div class="who"><b>' + esc(o.contact_name) + '</b>'
+      + '<span>City Wide Facility Solutions</span></div><span class="ptag">Posted by</span></div>';
+  }
+  return "";
+}
 function fact(label,val){
   if(!val) return "";
   return '<div class="opp-fact"><b>'+label+'</b><span>'+esc(val)+"</span></div>";
@@ -345,10 +381,10 @@ function card(o){
     + '<div class="opp-facts">'+facts+"</div>"
     + (o.deadline ? '<div class="opp-deadline">Respond by '+esc(o.deadline)+"</div>" : "")
     + '<details class="opp-more"><summary>Full details &amp; requirements</summary>'+more+"</details>"
+    + kitFlag(o)
     + (function(){ var m=respondMeta(o);
-        return '<div class="opp-cta"><a class="btn btn-red" href="'+m.href+'">'+m.label+"</a>"
-        + (o.contact_phone ? '<a class="btn btn-ghost" href="tel:'+esc(o.contact_phone).replace(/[^0-9+]/g,"")+'">Call '+esc(o.contact_phone)+"</a>" : "")
-        + "</div>"; })()
+        return '<div class="opp-cta"><a class="btn btn-red" href="'+m.href+'">'+m.label+"</a></div>"; })()
+    + fsmStrip(o)
     + "</article>";
 }
 function render(items){
