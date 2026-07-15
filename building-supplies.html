@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Order Building Supplies | City Wide Vendor Resource Center</title><meta name="description" content="Order building consumables from City Wide Facility Solutions: paper products, soap, trash liners, air care, and restroom supplies for the buildings you service."><style>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Order Building Supplies | City Wide Vendor Resource Center</title><meta name="description" content="Request building consumables from City Wide Facility Solutions: paper products, soap, trash liners, air care, and restroom supplies for the buildings you service. No brands or part numbers needed."><style>
 :root{
   --cw-red:#D22730; --cw-red-dark:#B01F27; --cw-black:#2D2A26; --cw-grey:#636466;
   --cw-white:#FFFFFF; --cw-light:#F5F5F5; --cw-border:#E5E5E5; --cw-teal:#0AA6A9;
@@ -255,16 +255,13 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 .item .tx{flex:1;min-width:0}
 .item .nm{font-size:13.5px;font-weight:700;color:#2D2A26;line-height:1.35}
 .item .ds{font-size:12px;color:#636466;line-height:1.45;margin-top:2px}
-.item .pr{font-size:13px;font-weight:800;color:var(--cw-red);white-space:nowrap;width:104px;text-align:right}
-.item .pr .std{display:inline-block;font-size:10px;font-weight:700;color:#8a6d1a;background:#FBF3DC;
-  border:1px solid #E5B423;border-radius:9px;padding:2px 8px;text-transform:uppercase;letter-spacing:.04em}
 .qty{display:flex;align-items:center;gap:0;border:1.5px solid #E5E5E5;border-radius:8px;overflow:hidden}
 .qty button{width:32px;height:34px;border:none;background:#F6F5F3;color:#2D2A26;font-size:16px;
   font-weight:700;cursor:pointer;font-family:inherit}
 .qty button:hover{background:var(--cw-red);color:#fff}
 .qty .n{width:34px;text-align:center;font-size:13.5px;font-weight:700;color:#2D2A26}
 .item.picked{background:#FDF7F7;border-radius:10px;border-bottom-color:transparent;padding-left:10px;padding-right:10px}
-@media(max-width:640px){.item{flex-wrap:wrap}.item .pr{width:auto}.item .tx{flex-basis:100%}}
+@media(max-width:640px){.item{flex-wrap:wrap}.item .tx{flex-basis:100%}}
 .sup-bar{position:fixed;left:0;right:0;bottom:0;background:#2D2A26;z-index:50;
   box-shadow:0 -3px 14px rgba(0,0,0,.25)}
 .sup-bar .in{max-width:1060px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:16px}
@@ -288,17 +285,20 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 <section class="sup-hero"><div class="content-wrap">
 <div class="crumbs" style="margin-bottom:10px"><a href="resources.html" style="color:#cfcdca">Resource Center</a> <span style="color:#777">/</span> <span style="color:#fff">Order Building Supplies</span></div>
 <h1>Order Building Supplies</h1>
-<p>Consumables for the buildings you service: paper, soap, liners, air care, and restroom
-stock. This is for client building supplies. Crew equipment, chemicals, and uniforms live in
-the <a href="index.html" style="color:#fff;text-decoration:underline">Vendor Shop</a>.</p>
+<p>Tell us what the building needs: paper, soap, liners, air care, and restroom stock.
+No brands or part numbers required; we match the right product to your building's dispensers
+and handle the ordering. Crew equipment, chemicals, and uniforms live in the
+<a href="index.html" style="color:#fff;text-decoration:underline">Vendor Shop</a>.</p>
 </div></section>
 
 <div class="sup-wrap">
 <div id="supForm">
 
-<div class="sup-note"><b>Standard items:</b> generic products marked "Standard" are matched to
-your building's dispensers and priced at fulfillment. If you are unsure which refill fits,
-reply to your confirmation email with photos of the dispensers and we will match them.</div>
+<div class="sup-note"><b>How this works:</b> pick what the building goes through and tell us
+roughly how much. This is a request, not a checkout; the City Wide team matches each item to
+your dispensers, confirms pack and case sizes, and places the order. If you are unsure which
+refill fits, reply to your confirmation email with photos of the dispensers and we will match
+them.</div>
 
 <div class="sup-card">
 <h2>Who &amp; Where</h2>
@@ -313,25 +313,25 @@ reply to your confirmation email with photos of the dispensers and we will match
 </div>
 
 <div class="sup-card">
-<h2>Pick Your Items</h2>
+<h2>What Does the Building Need?</h2>
 <div class="cat-chips" id="chips"></div>
 <div id="items"></div>
 </div>
 
 <div class="sup-card">
 <h2>Anything Else</h2>
-<div class="f"><label>Comments</label><textarea id="comments" placeholder="Dispenser brands, delivery notes, anything that helps us match products"></textarea></div>
+<div class="f"><label>Comments</label><textarea id="comments" placeholder="Dispenser brands if you know them, scents, delivery notes, anything not on the list"></textarea></div>
 </div>
 
 <input class="hp" type="text" id="website" tabindex="-1" autocomplete="off">
 <div class="sup-err" id="supErr"></div>
-<p style="font-size:11.5px;color:#636466;margin-top:6px">Pricing may exclude applicable taxes.
-Standard items are priced when fulfilled.</p>
+<p style="font-size:11.5px;color:#636466;margin-top:6px">Nothing is charged from this form.
+It sends a supply request to the City Wide team; we order the products and confirm by email.</p>
 </div>
 
 <div class="sup-done" id="supDone">
 <div class="big">&#10003;</div>
-<h2>Order Submitted</h2>
+<h2>Request Submitted</h2>
 <p id="doneMsg"></p>
 <p><b>Dispenser photos help.</b> If any item needs matching, reply to your confirmation
 email with photos of the dispensers and we will take it from there.</p>
@@ -340,12 +340,40 @@ email with photos of the dispensers and we will take it from there.</p>
 
 <div class="sup-bar" id="supBar" style="display:none"><div class="in">
 <span class="ct"><span id="barCount"></span><small id="barSub"></small></span>
-<button id="supBtn" onclick="submitOrder()">Submit Order</button>
+<button id="supBtn" onclick="submitOrder()">Submit Request</button>
 </div></div>
 
 <script>
 var WEBHOOK = "https://script.google.com/macros/s/AKfycbzfNnrpidCbWB1DeUNgXvRhDFMQgApfpn-3C9GU45wMEHcJpWFl8ZQVo6PUBSRfEVfRdg/exec";
-var CATALOG = [{"c": "Chemicals", "n": "H2Orange2 Hyper-Concentrate 112", "d": "EPA-registered multi-purpose cleaner, sanitizer, and virucide. Orange oil + hydrogen peroxide, neutral pH. Case of two 1-gallon bottles.", "p": 0}, {"c": "Paper Towels", "n": "Multifold Paper Towels (Standard)", "d": "Z-fold, C-fold, or M-fold for universal wall-mounted dispensers.", "p": 0}, {"c": "Paper Towels", "n": "Singlefold Towels (Standard)", "d": "Thicker single-fold paper, common in older buildings.", "p": 0}, {"c": "Paper Towels", "n": "Roll Towels for Manual Dispensers (Standard)", "d": "Hardwound roll towels (HRT) for manual pull dispensers. 7.5 to 8 inch rolls.", "p": 0}, {"c": "Paper Towels", "n": "Roll Towels for Automatic Dispensers (Standard)", "d": "Touchless systems like enMotion or Tork Elevation. Needs matching core or proprietary refill.", "p": 0}, {"c": "Paper Towels", "n": "Centerpull Towels (Standard)", "d": "Pulled from the center of the roll. Break rooms, kitchens, and utility sinks.", "p": 0}, {"c": "Paper Towels", "n": "Perforated Kitchen Roll Towels (Standard)", "d": "Household-style rolls for breakrooms and spill cleanup.", "p": 0}, {"c": "Paper Towels", "n": "KleenLine 1-Ply White Multifold Towels 16/250 (KL-853796)", "d": "Quality, performance, and value for restroom or kitchen towel needs.", "p": 43}, {"c": "Paper Towels", "n": "KleenLine 3085 2-Ply White Kitchen Roll Towel 30/85 (KL-855305)", "d": "Strength, softness, and absorbency for kitchens and breakrooms.", "p": 40}, {"c": "Paper Towels", "n": "KleenLine Essentials 2800 1-Ply Hardwound Roll Towel 6/800 (KL-850088)", "d": "Reliable performance at low cost. Fits most universal dispensers.", "p": 50}, {"c": "Toilet Paper", "n": "Toilet Paper Rolls (Standard)", "d": "Household-size rolls with higher sheet count for standard dispensers.", "p": 0}, {"c": "Toilet Paper", "n": "Jumbo Roll Toilet Paper JRT (Standard)", "d": "9 or 12 inch rolls for high-traffic restrooms. Needs a JRT dispenser.", "p": 0}, {"c": "Toilet Paper", "n": "Coreless Toilet Paper (Standard)", "d": "No core, more paper per roll, fewer changeouts. Needs a coreless dispenser.", "p": 0}, {"c": "Toilet Paper", "n": "Mini Jumbo Roll (Standard)", "d": "Between standard and jumbo. Often in dual-roll dispensers.", "p": 0}, {"c": "Toilet Paper", "n": "KleenLine 1957 2-Ply Bath Tissue 96/500 (KL-851167)", "d": "Soft 2-ply tissue, 96 rolls of 500 sheets. Fits most single-roll dispensers. FSC certified.", "p": 73}, {"c": "Toilet Paper", "n": "KleenLine Essentials 1985 2-Ply Jumbo Roll Tissue 12/1000 (KL-851308)", "d": "High-capacity JRT: 12 rolls at 1,000 feet. For high-traffic restrooms. FSC certified.", "p": 47}, {"c": "Soap & Sanitizer", "n": "Foaming Hand Soap Cartridges (Standard)", "d": "Must match the dispenser system: GOJO, Kimberly-Clark, Deb, Tork, and others.", "p": 0}, {"c": "Soap & Sanitizer", "n": "Bulk Pourable Soap (Standard)", "d": "Gallon jugs or 5-gallon buckets for refillable reservoir dispensers.", "p": 0}, {"c": "Soap & Sanitizer", "n": "Foam Hand Sanitizer Cartridges (Standard)", "d": "Touchless or manual. Must match proprietary systems like PURELL or Deb.", "p": 0}, {"c": "Soap & Sanitizer", "n": "Bulk Gallon Hand Sanitizer (Standard)", "d": "For pump bottles and large refillable dispensers.", "p": 0}, {"c": "Soap & Sanitizer", "n": "Softsoap Antibacterial Pump 11.25oz 6/case (CM9210)", "d": "Antibacterial liquid hand soap, counter-top pump bottles.", "p": 37}, {"c": "Trash Liners", "n": "Small Office Can Liners, 7 to 10 Gallon (Standard)", "d": "Desk-side cans and restroom stall bins. About 24x24 inches.", "p": 0}, {"c": "Trash Liners", "n": "Medium Trash Liners, 12 to 16 Gallon (Standard)", "d": "Under-sink breakroom cans and small kitchenettes. About 24x33 inches.", "p": 0}, {"c": "Trash Liners", "n": "Janitorial Can Liners, 40 to 45 Gallon (Standard)", "d": "Breakroom, kitchen, and restroom station cans. About 40x48 inches.", "p": 0}, {"c": "Trash Liners", "n": "Brute Rolling Container Liners, 44 to 55 Gallon (Standard)", "d": "Rolling Brute cans on carts and nightly bulk collection. About 38x58 inches.", "p": 0}, {"c": "Trash Liners", "n": "33 Gallon Black Low Density Liner 33x39 2mil (LA3941)", "d": "Medium cans handling wet or heavy waste.", "p": 53}, {"c": "Trash Liners", "n": "45 Gallon LDPE Liner 40x46 1.2mil Black 150/case (LE4122)", "d": "Larger kitchen and production area bins.", "p": 60}, {"c": "Trash Liners", "n": "55 to 60 Gallon Black Low Density Liner 38x58 2mil (LA2004)", "d": "Oversized outdoor and industrial bins.", "p": 35}, {"c": "Trash Liners", "n": "KleenLine Can Liner 24x33 6mic Clear, 20 rolls of 50 (KL-709040)", "d": "Light-duty clear liners for office cans.", "p": 36}, {"c": "Restroom", "n": "Toilet Seat Covers (Standard)", "d": "Half-fold covers for standard seat cover dispensers.", "p": 0}, {"c": "Air Care", "n": "Gem 2 Urinal Screen Cucumber Melon 10/box (CJ0124)", "d": "Deodorizing urinal screens.", "p": 30}, {"c": "Air Care", "n": "KleenLine Eco Clip Cucumber Melon 12/box (KL-160475)", "d": "Bowl and rim air care clips.", "p": 36}, {"c": "Air Care", "n": "Urinal Mat with Time Strip (CJ9000)", "d": "Floor mats that stop splash damage, with change-out time strip.", "p": 150}, {"c": "Feminine Hygiene", "n": "Hospeco Waxed Kraft Liners 10.5x9.38 Brown 250/carton (PO6141)", "d": "Receptacle liners for stall disposal units.", "p": 25}, {"c": "Feminine Hygiene", "n": "Tampax Tampons Individually Wrapped 500/case (PO0500)", "d": "Vendor machine and dispenser stock.", "p": 118}, {"c": "Feminine Hygiene", "n": "Hospeco Maxithins Sanitary Pads 250/case (PO0004)", "d": "Vendor machine and dispenser stock.", "p": 67}];
+var CATALOG = [
+{"c": "Paper Towels", "n": "Multifold Paper Towels", "d": "Z-fold, C-fold, or M-fold for universal wall-mounted dispensers.", "p": 0},
+{"c": "Paper Towels", "n": "Singlefold Towels", "d": "Thicker single-fold paper, common in older buildings.", "p": 0},
+{"c": "Paper Towels", "n": "Roll Towels for Manual Dispensers", "d": "Hardwound roll towels for manual pull dispensers. 7.5 to 8 inch rolls.", "p": 0},
+{"c": "Paper Towels", "n": "Roll Towels for Automatic Dispensers", "d": "Touchless systems. We match the core or proprietary refill your dispenser needs.", "p": 0},
+{"c": "Paper Towels", "n": "Centerpull Towels", "d": "Pulled from the center of the roll. Break rooms, kitchens, and utility sinks.", "p": 0},
+{"c": "Paper Towels", "n": "Perforated Kitchen Roll Towels", "d": "Household-style rolls for breakrooms and spill cleanup.", "p": 0},
+{"c": "Toilet Paper", "n": "Standard Toilet Paper Rolls", "d": "Household-size rolls with higher sheet count for standard dispensers.", "p": 0},
+{"c": "Toilet Paper", "n": "Jumbo Roll Toilet Paper (JRT)", "d": "9 or 12 inch rolls for high-traffic restrooms. Needs a JRT dispenser.", "p": 0},
+{"c": "Toilet Paper", "n": "Mini Jumbo Roll", "d": "Between standard and jumbo. Often in dual-roll dispensers.", "p": 0},
+{"c": "Toilet Paper", "n": "Coreless Toilet Paper", "d": "No core, more paper per roll, fewer changeouts. Needs a coreless dispenser.", "p": 0},
+{"c": "Soap & Sanitizer", "n": "Foaming Hand Soap Cartridges", "d": "We match the dispenser system on your wall, whatever brand it is.", "p": 0},
+{"c": "Soap & Sanitizer", "n": "Bulk Pourable Soap", "d": "Gallon jugs or 5-gallon buckets for refillable reservoir dispensers.", "p": 0},
+{"c": "Soap & Sanitizer", "n": "Hand Sanitizer Cartridges", "d": "Touchless or manual. We match proprietary systems to your dispenser.", "p": 0},
+{"c": "Soap & Sanitizer", "n": "Bulk Gallon Hand Sanitizer", "d": "For pump bottles and large refillable dispensers.", "p": 0},
+{"c": "Soap & Sanitizer", "n": "Counter Pump Soap Bottles", "d": "Stand-alone pump bottles for sinks without a wall dispenser.", "p": 0},
+{"c": "Trash Liners", "n": "Small Office Can Liners, 7 to 10 Gallon", "d": "Desk-side cans and restroom stall bins. About 24x24 inches.", "p": 0},
+{"c": "Trash Liners", "n": "Medium Trash Liners, 12 to 16 Gallon", "d": "Under-sink breakroom cans and small kitchenettes. About 24x33 inches.", "p": 0},
+{"c": "Trash Liners", "n": "Janitorial Can Liners, 40 to 45 Gallon", "d": "Breakroom, kitchen, and restroom station cans. About 40x48 inches.", "p": 0},
+{"c": "Trash Liners", "n": "Rolling Container Liners, 44 to 55 Gallon", "d": "Large rolling cans on carts and nightly bulk collection. About 38x58 inches.", "p": 0},
+{"c": "Restroom", "n": "Toilet Seat Covers", "d": "Half-fold covers for standard seat cover dispensers.", "p": 0},
+{"c": "Restroom", "n": "Urinal Screens", "d": "Deodorizing screens. Tell us a scent preference in the comments if you have one.", "p": 0},
+{"c": "Restroom", "n": "Toilet Bowl and Rim Clips", "d": "Bowl and rim air care clips for stalls.", "p": 0},
+{"c": "Restroom", "n": "Urinal Mats", "d": "Floor mats that stop splash damage under urinals.", "p": 0},
+{"c": "Air Care", "n": "Air Freshener Dispenser Refills", "d": "Metered aerosol or passive refills. We match the dispenser on the wall.", "p": 0},
+{"c": "Air Care", "n": "Air Freshener Sprays and Gels", "d": "Stand-alone cans and gel air care, no dispenser needed.", "p": 0},
+{"c": "Feminine Hygiene", "n": "Feminine Hygiene Dispenser Stock", "d": "Tampons and pads for restroom vending dispensers.", "p": 0},
+{"c": "Feminine Hygiene", "n": "Waxed Disposal Liners", "d": "Kraft receptacle liners for stall disposal units.", "p": 0}
+];
 var qtys = {};
 
 function cats(){
@@ -378,7 +406,6 @@ function renderItems(){
     d.className = 'item' + (q > 0 ? ' picked' : '');
     d.innerHTML =
       '<div class="tx"><div class="nm">' + it.n + '</div><div class="ds">' + it.d + '</div></div>' +
-      '<div class="pr">' + (it.p > 0 ? '$' + it.p : '<span class="std">Standard</span>') + '</div>' +
       '<div class="qty"><button type="button" aria-label="Less">&minus;</button>' +
       '<span class="n">' + q + '</span><button type="button" aria-label="More">+</button></div>';
     var btns = d.querySelectorAll('.qty button');
@@ -389,20 +416,15 @@ function renderItems(){
 }
 
 function renderBar(){
-  var count = 0, sub = 0, std = 0;
-  Object.keys(qtys).forEach(function(k){
-    var q = qtys[k]; if (!q) return;
-    count += q;
-    var it = CATALOG[k];
-    if (it.p > 0) sub += it.p * q; else std += q;
-  });
+  var count = 0;
+  Object.keys(qtys).forEach(function(k){ count += qtys[k] || 0; });
   var bar = document.getElementById('supBar');
   if (!count) { bar.style.display = 'none'; return; }
   bar.style.display = 'block';
   document.getElementById('barCount').textContent =
-    count + (count === 1 ? ' item' : ' items') + (sub > 0 ? ' | $' + sub.toFixed(2) + ' subtotal' : '');
+    count + (count === 1 ? ' item' : ' items') + ' requested';
   document.getElementById('barSub').textContent =
-    std > 0 ? std + ' standard item' + (std === 1 ? '' : 's') + ' priced at fulfillment' : '';
+    'We match brands to your dispensers and confirm the order by email.';
 }
 
 function fail(msg){
@@ -410,7 +432,7 @@ function fail(msg){
   e.textContent = msg; e.style.display = 'block';
   e.scrollIntoView({behavior:'smooth', block:'center'});
   var b = document.getElementById('supBtn');
-  b.disabled = false; b.textContent = 'Submit Order';
+  b.disabled = false; b.textContent = 'Submit Request';
 }
 
 function submitOrder(){
@@ -441,7 +463,7 @@ function submitOrder(){
     document.getElementById('supForm').style.display = 'none';
     document.getElementById('supBar').style.display = 'none';
     document.getElementById('doneMsg').innerHTML =
-      'Reference <b>' + (r.id || '') + '</b>. Your order went to the City Wide team, and a ' +
+      'Reference <b>' + (r.id || '') + '</b>. Your request went to the City Wide team, and a ' +
       'confirmation is on its way to <b>' + em + '</b>.';
     var dn = document.getElementById('supDone');
     dn.style.display = 'block';
