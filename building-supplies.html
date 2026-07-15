@@ -286,19 +286,21 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 <div class="crumbs" style="margin-bottom:10px"><a href="resources.html" style="color:#cfcdca">Resource Center</a> <span style="color:#777">/</span> <span style="color:#fff">Order Building Supplies</span></div>
 <h1>Order Building Supplies</h1>
 <p>Tell us what the building needs: paper, soap, liners, air care, and restroom stock.
-No brands or part numbers required; we match the right product to your building's dispensers
-and handle the ordering. Crew equipment, chemicals, and uniforms live in the
-<a href="index.html" style="color:#fff;text-decoration:underline">Vendor Shop</a>.</p>
+No brands or part numbers required; we match the right product to the building's dispensers
+and handle the ordering. These are the customer's supplies: City Wide orders them for the
+building and invoices the customer, never you. Crew equipment, chemicals, and uniforms live
+in the <a href="index.html" style="color:#fff;text-decoration:underline">Vendor Shop</a>.</p>
 </div></section>
 
 <div class="sup-wrap">
 <div id="supForm">
 
 <div class="sup-note"><b>How this works:</b> pick what the building goes through and tell us
-roughly how much. This is a request, not a checkout; the City Wide team matches each item to
-your dispensers, confirms pack and case sizes, and places the order. If you are unsure which
-refill fits, reply to your confirmation email with photos of the dispensers and we will match
-them.</div>
+roughly how much. You are not buying anything and nothing is ever charged to you. These are
+the customer's building supplies: City Wide orders them on the customer's behalf and the
+customer is invoiced directly. We match each item to the building's dispensers and confirm
+pack and case sizes by email. Unsure which refill fits? Reply to your confirmation email with
+photos of the dispensers and we will match them.</div>
 
 <div class="sup-card">
 <h2>Who &amp; Where</h2>
@@ -325,14 +327,17 @@ them.</div>
 
 <input class="hp" type="text" id="website" tabindex="-1" autocomplete="off">
 <div class="sup-err" id="supErr"></div>
-<p style="font-size:11.5px;color:#636466;margin-top:6px">Nothing is charged from this form.
-It sends a supply request to the City Wide team; we order the products and confirm by email.</p>
+<p style="font-size:11.5px;color:#636466;margin-top:6px">This form never bills you. It sends
+a supply request to the City Wide team; we order the products for the customer's building,
+the customer is invoiced directly, and you get a confirmation by email.</p>
 </div>
 
 <div class="sup-done" id="supDone">
 <div class="big">&#10003;</div>
 <h2>Request Submitted</h2>
 <p id="doneMsg"></p>
+<p><b>Nothing is billed to you.</b> City Wide orders these for the customer's building and
+invoices the customer directly.</p>
 <p><b>Dispenser photos help.</b> If any item needs matching, reply to your confirmation
 email with photos of the dispensers and we will take it from there.</p>
 </div>
@@ -424,7 +429,7 @@ function renderBar(){
   document.getElementById('barCount').textContent =
     count + (count === 1 ? ' item' : ' items') + ' requested';
   document.getElementById('barSub').textContent =
-    'We match brands to your dispensers and confirm the order by email.';
+    'Ordered by City Wide for the customer\'s building. Nothing is charged to you.';
 }
 
 function fail(msg){
