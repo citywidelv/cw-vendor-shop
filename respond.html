@@ -395,6 +395,9 @@ function render(){
     '<div class="sub">Price it exactly as asked: <b>'+esc(basisLabel(f))+'</b>.</div><div class="r-grid">'+
     input("quote_amount","Your Price ("+esc(basisLabel(f))+")",true,"e.g., $1,850.00")+
     area("quote_details","What Your Price Includes",false,"Labor, supplies, equipment, trip minimums, exclusions")+
+    '<div class="full"><label>Attach Your Quote Document (Optional)</label>'+
+    '<input type="file" id="quote_file" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg">'+
+    '<div class="hint">PDF preferred, 10 MB max. It rides along with your response straight to the City Wide team.</div></div>'+
     '</div></div>' : "";
 
   var comments='<div class="r-card"><h2><span class="n">'+(c++)+'</span>Anything Else?</h2><div class="r-grid">'+
@@ -435,7 +438,26 @@ function submit(){
     equipment:v("equipment"),confirmations:confirmations,custom_answers:"",
     quote_amount:isQuote?v("quote_amount"):"",quote_basis:isQuote?basisLabel(f):"",
     quote_details:isQuote?v("quote_details"):"",comments:v("comments")};
-  var btn=document.getElementById("rgo");btn.disabled=true;msg.textContent="Sending...";
+  var btn=document.getElementById("rgo");
+  var fEl=document.getElementById("quote_file");
+  var file=fEl&&fEl.files&&fEl.files[0];
+  if(file&&file.size>10485760){msg.className="err";msg.textContent="Your quote file is over 10 MB. Shrink it, or submit without it and we will request it from you.";return;}
+  btn.disabled=true;msg.textContent="Sending...";
+  if(file){
+    var reader=new FileReader();
+    reader.onload=function(){
+      var s=String(reader.result);
+      data.quote_file_name=file.name;
+      data.quote_file_type=file.type||"application/octet-stream";
+      data.quote_file_data=s.slice(s.indexOf(",")+1);
+      sendResponse(data,btn,msg);
+    };
+    reader.onerror=function(){btn.disabled=false;msg.className="err";msg.textContent="Could not read your attached file. Remove it and try again, or pick a different file.";};
+    reader.readAsDataURL(file);
+  } else { sendResponse(data,btn,msg); }
+}
+function sendResponse(data,btn,msg){
+  var isQuote=FORM&&FORM.mode==="quote";
   fetch(FEED,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(data)})
     .then(function(r){return r.text();})
     .then(function(t){var r;try{r=JSON.parse(t);}catch(e){r={ok:true,id:"received"};}
