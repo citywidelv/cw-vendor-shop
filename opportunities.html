@@ -299,7 +299,7 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 .notify-box .nb-cta{margin-top:12px}
 @media(max-width:640px){.notify-box{flex-direction:column;gap:12px}}
 
-/* first-night-ready flag + posting FSM strip (added 2026-07-15) */
+/* first-night-ready flag + posting FSM strip (added 2026-07-15; kit flag gated to janitorial-family recurring contracts 2026-07-15) */
 .kit-flag{display:flex;gap:12px;align-items:flex-start;background:#FBF3D6;border:2px solid var(--cw-red);
   border-radius:10px;padding:12px 16px;margin:0 0 14px;font-size:13px;line-height:1.5}
 .kit-flag .ic{flex:none;width:34px;height:34px;border-radius:8px;background:var(--cw-red);color:#fff;
@@ -329,6 +329,13 @@ var FEED = "https://script.google.com/macros/s/AKfycbzfNnrpidCbWB1DeUNgXvRhDFMQg
 var REGION = "all";
 function esc(s){var d=document.createElement("div");d.textContent=String(s==null?"":s);return d.innerHTML;}
 
+/* Be First-Night Ready only makes sense for recurring janitorial-family work.
+   Gate it by trade + posting type so a pressure wash or handyman work order
+   never tells a vendor to prep the New Building Starter Kit. */
+function showKit(o){
+  return o && o.type === "contract" &&
+    /janitorial|day porter|post-construction|specialty/i.test(String(o.trade || ""));
+}
 function kitFlag(o){
   return '<div class="kit-flag"><span class="ic">!</span><div><b class="kf-head">Be First-Night Ready</b>'
     + 'Before your first visit, open the <a href="planner.html">New Building Starter Kit</a> and dial in the list for a '
@@ -394,7 +401,7 @@ function card(o){
     + '<div class="opp-facts">'+facts+"</div>"
     + (o.deadline ? '<div class="opp-deadline">Respond by '+esc(o.deadline)+"</div>" : "")
     + '<details class="opp-more"><summary>Full details &amp; requirements</summary>'+more+"</details>"
-    + kitFlag(o)
+    + (showKit(o) ? kitFlag(o) : "")
     + (function(){ var m=respondMeta(o);
         return '<div class="opp-cta"><a class="btn btn-red" href="'+m.href+'">'+m.label+"</a></div>"; })()
     + fsmStrip(o)

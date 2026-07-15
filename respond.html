@@ -270,7 +270,7 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
   text-align:center;margin:26px 0 50px}
 .r-success h2{color:#1E7B34;font-size:19px;margin-bottom:8px;justify-content:center;display:flex}
 .hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
-/* first-night-ready flag + posting FSM strip (added 2026-07-15) */
+/* first-night-ready flag + posting FSM strip (added 2026-07-15; kit flag gated to janitorial-family recurring contracts 2026-07-15) */
 .kit-flag{display:flex;gap:12px;align-items:flex-start;background:#FBF3D6;border:2px solid var(--cw-red);
   border-radius:10px;padding:12px 16px;margin:0 0 14px;font-size:13px;line-height:1.5}
 .kit-flag .ic{flex:none;width:34px;height:34px;border-radius:8px;background:var(--cw-red);color:#fff;
@@ -299,6 +299,13 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 var FEED = "https://script.google.com/macros/s/AKfycbzfNnrpidCbWB1DeUNgXvRhDFMQgApfpn-3C9GU45wMEHcJpWFl8ZQVo6PUBSRfEVfRdg/exec";
 function esc(s){var d=document.createElement("div");d.textContent=String(s==null?"":s);return d.innerHTML;}
 
+/* Be First-Night Ready only makes sense for recurring janitorial-family work.
+   Gate it by trade + posting type so a pressure wash or handyman work order
+   never tells a vendor to prep the New Building Starter Kit. */
+function showKit(o){
+  return o && o.type === "contract" &&
+    /janitorial|day porter|post-construction|specialty/i.test(String(o.trade || ""));
+}
 function kitFlag(o){
   return '<div class="kit-flag"><span class="ic">!</span><div><b class="kf-head">Be First-Night Ready</b>'
     + 'Before your first visit, open the <a href="planner.html">New Building Starter Kit</a> and dial in the list for a '
@@ -347,7 +354,7 @@ function render(){
   var sum = '<div class="r-card p-sum"><div class="badges"><span>'+esc(p.region)+'</span><span>'+esc(p.trade)+'</span><span>'+esc(p.id)+'</span></div>'+
     '<h3>'+esc(p.title)+'</h3><div class="meta">'+esc(p.facility_type)+(p.area?" &middot; "+esc(p.area):"")+
     (p.sqft?" &middot; "+esc(p.sqft)+" sq ft":"")+(p.frequency&&p.frequency!=="One-time"?" &middot; "+esc(p.frequency):"")+'</div>'+
-    (p.pay_type!=="quote"?pay:pay)+(p.deadline?'<div class="dl">Respond by '+esc(p.deadline)+'</div>':"")+fsmStrip(p)+'</div>'+kitFlag(p);
+    (p.pay_type!=="quote"?pay:pay)+(p.deadline?'<div class="dl">Respond by '+esc(p.deadline)+'</div>':"")+fsmStrip(p)+'</div>'+(showKit(p)?kitFlag(p):"");
 
   var c=1;
   var base = '<div class="r-card"><h2><span class="n">'+(c++)+'</span>Your Company</h2>'+
