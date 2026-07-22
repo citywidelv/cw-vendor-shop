@@ -252,6 +252,17 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 .region-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:var(--cw-grey);border:1px solid var(--cw-border);
   border-radius:4px;padding:2px 7px;margin-bottom:10px;width:max-content}
+
+.reg-pick{display:flex;gap:12px;flex-wrap:wrap;margin:4px 0 8px}
+.reg-btn{font-family:inherit;font-size:15px;font-weight:700;padding:14px 28px;border-radius:8px;
+  border:2px solid var(--cw-border);background:#fff;color:var(--cw-black);cursor:pointer;transition:all .15s}
+.reg-btn:hover{border-color:var(--cw-black)}
+.reg-btn.on{background:var(--cw-red);border-color:var(--cw-red);color:#fff}
+.reg-hint{font-size:13px;color:var(--cw-grey);margin:0 0 18px}
+.reg-panel{display:none}
+.reg-panel.on{display:block}
+.dl-head{font-size:16px;font-weight:700;margin:28px 0 4px}
+.dl-sub{color:var(--cw-grey);font-size:13.5px;margin-bottom:16px;max-width:640px}
 </style></head><body><header class="site-head"><div class="wrap bar"><a href="resources.html"><img class="logo" src="https://emailer.emfluence.com/clients/citywide/uploadedfiles/signature_logo.png" alt="City Wide Facility Solutions"></a><button class="menu-toggle" aria-label="Menu">&#9776;</button><nav><a href="resources.html">Home</a><a href="opportunities.html" class="nav-opps">Open Opportunities</a><div class="dd"><a class="dd-label active" href="new-vendors.html">New Vendors</a><div class="dd-menu"><div class="dd-head">Start Here</div><a href="new-vendors.html">New Vendor Onboarding</a><a href="https://form.jotform.com/tjroberts/vendor-evaluation-form" target="_blank" rel="noopener">Vendor Evaluation</a><div class="dd-head">Vendor Packets</div><a href="https://form.pandadoc.com/form/QTrR2sJpKKSuYddrWMEFYA" target="_blank" rel="noopener">Janitorial &middot; Las Vegas</a><a href="https://form.pandadoc.com/form/uyVugBTcDqcGJWCXUPUXpM" target="_blank" rel="noopener">Janitorial &middot; Northern Nevada</a><a href="https://form.pandadoc.com/form/orcStVWa5uC7hG6Z3DAa7d" target="_blank" rel="noopener">Other Services &middot; Las Vegas</a><a href="https://form.pandadoc.com/form/5FKqAU7yMqYtwa9Wui6wzf" target="_blank" rel="noopener">Other Services &middot; Northern Nevada</a><div class="dd-head">Meet Our Team</div><a href="https://outlook.office.com/book/CityWideFacilitySolutions@gocitywide.com/?ismsaljsauthenabled" target="_blank" rel="noopener">Book &middot; Las Vegas</a><a href="https://outlook.office.com/book/CWFSRenoNewVendors@gocitywide.com/?ismsaljsauthenabled" target="_blank" rel="noopener">Book &middot; Northern Nevada</a></div></div><div class="dd"><a class="dd-label" href="#" onclick="return false;">Guides</a><div class="dd-menu"><div class="dd-head">Crew Guides</div><a href="planner.html">New Building Planner</a><a href="workloading.html">Workloading &amp; Crew Sizing</a><a href="equipment.html">Choosing Your Equipment</a><a href="color-coding.html">Color Coding System</a><a href="medical.html">Medical Facility Cleaning</a><a href="cleanroom.html">Clean Room Cleaning</a><a href="gmp.html">GMP &amp; Food Facility Cleaning</a></div></div><a class="btn-order" href="index.html">Order Supplies</a></nav></div></header>
 <section class="hero"><div class="wrap">
 <span class="kicker">City Wide Vendor Resource Center</span>
@@ -277,17 +288,41 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 </div></section>
 
 <section class="section" id="step3"><div class="wrap">
-<div class="section-head"><span class="stepnum">3</span><h2>Complete Your Vendor Packet</h2><span class="tag">Signed Online</span></div>
-<p class="sub">The vendor packet is your onboarding paperwork: company details, service agreement, and compliance documents, generated and signed online. Enter your contact and company information and the documents follow. Pick the packet that matches what your crew does and where you work.</p>
+<div class="section-head"><span class="stepnum">3</span><h2>Complete Your Paperwork</h2><span class="tag">Pick Your Region</span></div>
+<p class="sub">Three things finish your onboarding: the vendor packet you sign online, the insurance request your insurance agent handles, and the waiver you sign in front of a notary. Pick your region to get the right versions.</p>
+<div class="reg-pick"><button class="reg-btn" id="btn-lv" type="button" onclick="showReg('lv')">Las Vegas</button><button class="reg-btn" id="btn-nnv" type="button" onclick="showReg('nnv')">Northern Nevada</button></div>
+<p class="reg-hint" id="regHint">Pick your region above to see your packet and downloads.</p>
+<div class="reg-panel" id="reg-lv">
 <div class="rule-box"><span class="stepnum" style="background:var(--cw-black)">!</span><div>
-<b>Do you do janitorial work?</b>
-<p>If your crew provides janitorial or commercial cleaning services, complete the Janitorial packet, even if you also offer other services. The Other Services packet is only for crews that do no janitorial work at all.</p>
+<b>Do janitorial? Use the janitorial packet.</b>
+<p>It covers everything, so crews that do janitorial plus other services fill out one packet, not two. The difference: janitorial crews hold keys and often work in buildings alone, so their packet adds agreements on building security, key and access responsibility, and how janitorial work runs. The packet walks you through each one.</p>
 </div></div>
 <div class="card-grid">
-<a class="card flag" href="https://form.pandadoc.com/form/QTrR2sJpKKSuYddrWMEFYA" target="_blank" rel="noopener"><span class="region-tag">Las Vegas</span><h3>Janitorial Vendor Packet</h3><p>For crews providing janitorial or commercial cleaning in the Las Vegas area, including crews that also offer other services.</p><span class="go">Open the packet</span></a>
-<a class="card flag" href="https://form.pandadoc.com/form/uyVugBTcDqcGJWCXUPUXpM" target="_blank" rel="noopener"><span class="region-tag">Northern Nevada</span><h3>Janitorial Vendor Packet</h3><p>For crews providing janitorial or commercial cleaning in Reno, Sparks, Carson City, and the surrounding area, including crews that also offer other services.</p><span class="go">Open the packet</span></a>
-<a class="card" href="https://form.pandadoc.com/form/orcStVWa5uC7hG6Z3DAa7d" target="_blank" rel="noopener"><span class="region-tag">Las Vegas</span><h3>Other Services Vendor Packet</h3><p>For Las Vegas crews that do no janitorial work: landscaping, handyman, HVAC, plumbing, electrical, windows, power washing, and the other trades.</p><span class="go">Open the packet</span></a>
-<a class="card" href="https://form.pandadoc.com/form/5FKqAU7yMqYtwa9Wui6wzf" target="_blank" rel="noopener"><span class="region-tag">Northern Nevada</span><h3>Other Services Vendor Packet</h3><p>For Northern Nevada crews that do no janitorial work: landscaping, handyman, HVAC, plumbing, electrical, windows, power washing, and the other trades.</p><span class="go">Open the packet</span></a>
+<a class="card flag" href="https://form.pandadoc.com/form/QTrR2sJpKKSuYddrWMEFYA" target="_blank" rel="noopener"><span class="region-tag">Las Vegas</span><h3>My Crew Does Janitorial</h3><p>Janitorial or commercial cleaning, including crews that also offer other services. Includes the key, access, and building security agreements.</p><span class="go">Open the janitorial packet</span></a>
+<a class="card" href="https://form.pandadoc.com/form/orcStVWa5uC7hG6Z3DAa7d" target="_blank" rel="noopener"><span class="region-tag">Las Vegas</span><h3>My Crew Does Other Services Only</h3><p>Landscaping, handyman, HVAC, plumbing, electrical, windows, power washing, and the other trades, with no janitorial work at all.</p><span class="go">Open the other services packet</span></a>
+</div>
+<h3 class="dl-head">Download &amp; Hand Off</h3>
+<p class="dl-sub">Two documents to download. One goes to your insurance agent, one gets notarized. Both come back to us.</p>
+<div class="card-grid">
+<a class="card" href="pdfs/COI-Request-Las-Vegas.pdf" target="_blank" rel="noopener"><span class="pdf-mini">PDF</span><span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Certificate of Insurance Request</h3><p>Hand this to your insurance agent. Page 1 shows exactly what your certificate must include and where to email it; page 2 shows what the finished certificate looks like. Your agent sends it to us directly.</p><span class="go">Download the request</span></a>
+<a class="card" href="pdfs/Waiver-of-Agreement.pdf" target="_blank" rel="noopener"><span class="pdf-mini">PDF</span><span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg></span><h3>Waiver of Agreement</h3><p>Print it, fill in your business name, and sign in front of a notary. Do not sign ahead of time: the notary must watch you sign. The complete notary section is on page 2.</p><span class="go">Download the waiver</span></a>
+</div>
+</div>
+<div class="reg-panel" id="reg-nnv">
+<div class="rule-box"><span class="stepnum" style="background:var(--cw-black)">!</span><div>
+<b>Do janitorial? Use the janitorial packet.</b>
+<p>It covers everything, so crews that do janitorial plus other services fill out one packet, not two. The difference: janitorial crews hold keys and often work in buildings alone, so their packet adds agreements on building security, key and access responsibility, and how janitorial work runs. The packet walks you through each one.</p>
+</div></div>
+<div class="card-grid">
+<a class="card flag" href="https://form.pandadoc.com/form/uyVugBTcDqcGJWCXUPUXpM" target="_blank" rel="noopener"><span class="region-tag">Northern Nevada</span><h3>My Crew Does Janitorial</h3><p>Janitorial or commercial cleaning, including crews that also offer other services. Includes the key, access, and building security agreements.</p><span class="go">Open the janitorial packet</span></a>
+<a class="card" href="https://form.pandadoc.com/form/5FKqAU7yMqYtwa9Wui6wzf" target="_blank" rel="noopener"><span class="region-tag">Northern Nevada</span><h3>My Crew Does Other Services Only</h3><p>Landscaping, handyman, HVAC, plumbing, electrical, windows, power washing, and the other trades, with no janitorial work at all.</p><span class="go">Open the other services packet</span></a>
+</div>
+<h3 class="dl-head">Download &amp; Hand Off</h3>
+<p class="dl-sub">Two documents to download. One goes to your insurance agent, one gets notarized. Both come back to us.</p>
+<div class="card-grid">
+<a class="card" href="pdfs/COI-Request-Northern-Nevada.pdf" target="_blank" rel="noopener"><span class="pdf-mini">PDF</span><span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Certificate of Insurance Request</h3><p>Hand this to your insurance agent. Page 1 shows exactly what your certificate must include and where to email it; page 2 shows what the finished certificate looks like. Your agent sends it to us directly.</p><span class="go">Download the request</span></a>
+<a class="card" href="pdfs/Waiver-of-Agreement.pdf" target="_blank" rel="noopener"><span class="pdf-mini">PDF</span><span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg></span><h3>Waiver of Agreement</h3><p>Print it, fill in your business name, and sign in front of a notary. Do not sign ahead of time: the notary must watch you sign. The complete notary section is on page 2.</p><span class="go">Download the waiver</span></a>
+</div>
 </div>
 </div></section>
 
@@ -300,4 +335,4 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
   if(t&&n){t.addEventListener('click',function(){n.classList.toggle('open');});}
 })();
 </script>
-</body></html>
+<script>function showReg(r){["lv","nnv"].forEach(function(k){document.getElementById("reg-"+k).classList.toggle("on",k===r);document.getElementById("btn-"+k).classList.toggle("on",k===r);});var h=document.getElementById("regHint");if(h){h.style.display="none";}}</script></body></html>
