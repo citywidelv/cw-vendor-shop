@@ -288,22 +288,139 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 .inv-done h2{font-size:20px;margin:0 0 8px}
 .inv-done p{font-size:13.5px;color:#636466;max-width:520px;margin:0 auto 6px;line-height:1.6}
 .hp{position:absolute;left:-6000px;top:-6000px}
+/* ---------- choose-your-path screen ---------- */
+.choice-intro{text-align:center;margin:10px 0 24px}
+.choice-intro h2{font-size:20px;margin:0 0 6px}
+.choice-intro p{font-size:13.5px;color:#636466;margin:0}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:8px}
+@media(max-width:700px){.choice-grid{grid-template-columns:1fr}}
+.choice-card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;
+  background:#fff;border:2px solid #E5E5E5;border-radius:14px;padding:26px 24px;cursor:pointer;
+  font-family:inherit;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:all .15s;width:100%}
+.choice-card:hover{border-color:var(--cw-red);box-shadow:var(--shadow-lift);transform:translateY(-2px)}
+.choice-card .icon{width:48px;height:48px;border-radius:12px;background:var(--cw-light);
+  color:var(--cw-red);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:22px}
+.choice-card h3{font-size:16px;font-weight:800;color:#2D2A26;margin:0 0 6px}
+.choice-card p{font-size:13px;color:#636466;line-height:1.55;margin:0;flex:1}
+.choice-card .go{margin-top:16px;font-size:13px;font-weight:700;color:var(--cw-red)}
+.choice-card .go::after{content:" \2192"}
+.back-link{display:inline-block;background:none;border:none;font-family:inherit;font-size:12.5px;
+  font-weight:700;color:#636466;cursor:pointer;padding:0;margin:0 0 14px}
+.back-link:hover{color:var(--cw-red)}
+.file-drop{display:block;border:2px dashed #C9C7C4;border-radius:12px;padding:26px 18px;
+  text-align:center;cursor:pointer;background:#FAFAFA}
+.file-drop:hover{border-color:var(--cw-red)}
+.file-drop.has{border-style:solid;border-color:#2E7D32;background:#F4FAF5}
+.callout-teal{border:1px solid var(--cw-teal);border-left:4px solid var(--cw-teal);
+  background:#EAF7F7;border-radius:0 8px 8px 0;padding:14px 16px;font-size:13px;
+  line-height:1.6;color:var(--cw-black);margin-bottom:16px}
+.callout-teal b.title{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#087E80;margin-bottom:5px}
+.callout-teal p{margin:0}
 </style>
 </head><body><header class="site-head"><div class="wrap bar"><a href="resources.html"><img class="logo" src="https://emailer.emfluence.com/clients/citywide/uploadedfiles/signature_logo.png" alt="City Wide Facility Solutions"></a><button class="menu-toggle" aria-label="Menu">&#9776;</button><nav><a href="resources.html">Home</a><a href="opportunities.html" class="nav-opps">Open Opportunities</a><div class="dd"><a class="dd-label" href="new-vendors.html">New Vendors</a><div class="dd-menu"><a href="new-vendors.html?region=lv">Las Vegas</a><a href="new-vendors.html?region=nnv">Northern Nevada</a></div></div><div class="dd"><a class="dd-label" href="#" onclick="return false;">Guides</a><div class="dd-menu"><div class="dd-head">Crew Guides</div><a href="planner.html">New Building Planner</a><a href="workloading.html">Workloading & Crew Sizing</a><a href="equipment.html">Choosing Your Equipment</a><a href="color-coding.html">Color Coding System</a><a href="medical.html">Medical Facility Cleaning</a><a href="cleanroom.html">Clean Room Cleaning</a><a href="gmp.html">GMP & Food Facility Cleaning</a></div></div><div class="dd"><a class="dd-label" href="invoice.html">Invoices &amp; Paperwork</a><div class="dd-menu"><div class="dd-head">Get Paid</div><a href="invoice.html">Submit Your Monthly Invoice</a><div class="dd-head">Orders</div><a href="building-supplies.html">Order Building Supplies</a><a href="index.html">Shop Supplies &amp; Uniforms</a><div class="dd-head">Paperwork</div><a href="https://form.jotform.com/240175011302033" target="_blank" rel="noopener">Handyman Work Order</a><a href="https://form.asana.com/?k=FRCnQmbTGjAVPieFt4bnWQ&amp;d=13140959242873" target="_blank" rel="noopener">Background Check &amp; Name Badge</a><a href="https://www.onlinecprcertification.net/bloodborne-pathogens-training-certification.php" target="_blank" rel="noopener">Bloodborne Pathogens Certification</a></div></div><a class="btn-order" href="index.html">Order Supplies</a></nav></div></header>
 <section class="inv-hero has-photo"><div class="ph-bg" style="background-image:url('images/paperwork.jpg')"></div><div class="ph-scrim"></div><div class="content-wrap">
 <div class="crumbs" style="margin-bottom:10px"><a href="resources.html" style="color:#cfcdca">Resource Center</a> <span style="color:#777">/</span> <span style="color:#fff">Submit an Invoice</span></div>
 <h1>Submit Your Monthly Invoice</h1>
-<p>One invoice per month, all your accounts on one page. City Wide Accounts Payable
-gets a clean PDF the moment you hit submit, and you get a confirmation copy for your records.
-Payment terms are Net 10th Prox: due the 10th of the month after your invoice.</p>
+<p>Already have an invoice from your own system? Upload it. Need one? Build it right here.
+Either way, City Wide Accounts Payable gets it the moment you hit submit, and you get a
+confirmation copy for your records. Payment terms are Net 10th Prox: due the 10th of the
+month after your invoice.</p>
 </div></section>
 
 <div class="inv-wrap">
-<div id="invForm">
 
+<div id="invChoice">
+<div class="choice-intro">
+<h2>How would you like to submit your invoice?</h2>
+<p>Both go straight to City Wide Accounts Payable. Pick whichever is easier for you.</p>
+</div>
+<div class="choice-grid">
+<button type="button" class="choice-card" onclick="showUpload()">
+<span class="icon">&#8682;</span>
+<h3>Upload an invoice I already have</h3>
+<p>Your company creates its own invoices? Attach the PDF, or a clear photo of it, add a few
+details so it reaches the right team, and you're done.</p>
+<span class="go">Upload my invoice</span>
+</button>
+<button type="button" class="choice-card" onclick="showForm()">
+<span class="icon">&#9998;</span>
+<h3>Fill out an invoice here</h3>
+<p>No invoice of your own? Answer a few quick questions and we build a clean, professional
+PDF invoice for you and send it in automatically.</p>
+<span class="go">Start my invoice</span>
+</button>
+</div>
+</div>
+
+<div id="upForm" style="display:none">
+<button type="button" class="back-link" onclick="showChoice()">&larr; Back to options</button>
+<div class="inv-note"><b>Quick check:</b> make sure your invoice shows the month of service,
+each account you served, and the Work Order number from the FSM for any extra charge or
+project work. Missing Work Order numbers can slow down payment.</div>
+
+<div class="callout-teal"><b class="title">When You Get Paid</b>
+<p>Per your Master Service Agreement, payment terms are <b>Net 10th Prox</b>: payment goes out
+on the <b>10th of the month following confirmed service</b>. Recurring contract work pays
+automatically. For one-time projects and extra work, we first confirm the job is complete,
+either by visiting the site or by hearing from the customer that they are satisfied, and
+payment then lands on the following 10th.</p></div>
+
+<div class="inv-card">
+<h2>Your Invoice File</h2>
+<label class="file-drop" id="fileDrop" for="up_file">
+<input id="up_file" type="file" accept="application/pdf,image/png,image/jpeg" style="display:none">
+<span id="fileMsg"><b>Click here to choose your invoice file</b><br>
+<span style="font-size:12px;color:#636466">PDF or a clear photo (JPG, PNG) &middot; up to 10 MB</span></span>
+</label>
+</div>
+
+<div class="inv-card">
+<h2>Who It's From</h2>
+<div class="inv-grid">
+<div class="f"><label>Company Name <span class="req">*</span></label><input id="up_company" placeholder="Your company LLC"></div>
+<div class="f"><label>Your Name <span class="req">*</span></label><input id="up_name" placeholder="First Last"></div>
+<div class="f"><label>Email <span class="req">*</span></label><input id="up_email" type="email" placeholder="you@company.com"></div>
+<div class="f"><label>Phone</label><input id="up_phone" type="tel" placeholder="(702) 555-1234"></div>
+<div class="f"><label>Region <span class="req">*</span></label>
+<select id="up_region"><option>Las Vegas</option><option>Northern Nevada</option></select></div>
+</div>
+</div>
+
+<div class="inv-card">
+<h2>Invoice Details</h2>
+<div class="inv-grid">
+<div class="f"><label>Month of Service <span class="req">*</span></label>
+<select id="up_month"><option>January</option><option>February</option><option>March</option>
+<option>April</option><option>May</option><option>June</option><option>July</option>
+<option>August</option><option>September</option><option>October</option>
+<option>November</option><option>December</option></select></div>
+<div class="f"><label>Year <span class="req">*</span></label><select id="up_year"></select></div>
+<div class="f"><label>Invoice Total <span class="req">*</span></label><input id="up_total" inputmode="decimal" placeholder="$0.00"></div>
+</div>
+<div class="f" style="margin-top:14px"><label>Comments</label><textarea id="up_comments" placeholder="Optional notes for Accounts Payable"></textarea></div>
+</div>
+
+<input class="hp" type="text" id="website2" tabindex="-1" autocomplete="off">
+<div class="inv-err" id="upErr"></div>
+<button class="inv-submit" id="upBtn" onclick="submitUpload()">Send to Accounts Payable</button>
+<p style="font-size:11.5px;color:#636466;text-align:center;margin-top:10px">
+Attention: Accounts Payable, City Wide Facility Solutions &middot; Payment Terms: Net 10th Prox</p>
+</div>
+
+<div id="invForm" style="display:none">
+
+<button type="button" class="back-link" onclick="showChoice()">&larr; Back to options</button>
 <div class="inv-note"><b>Before you start:</b> have your Exhibit A handy for contract amounts,
 and make sure you have the Work Order number from the FSM for any extra charge or project
 work. Lines without a Work Order number can slow down payment.</div>
+
+<div class="callout-teal"><b class="title">When You Get Paid</b>
+<p>Per your Master Service Agreement, payment terms are <b>Net 10th Prox</b>: payment goes out
+on the <b>10th of the month following confirmed service</b>. Recurring contract work pays
+automatically. For one-time projects and extra work, we first confirm the job is complete,
+either by visiting the site or by hearing from the customer that they are satisfied, and
+payment then lands on the following 10th.</p></div>
 
 <div class="inv-card">
 <h2>Your Company</h2>
@@ -375,18 +492,121 @@ var WEBHOOK = "https://script.google.com/macros/s/AKfycbzfNnrpidCbWB1DeUNgXvRhDF
 
 (function(){
   var y = new Date().getFullYear();
-  var sel = document.getElementById('svc_year');
-  [y-1, y, y+1].forEach(function(v){
-    var o = document.createElement('option'); o.textContent = v;
-    if (v === y) o.selected = true;
-    sel.appendChild(o);
-  });
   var m = new Date().getMonth();          // default to LAST month (invoices trail service)
   var prev = (m + 11) % 12;
+  ['svc_year','up_year'].forEach(function(id){
+    var sel = document.getElementById(id);
+    [y-1, y, y+1].forEach(function(v){
+      var o = document.createElement('option'); o.textContent = v;
+      if (v === y) o.selected = true;
+      sel.appendChild(o);
+    });
+    if (m === 0) sel.selectedIndex = 0;   // January submits for December of last year
+  });
   document.getElementById('svc_month').selectedIndex = prev;
-  if (m === 0) sel.selectedIndex = 0;     // January submits for December of last year
+  document.getElementById('up_month').selectedIndex = prev;
   addLine(); addLine(); addLine();
+  var mode = new URLSearchParams(location.search).get('mode');
+  if (mode === 'upload') showUpload();
+  else if (mode === 'form') showForm();
 })();
+
+function showChoice(){
+  document.getElementById('invChoice').style.display = 'block';
+  document.getElementById('upForm').style.display = 'none';
+  document.getElementById('invForm').style.display = 'none';
+}
+function showUpload(){
+  document.getElementById('invChoice').style.display = 'none';
+  document.getElementById('upForm').style.display = 'block';
+  document.getElementById('invForm').style.display = 'none';
+}
+function showForm(){
+  document.getElementById('invChoice').style.display = 'none';
+  document.getElementById('upForm').style.display = 'none';
+  document.getElementById('invForm').style.display = 'block';
+}
+
+/* ---------- upload path ---------- */
+var UP_FILE = null;   // { name, type, data (base64, no prefix) }
+document.getElementById('up_file').addEventListener('change', function(){
+  UP_FILE = null;
+  var drop = document.getElementById('fileDrop');
+  var msg = document.getElementById('fileMsg');
+  drop.classList.remove('has');
+  var f = this.files && this.files[0];
+  if (!f) return;
+  var okTypes = ['application/pdf','image/png','image/jpeg'];
+  if (okTypes.indexOf(f.type) < 0) {
+    msg.innerHTML = '<b style="color:#8f1a20">That file type will not work.</b><br>' +
+      '<span style="font-size:12px;color:#636466">Please choose a PDF or a photo (JPG, PNG).</span>';
+    return;
+  }
+  if (f.size > 10 * 1024 * 1024) {
+    msg.innerHTML = '<b style="color:#8f1a20">That file is over 10 MB.</b><br>' +
+      '<span style="font-size:12px;color:#636466">Please choose a smaller file or compress it.</span>';
+    return;
+  }
+  var rd = new FileReader();
+  rd.onload = function(){
+    var d = String(rd.result);
+    UP_FILE = { name: f.name, type: f.type, data: d.slice(d.indexOf(',') + 1) };
+    drop.classList.add('has');
+    msg.innerHTML = '<b>&#10003; ' + f.name.replace(/</g,'&lt;') + '</b><br>' +
+      '<span style="font-size:12px;color:#636466">' + (f.size/1024/1024).toFixed(1) +
+      ' MB &middot; Click to choose a different file</span>';
+  };
+  rd.onerror = function(){
+    msg.innerHTML = '<b style="color:#8f1a20">Could not read that file.</b><br>' +
+      '<span style="font-size:12px;color:#636466">Please try again.</span>';
+  };
+  rd.readAsDataURL(f);
+});
+
+function upFail(msg){
+  var e = document.getElementById('upErr');
+  e.textContent = msg; e.style.display = 'block';
+  e.scrollIntoView({behavior:'smooth', block:'center'});
+  var b = document.getElementById('upBtn');
+  b.disabled = false; b.textContent = 'Send to Accounts Payable';
+}
+
+function submitUpload(){
+  var e = document.getElementById('upErr'); e.style.display = 'none';
+  var v = function(id){ return document.getElementById(id).value.trim(); };
+  if (!UP_FILE) return upFail('Please attach your invoice file (PDF or photo) first.');
+  if (!v('up_company')) return upFail('Company name is required.');
+  if (!v('up_name')) return upFail('Your name is required.');
+  var em = v('up_email');
+  if (!em || em.indexOf('@') < 1) return upFail('A valid email is required so we can send your confirmation copy.');
+  var tot = Number(String(v('up_total')).replace(/[$,\s]/g, ''));
+  if (!tot || isNaN(tot)) return upFail('Please enter the invoice total so Accounts Payable can match it.');
+  var data = {
+    kind: 'invoice_upload', website: document.getElementById('website2').value,
+    company: v('up_company'), contact_name: v('up_name'), email: em, phone: v('up_phone'),
+    region: v('up_region'),
+    service_month: v('up_month') + ' ' + v('up_year'),
+    total: tot, comments: v('up_comments'),
+    file_name: UP_FILE.name, file_type: UP_FILE.type, file_data: UP_FILE.data
+  };
+  var b = document.getElementById('upBtn');
+  b.disabled = true; b.textContent = 'Sending...';
+  fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'text/plain'},
+    body: JSON.stringify(data) })
+  .then(function(r){ return r.text(); })
+  .then(function(t){
+    var r; try { r = JSON.parse(t); } catch(err){ r = { ok:true }; }
+    if (!r.ok) return upFail(r.error || 'Something went wrong. Please try again.');
+    document.getElementById('upForm').style.display = 'none';
+    document.getElementById('doneMsg').innerHTML =
+      'Reference <b>' + (r.id || '') + '</b>. Your invoice went to City Wide Accounts Payable, ' +
+      'and a confirmation copy is on its way to <b>' + em + '</b>.';
+    var dn = document.getElementById('invDone');
+    dn.style.display = 'block';
+    dn.scrollIntoView({behavior:'smooth', block:'center'});
+  })
+  .catch(function(){ upFail('Could not reach the server. Check your connection and try again.'); });
+}
 
 function addLine(){
   var d = document.createElement('div');
