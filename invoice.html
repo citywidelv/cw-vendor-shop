@@ -223,6 +223,12 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 .site-foot a:hover{color:#fff;text-decoration:underline}
 .site-foot .fine{margin-top:14px;font-size:11.5px;color:#8b8985}
 .next-link{display:flex;justify-content:space-between;gap:12px;margin:44px 0 10px;flex-wrap:wrap}
+
+/* photo hero treatment (July 2026) */
+.has-photo{position:relative;overflow:hidden}
+.has-photo .ph-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.has-photo .ph-scrim{position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,18,16,.93) 0%,rgba(20,18,16,.74) 55%,rgba(20,18,16,.42) 100%)}
+.has-photo>.wrap,.has-photo>.content-wrap{position:relative;z-index:2}
 </style>
 <style>
 .inv-hero{background:#2D2A26;padding:44px 0 34px}
@@ -284,7 +290,7 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 .hp{position:absolute;left:-6000px;top:-6000px}
 </style>
 </head><body><header class="site-head"><div class="wrap bar"><a href="resources.html"><img class="logo" src="https://emailer.emfluence.com/clients/citywide/uploadedfiles/signature_logo.png" alt="City Wide Facility Solutions"></a><button class="menu-toggle" aria-label="Menu">&#9776;</button><nav><a href="resources.html">Home</a><a href="opportunities.html" class="nav-opps">Open Opportunities</a><div class="dd"><a class="dd-label" href="new-vendors.html">New Vendors</a><div class="dd-menu"><a href="new-vendors.html?region=lv">Las Vegas</a><a href="new-vendors.html?region=nnv">Northern Nevada</a></div></div><div class="dd"><a class="dd-label" href="#" onclick="return false;">Guides</a><div class="dd-menu"><div class="dd-head">Crew Guides</div><a href="planner.html">New Building Planner</a><a href="workloading.html">Workloading & Crew Sizing</a><a href="equipment.html">Choosing Your Equipment</a><a href="color-coding.html">Color Coding System</a><a href="medical.html">Medical Facility Cleaning</a><a href="cleanroom.html">Clean Room Cleaning</a><a href="gmp.html">GMP & Food Facility Cleaning</a></div></div><div class="dd"><a class="dd-label" href="invoice.html">Invoices &amp; Paperwork</a><div class="dd-menu"><div class="dd-head">Get Paid</div><a href="invoice.html">Submit Your Monthly Invoice</a><div class="dd-head">Orders</div><a href="building-supplies.html">Order Building Supplies</a><a href="index.html">Shop Supplies &amp; Uniforms</a><div class="dd-head">Paperwork</div><a href="https://form.jotform.com/240175011302033" target="_blank" rel="noopener">Handyman Work Order</a><a href="https://form.asana.com/?k=FRCnQmbTGjAVPieFt4bnWQ&amp;d=13140959242873" target="_blank" rel="noopener">Background Check &amp; Name Badge</a><a href="https://www.onlinecprcertification.net/bloodborne-pathogens-training-certification.php" target="_blank" rel="noopener">Bloodborne Pathogens Certification</a></div></div><a class="btn-order" href="index.html">Order Supplies</a></nav></div></header>
-<section class="inv-hero"><div class="content-wrap">
+<section class="inv-hero has-photo"><div class="ph-bg" style="background-image:url('images/paperwork.jpg')"></div><div class="ph-scrim"></div><div class="content-wrap">
 <div class="crumbs" style="margin-bottom:10px"><a href="resources.html" style="color:#cfcdca">Resource Center</a> <span style="color:#777">/</span> <span style="color:#fff">Submit an Invoice</span></div>
 <h1>Submit Your Monthly Invoice</h1>
 <p>One invoice per month, all your accounts on one page. City Wide Accounts Payable
