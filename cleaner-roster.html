@@ -231,6 +231,63 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 .has-photo>.wrap,.has-photo>.content-wrap{position:relative;z-index:2}
 </style>
 <style>
+.sup-hero{background:#2D2A26;padding:44px 0 34px}
+.sup-hero .content-wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+.sup-hero h1{color:#fff;font-size:clamp(24px,4vw,34px);line-height:1.15;margin:0 0 10px}
+.sup-hero h1::after{content:"";display:block;width:52px;height:4px;background:var(--cw-red);
+  border-radius:2px;margin-top:12px}
+.sup-hero p{color:#cfcdca;font-size:14.5px;max-width:680px;margin:10px 0 0}
+.sup-wrap{max-width:1060px;margin:0 auto;padding:26px 22px 120px}
+.sup-card{background:#fff;border:1px solid #E5E5E5;border-radius:12px;padding:24px;
+  margin-bottom:18px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.sup-card h2{font-size:16px;margin:0 0 14px;padding-bottom:8px;border-bottom:2px solid var(--cw-red)}
+.sup-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.sup-grid{grid-template-columns:1fr}}
+.f{display:flex;flex-direction:column;gap:5px}
+.f label{font-size:12px;font-weight:700;color:#2D2A26}
+.f label .req{color:var(--cw-red)}
+.f input,.f select,.f textarea{width:100%;font-family:inherit;font-size:14px;color:#2D2A26;
+  border:1.5px solid #E5E5E5;border-radius:8px;padding:10px 12px;background:#fff;box-sizing:border-box}
+.f textarea{min-height:70px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--cw-red)}
+.sup-note{background:#FBF3DC;border:1px solid #E5B423;border-radius:10px;padding:12px 14px;
+  font-size:12.5px;color:#2D2A26;margin-bottom:16px;line-height:1.5}
+.cat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.cat-chips button{font-family:inherit;font-size:12.5px;font-weight:700;border:1.5px solid #E5E5E5;
+  background:#fff;color:#636466;border-radius:18px;padding:8px 14px;cursor:pointer}
+.cat-chips button.on{background:var(--cw-red);border-color:var(--cw-red);color:#fff}
+.item{display:flex;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #F0EFED}
+.item:last-child{border-bottom:none}
+.item .tx{flex:1;min-width:0}
+.item .nm{font-size:13.5px;font-weight:700;color:#2D2A26;line-height:1.35}
+.item .ds{font-size:12px;color:#636466;line-height:1.45;margin-top:2px}
+.qty{display:flex;align-items:center;gap:0;border:1.5px solid #E5E5E5;border-radius:8px;overflow:hidden}
+.qty button{width:32px;height:34px;border:none;background:#F6F5F3;color:#2D2A26;font-size:16px;
+  font-weight:700;cursor:pointer;font-family:inherit}
+.qty button:hover{background:var(--cw-red);color:#fff}
+.qty .n{width:34px;text-align:center;font-size:13.5px;font-weight:700;color:#2D2A26}
+.item.picked{background:#FDF7F7;border-radius:10px;border-bottom-color:transparent;padding-left:10px;padding-right:10px}
+@media(max-width:640px){.item{flex-wrap:wrap}.item .tx{flex-basis:100%}}
+.sup-bar{position:fixed;left:0;right:0;bottom:0;background:#2D2A26;z-index:50;
+  box-shadow:0 -3px 14px rgba(0,0,0,.25)}
+.sup-bar .in{max-width:1060px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:16px}
+.sup-bar .ct{color:#fff;font-size:13.5px;font-weight:700;flex:1}
+.sup-bar .ct small{display:block;color:#cfcdca;font-weight:400;font-size:11.5px}
+.sup-bar button{background:var(--cw-red);color:#fff;border:none;border-radius:9px;
+  padding:12px 26px;font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap}
+.sup-bar button:hover{background:#b31f27}
+.sup-bar button:disabled{background:#636466;cursor:wait}
+.sup-err{display:none;background:#FDECEC;border:1px solid var(--cw-red);color:#8f1a20;
+  border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:14px}
+.sup-done{display:none;background:#fff;border:1px solid #E5E5E5;border-radius:14px;
+  padding:44px 30px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.sup-done .big{width:64px;height:64px;border-radius:50%;background:#EAF6EC;color:#2E7D32;
+  display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 16px}
+.sup-done h2{font-size:20px;margin:0 0 8px}
+.sup-done p{font-size:13.5px;color:#636466;max-width:540px;margin:0 auto 6px;line-height:1.6}
+.hp{position:absolute;left:-6000px;top:-6000px}
+</style>
+<style>
 .mode-row{display:flex;gap:12px;flex-wrap:wrap}
 .mode-opt{flex:1 1 220px;border:2px solid var(--cw-border);border-radius:var(--radius);padding:14px 16px;
   cursor:pointer;background:#fff;display:block}
