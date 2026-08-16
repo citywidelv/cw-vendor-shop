@@ -639,5 +639,91 @@ function submitDocs(){
   })
   .catch(function(){ fail('Could not reach the server. Check your connection and try again.'); });
 }
+
+/* ------------------------------------------------------------------ prefill --
+   Optional URL parameters so an emailed link can preselect what the sender
+   already knows. Used by the Ops Hub insurance request emails:
+     ?doc=coi&cov=gl|wc|both&region=lv|nnv&company=Acme%20Janitorial
+   Nothing here is required. An unknown, misspelled or missing value is ignored
+   and that step simply stays unselected, which is exactly today's behavior.
+   Personal fields (name, email, phone) are deliberately never prefilled: these
+   links get forwarded to insurance agents, and the agent must enter their own
+   details, not the vendor's.
+------------------------------------------------------------------------------*/
+(function prefillFromUrl(){
+  var q;
+  try { q = new URLSearchParams(window.location.search); } catch(e){ return; }
+  if (!q || !q.toString()) return;
+
+  function norm(s){ return String(s||'').trim().toLowerCase().replace(/[^a-z]/g,''); }
+  function clickIf(sel){
+    var b = document.querySelector(sel);
+    if (b) { b.click(); return true; }
+    return false;
+  }
+
+  var DOCS = {
+    coi:'Certificate of Insurance', certificate:'Certificate of Insurance',
+    certificateofinsurance:'Certificate of Insurance', insurance:'Certificate of Insurance',
+    waiver:'Notarized Waiver of Agreement', notarizedwaiver:'Notarized Waiver of Agreement',
+    notarizedwaiverofagreement:'Notarized Waiver of Agreement',
+    check:'Voided Check or Bank Letter', voidedcheck:'Voided Check or Bank Letter',
+    voidedcheckorbankletter:'Voided Check or Bank Letter', bankletter:'Voided Check or Bank Letter'
+  };
+  var COVS = {
+    gl:'General Liability', generalliability:'General Liability',
+    wc:"Workers' Compensation", workerscomp:"Workers' Compensation",
+    workerscompensation:"Workers' Compensation",
+    both:'Both GL and Workers\' Comp', bothglandworkerscomp:'Both GL and Workers\' Comp'
+  };
+  var REGIONS = {
+    lv:'Las Vegas', lasvegas:'Las Vegas', southernnevada:'Las Vegas', southern:'Las Vegas', snv:'Las Vegas',
+    nnv:'Northern Nevada', northernnevada:'Northern Nevada', northern:'Northern Nevada', reno:'Northern Nevada'
+  };
+
+  try {
+    var doc = DOCS[norm(q.get('doc'))];
+    if (doc) clickIf('#stepDoc .pick[data-doc="' + doc.replace(/"/g,'') + '"]');
+
+    if (SEL.doc === 'Certificate of Insurance') {
+      var cov = COVS[norm(q.get('cov'))];
+      if (cov) {
+        var covBtns = document.querySelectorAll('#coiSub .pick[data-cov]');
+        for (var i = 0; i < covBtns.length; i++) {
+          if (covBtns[i].getAttribute('data-cov') === cov) { covBtns[i].click(); break; }
+        }
+      }
+    }
+
+    /* Only skip ahead to the region once everything before it is actually
+       answered. A half-good link leaves the visitor on the question they still
+       need to answer instead of jumping past a hidden step. */
+    var readyForRegion = SEL.doc && (SEL.doc !== 'Certificate of Insurance' || SEL.cov);
+    var region = REGIONS[norm(q.get('region'))];
+    if (region && readyForRegion) {
+      showRegion();
+      clickIf('#stepRegion .pick[data-region="' + region + '"]');
+    }
+
+    var company = (q.get('company') || '').replace(/[<>]/g, '').trim();
+    if (company) {
+      var cf = document.getElementById('company');
+      if (cf) cf.value = company.slice(0, 120);
+    }
+
+    /* Land the visitor on the first thing still left to do rather than the top. */
+    var target = null;
+    if (!SEL.doc) target = 'stepDoc';
+    else if (SEL.doc === 'Certificate of Insurance' && !SEL.cov) target = 'coiSub';
+    else if (!SEL.region) target = 'stepRegion';
+    else target = 'stepForm';
+    var t = document.getElementById(target);
+    if (t && t.style.display !== 'none') {
+      setTimeout(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); }, 250);
+    }
+  } catch (e) {
+    /* A bad link must never break the page. Fall back to the normal manual flow. */
+  }
+})();
 </script>
 </body></html>
