@@ -399,9 +399,9 @@ needs to include.</div>
 <h2>Which City Wide region is this for?</h2>
 <div class="pick-grid two">
 <button type="button" class="pick" data-region="Las Vegas" onclick="pickRegion(this)">
-<h3>Southern Nevada</h3><p>Las Vegas and the surrounding cities.<br><b>Entity: Low Drag LLC</b></p></button>
+<h3>Southern Nevada</h3><p>Las Vegas and the surrounding cities.<br><b>Entity: Low Drag, LLC</b></p></button>
 <button type="button" class="pick" data-region="Northern Nevada" onclick="pickRegion(this)">
-<h3>Northern Nevada</h3><p>Reno, Sparks, Carson City, and the surrounding area.<br><b>Entity: Dash 2 LLC</b></p></button>
+<h3>Northern Nevada</h3><p>Reno, Sparks, Carson City, and the surrounding area.<br><b>Entity: Dash Two, LLC</b></p></button>
 </div>
 </div>
 
@@ -528,7 +528,7 @@ function refresh(){
   if (SEL.doc) parts.push(SEL.doc);
   if (SEL.cov) parts.push(SEL.cov);
   if (SEL.region) parts.push(SEL.region === 'Las Vegas'
-    ? 'Southern Nevada (Low Drag LLC)' : 'Northern Nevada (Dash 2 LLC)');
+    ? 'Southern Nevada (Low Drag, LLC)' : 'Northern Nevada (Dash Two, LLC)');
   c.innerHTML = parts.map(function(p){ return '<span>' + esc(p) + '</span>'; }).join('');
   document.getElementById('fileHead').textContent =
     isCoi ? 'The Certificate' : (SEL.doc === 'Notarized Waiver of Agreement'
