@@ -600,7 +600,7 @@ function submitUpload(){
     body: JSON.stringify(data) })
   .then(function(r){ return r.text(); })
   .then(function(t){
-    var r; try { r = JSON.parse(t); } catch(err){ r = { ok:true }; }
+    var r; try { r = JSON.parse(t); } catch(err){ r = { ok:false, error:'We could not confirm this was saved, so treat it as not submitted. Try again, and if it keeps failing contact your City Wide facility manager.' }; }
     if (!r.ok) return upFail(r.error || 'Something went wrong. Please try again.');
     document.getElementById('upForm').style.display = 'none';
     document.getElementById('doneMsg').innerHTML =
@@ -708,7 +708,7 @@ function submitInvoice(){
     body: JSON.stringify(data) })
   .then(function(r){ return r.text(); })
   .then(function(t){
-    var r; try { r = JSON.parse(t); } catch(err){ r = { ok:true }; }
+    var r; try { r = JSON.parse(t); } catch(err){ r = { ok:false, error:'We could not confirm this was saved, so treat it as not submitted. Try again, and if it keeps failing contact your City Wide facility manager.' }; }
     if (!r.ok) return fail(r.error || 'Something went wrong. Please try again.');
     document.getElementById('invForm').style.display = 'none';
     document.getElementById('doneMsg').innerHTML =

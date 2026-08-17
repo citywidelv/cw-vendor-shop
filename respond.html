@@ -465,7 +465,7 @@ function sendResponse(data,btn,msg){
   var isQuote=FORM&&FORM.mode==="quote";
   fetch(FEED,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(data)})
     .then(function(r){return r.text();})
-    .then(function(t){var r;try{r=JSON.parse(t);}catch(e){r={ok:true,id:"received"};}
+    .then(function(t){var r;try{r=JSON.parse(t);}catch(e){r={ok:false,error:"We could not confirm this was saved, so treat it as not submitted. Try again, and if it keeps failing contact your City Wide facility manager."};}
       if(r&&r.ok){
         state('<div class="r-success"><h2>Sent!</h2>'+
           '<p>Your '+(isQuote?"quote":"interest letter")+' for <b>'+esc(POSTING.title)+'</b> went straight to the City Wide team (reference '+esc(r.id)+').</p>'+
