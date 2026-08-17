@@ -622,8 +622,21 @@ function submitDocs(){
   fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'text/plain'}, body: JSON.stringify(data) })
   .then(function(r){ return r.text(); })
   .then(function(t){
-    var r; try { r = JSON.parse(t); } catch(err){ r = { ok:true }; }
-    if (!r.ok) return fail(r.error || 'Something went wrong. Please try again.');
+    /* A response we cannot parse used to be treated as success, which would show
+       the vendor a reference number for a document that was never stored. For a
+       compliance record that is the worst possible failure, so it now fails
+       closed and points them at a mailbox that always works. */
+    var r; try { r = JSON.parse(t); } catch(err){ r = null; }
+    if (!r || !r.ok) {
+      var mailbox = SEL.region === 'Northern Nevada'
+        ? 'rncompliance@gocitywide.com' : 'LVCompliance@gocitywide.com';
+      var why = (r && r.error) ? String(r.error) : '';
+      /* A raw server exception is noise to a vendor. Show them what to do instead. */
+      if (!why || /is not defined|Exception|TypeError|ReferenceError/i.test(why))
+        why = 'We could not store your file just now.';
+      return fail(why + ' Nothing was saved. Email it to ' + mailbox +
+        ' and the compliance team will take it from there.');
+    }
     document.getElementById('stepDoc').style.display = 'none';
     document.getElementById('stepRegion').style.display = 'none';
     document.getElementById('stepForm').style.display = 'none';
