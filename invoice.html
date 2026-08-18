@@ -342,11 +342,11 @@ month following service.</p>
 </div>
 <div class="choice-grid">
 <button type="button" class="choice-card" onclick="showUpload()">
-<span class="icon">&#8682;</span>
-<h3>Upload an invoice I already have</h3>
-<p>Your company creates its own invoices? Attach the PDF, or a clear photo of it, add a few
-details so it reaches the right team, and you're done.</p>
-<span class="go">Upload my invoice</span>
+<span class="icon">&#9993;</span>
+<h3>Email an invoice I already have</h3>
+<p>Your company creates its own invoices? Add a few details, then email us your PDF or a clear
+photo straight from your own inbox. Quick, and you keep a copy.</p>
+<span class="go">Email my invoice</span>
 </button>
 <button type="button" class="choice-card" onclick="showForm()">
 <span class="icon">&#9998;</span>
@@ -372,12 +372,8 @@ either by visiting the site or by hearing from the customer that they are satisf
 payment then lands on the following 10th.</p></div>
 
 <div class="inv-card">
-<h2>Your Invoice File</h2>
-<label class="file-drop" id="fileDrop" for="up_file">
-<input id="up_file" type="file" accept="application/pdf,image/png,image/jpeg" style="display:none">
-<span id="fileMsg"><b>Click here to choose your invoice file</b><br>
-<span style="font-size:12px;color:#636466">PDF or a clear photo (JPG, PNG) &middot; up to 10 MB</span></span>
-</label>
+<h2>How This Works</h2>
+<p style="margin:0;color:#2D2A26">Fill in the details below and tap <b>Save &amp; open my email</b>. We log your invoice and open a pre-filled email to City Wide Accounts Payable. <b>Attach your invoice file (PDF or a clear photo) to that email and hit send.</b> It goes from your own inbox, so you keep a copy of exactly what you sent.</p>
 </div>
 
 <div class="inv-card">
@@ -408,7 +404,7 @@ payment then lands on the following 10th.</p></div>
 
 <input class="hp" type="text" id="website2" tabindex="-1" autocomplete="off">
 <div class="inv-err" id="upErr"></div>
-<button class="inv-submit" id="upBtn" onclick="submitUpload()">Send to Accounts Payable</button>
+<button class="inv-submit" id="upBtn" onclick="submitUpload()">Save &amp; open my email</button>
 <p style="font-size:11.5px;color:#636466;text-align:center;margin-top:10px">
 Attention: Accounts Payable, City Wide Facility Solutions &middot; Payment Terms: Net 10th Prox</p>
 </div>
@@ -532,85 +528,70 @@ function showForm(){
   document.getElementById('invForm').style.display = 'block';
 }
 
-/* ---------- upload path ---------- */
-var UP_FILE = null;   // { name, type, data (base64, no prefix) }
-document.getElementById('up_file').addEventListener('change', function(){
-  UP_FILE = null;
-  var drop = document.getElementById('fileDrop');
-  var msg = document.getElementById('fileMsg');
-  drop.classList.remove('has');
-  var f = this.files && this.files[0];
-  if (!f) return;
-  var okTypes = ['application/pdf','image/png','image/jpeg'];
-  if (okTypes.indexOf(f.type) < 0) {
-    msg.innerHTML = '<b style="color:#8f1a20">That file type will not work.</b><br>' +
-      '<span style="font-size:12px;color:#636466">Please choose a PDF or a photo (JPG, PNG).</span>';
-    return;
-  }
-  if (f.size > 10 * 1024 * 1024) {
-    msg.innerHTML = '<b style="color:#8f1a20">That file is over 10 MB.</b><br>' +
-      '<span style="font-size:12px;color:#636466">Please choose a smaller file or compress it.</span>';
-    return;
-  }
-  var rd = new FileReader();
-  rd.onload = function(){
-    var d = String(rd.result);
-    UP_FILE = { name: f.name, type: f.type, data: d.slice(d.indexOf(',') + 1) };
-    drop.classList.add('has');
-    msg.innerHTML = '<b>&#10003; ' + f.name.replace(/</g,'&lt;') + '</b><br>' +
-      '<span style="font-size:12px;color:#636466">' + (f.size/1024/1024).toFixed(1) +
-      ' MB &middot; Click to choose a different file</span>';
-  };
-  rd.onerror = function(){
-    msg.innerHTML = '<b style="color:#8f1a20">Could not read that file.</b><br>' +
-      '<span style="font-size:12px;color:#636466">Please try again.</span>';
-  };
-  rd.readAsDataURL(f);
-});
+/* ---------- upload path (mailto: log the row, then the vendor emails their file) ---------- */
+var AP_INBOX = { 'Las Vegas': 'cwlvinvoices@gocitywide.com', 'Northern Nevada': 'cwrninvoices@gocitywide.com' };
 
 function upFail(msg){
   var e = document.getElementById('upErr');
   e.textContent = msg; e.style.display = 'block';
   e.scrollIntoView({behavior:'smooth', block:'center'});
   var b = document.getElementById('upBtn');
-  b.disabled = false; b.textContent = 'Send to Accounts Payable';
+  b.disabled = false; b.textContent = 'Save & open my email';
 }
 
 function submitUpload(){
   var e = document.getElementById('upErr'); e.style.display = 'none';
   var v = function(id){ return document.getElementById(id).value.trim(); };
-  if (!UP_FILE) return upFail('Please attach your invoice file (PDF or photo) first.');
   if (!v('up_company')) return upFail('Company name is required.');
   if (!v('up_name')) return upFail('Your name is required.');
   var em = v('up_email');
-  if (!em || em.indexOf('@') < 1) return upFail('A valid email is required so we can send your confirmation copy.');
+  if (!em || em.indexOf('@') < 1) return upFail('A valid email is required.');
+  var region = v('up_region');
+  var month = v('up_month') + ' ' + v('up_year');
   var tot = Number(String(v('up_total')).replace(/[$,\s]/g, ''));
   if (!tot || isNaN(tot)) return upFail('Please enter the invoice total so Accounts Payable can match it.');
   var data = {
-    kind: 'invoice_upload', website: document.getElementById('website2').value,
+    kind: 'invoice_maillog', website: document.getElementById('website2').value,
     company: v('up_company'), contact_name: v('up_name'), email: em, phone: v('up_phone'),
-    region: v('up_region'),
-    service_month: v('up_month') + ' ' + v('up_year'),
-    total: tot, comments: v('up_comments'),
-    file_name: UP_FILE.name, file_type: UP_FILE.type, file_data: UP_FILE.data
+    region: region, service_month: month, total: tot, comments: v('up_comments')
   };
+  var inbox = AP_INBOX[region] || AP_INBOX['Las Vegas'];
   var b = document.getElementById('upBtn');
-  b.disabled = true; b.textContent = 'Sending...';
+  b.disabled = true; b.textContent = 'Saving...';
   fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'text/plain'},
     body: JSON.stringify(data) })
   .then(function(r){ return r.text(); })
   .then(function(t){
-    var r; try { r = JSON.parse(t); } catch(err){ r = { ok:false, error:'We could not confirm this was saved, so treat it as not submitted. Try again, and if it keeps failing contact your City Wide facility manager.' }; }
+    var r; try { r = JSON.parse(t); } catch(err){ r = { ok:false, error:'We could not confirm this was saved, so treat it as not submitted. Try again, and if it keeps failing email your invoice to ' + inbox + '.' }; }
     if (!r.ok) return upFail(r.error || 'Something went wrong. Please try again.');
+    var ref = r.id || '';
+    var subject = 'Invoice - ' + v('up_company') + ' - ' + month;
+    var bodyLines = [
+      'Attention: Accounts Payable, City Wide Facility Solutions',
+      '',
+      'Company: ' + v('up_company'),
+      'Contact: ' + v('up_name'),
+      'Region: ' + region,
+      'Month of service: ' + month,
+      'Invoice total: $' + tot.toFixed(2)
+    ];
+    if (v('up_comments')) bodyLines.push('Notes: ' + v('up_comments'));
+    bodyLines.push('');
+    bodyLines.push('IMPORTANT: attach your invoice file (PDF or a clear photo) to this email before sending.');
+    bodyLines.push('');
+    bodyLines.push('Reference: ' + ref);
+    var mailto = 'mailto:' + inbox + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyLines.join('\n'));
     document.getElementById('upForm').style.display = 'none';
     document.getElementById('doneMsg').innerHTML =
-      'Reference <b>' + (r.id || '') + '</b>. Your invoice went to City Wide Accounts Payable, ' +
-      'and a confirmation copy is on its way to <b>' + em + '</b>.';
+      'Logged as reference <b>' + ref + '</b>. Your email app is opening a message to <b>' + inbox + '</b> - ' +
+      '<b>attach your invoice file and hit send.</b> If it did not open, email your invoice straight to ' +
+      '<a href="mailto:' + inbox + '">' + inbox + '</a>.';
     var dn = document.getElementById('invDone');
     dn.style.display = 'block';
     dn.scrollIntoView({behavior:'smooth', block:'center'});
+    window.location.href = mailto;
   })
-  .catch(function(){ upFail('Could not reach the server. Check your connection and try again.'); });
+  .catch(function(){ upFail('Could not reach the server. Check your connection and try again, or email your invoice to ' + inbox + '.'); });
 }
 
 function addLine(){
