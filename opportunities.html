@@ -2,7 +2,8 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Open Opportunities | City Wide Vendor Resource Center</title><meta name="description" content="Live board of open City Wide accounts and one-time projects for vendors in Las Vegas and Northern Nevada."><style>
 :root{
   --cw-red:#D22730; --cw-red-dark:#B01F27; --cw-black:#2D2A26; --cw-grey:#636466;
-  --cw-white:#FFFFFF; --cw-light:#F5F5F5; --cw-border:#E5E5E5; --cw-teal:#0AA6A9;
+  --cw-white:#FFFFFF; --cw-light:#F5F5F5; --cw-border:#E5E5E5; --cw-teal:#0AA6A9; --cw-gold:#E5B423;
+  --accent:var(--cw-teal); --accent-tint:#E6F6F6;
   --sp-xs:4px; --sp-sm:8px; --sp-md:16px; --sp-lg:24px; --sp-xl:32px; --sp-2xl:48px;
   --radius:10px; --shadow:0 1px 3px rgba(45,42,38,.08),0 4px 14px rgba(45,42,38,.06);
   --shadow-lift:0 4px 10px rgba(45,42,38,.10),0 10px 28px rgba(45,42,38,.10);
@@ -244,51 +245,94 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
   border:1px solid var(--cw-red);border-radius:20px;padding:6px 14px;margin-bottom:16px}
 .opps-hero .live i{width:8px;height:8px;border-radius:50%;background:var(--cw-red);
   animation:oppPulse 2s infinite}
-.opps-filter{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 4px}
-.opps-filter button{font-family:inherit;font-size:13px;font-weight:700;color:var(--cw-black);
-  background:#fff;border:2px solid var(--cw-border);border-radius:20px;padding:8px 16px;cursor:pointer}
-.opps-filter button.on{background:var(--cw-black);border-color:var(--cw-black);color:#fff}
-.opp-group{margin-top:34px}
-.opp-group>h2{font-size:20px;display:flex;align-items:center;gap:10px}
-.opp-group>h2 .cnt{font-size:12px;font-weight:700;background:var(--cw-red);color:#fff;
-  border-radius:12px;padding:2px 10px}
-.opp-group>p.sub{color:var(--cw-grey);font-size:13.5px;margin:4px 0 18px}
-.opp-list{display:grid;gap:18px}
-.opp-card{background:#fff;border:1px solid var(--cw-border);border-left:5px solid var(--cw-red);
-  border-radius:12px;box-shadow:var(--shadow);padding:22px}
-.opp-top{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.opp-badge{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  border-radius:4px;padding:3px 9px}
-.b-region{background:var(--cw-black);color:#fff}
-.b-trade{background:var(--cw-light);color:var(--cw-black);border:1px solid var(--cw-border)}
-.b-new{background:var(--cw-red);color:#fff}
-.opp-card h3{font-size:17px;margin-bottom:2px}
-.opp-card .where{font-size:13px;color:var(--cw-grey);margin-bottom:14px}
-.opp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;
-  margin-bottom:14px}
-.opp-fact{background:var(--cw-light);border-radius:8px;padding:10px 12px}
-.opp-fact b{display:block;font-size:10px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--cw-grey);margin-bottom:2px}
-.opp-fact span{font-size:13.5px;font-weight:700}
-.opp-pay{display:flex;align-items:baseline;gap:8px;margin:4px 0 12px}
-.opp-pay .amt{font-size:24px;font-weight:700;color:var(--cw-red)}
-.opp-pay .per{font-size:13px;color:var(--cw-grey)}
-.opp-pay .quote{font-size:15px;font-weight:700;color:var(--cw-black);background:#FBF3D6;
-  border:1px solid var(--cw-gold);border-radius:6px;padding:6px 12px}
-.opp-deadline{font-size:13px;font-weight:700;color:var(--cw-red);margin-bottom:14px}
-.opp-more{border-top:1px solid var(--cw-border);margin-top:6px;padding-top:4px}
-.opp-more summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--cw-grey);
-  padding:8px 0;list-style:none}
-.opp-more summary::before{content:"+ "}
-.opp-more[open] summary::before{content:"\2212 "}
-.opp-more .kv{font-size:13px;margin:8px 0}
-.opp-more .kv b{display:block;font-size:10.5px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--cw-grey)}
-.opp-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-.opp-state{background:#fff;border:1px dashed var(--cw-border);border-radius:12px;
-  padding:44px 24px;text-align:center;color:var(--cw-grey);margin-top:30px}
-.opp-state b{display:block;color:var(--cw-black);font-size:16px;margin-bottom:6px}
-.packet-box{background:var(--cw-light);border-left:4px solid var(--cw-gold);border-radius:0 10px 10px 0;
+/* ---------- chooser ---------- */
+.chooser{margin:28px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:760px){.chooser{grid-template-columns:1fr}}
+.step{border:2px solid var(--cw-black);border-radius:8px;padding:16px 18px;background:#fff}
+.step.locked{border-color:var(--cw-border);background:var(--cw-light)}
+.step .lbl{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cw-grey);margin-bottom:10px}
+.step .lbl .n{width:22px;height:22px;border-radius:50%;background:var(--cw-black);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+.step.locked .lbl .n{background:var(--cw-grey)}
+.step.done .lbl .n{background:var(--cw-red)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{font-family:inherit;text-align:left;background:#fff;border:2px solid var(--cw-border);border-radius:8px;padding:12px 14px;cursor:pointer;color:var(--cw-black);line-height:1.3}
+.opt b{display:block;font-size:15px}
+.opt small{display:block;font-size:12px;color:var(--cw-grey);margin-top:3px}
+.opt:hover{border-color:var(--cw-grey)}
+.opt.on{border-color:var(--cw-black);background:var(--cw-black);color:#fff}
+.opt.on small{color:#cfcdca}
+.opt:disabled{opacity:.55;cursor:not-allowed}
+.opt.zero b::after{content:"";}
+.prompt{margin:26px 0 10px;border:1px dashed var(--cw-border);border-radius:8px;padding:36px 20px;text-align:center;color:var(--cw-grey);font-size:14px}
+.prompt b{display:block;color:var(--cw-black);font-size:16px;margin-bottom:4px}
+
+/* ---------- view bar ---------- */
+.viewbar{scroll-margin-top:84px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:28px 0 14px;padding-bottom:12px;border-bottom:3px solid var(--accent)}
+.viewbar h2{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px}
+.viewbar h2 .sw{width:14px;height:14px;border-radius:3px;background:var(--accent);flex:none}
+.viewbar .cnt{font-size:13px;color:var(--cw-grey);font-weight:400}
+.viewbar .change{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.viewbar .change button{font-family:inherit;font-size:12px;font-weight:700;background:#fff;border:1.5px solid var(--cw-border);border-radius:16px;padding:5px 12px;cursor:pointer;color:var(--cw-black)}
+.viewbar .change button:hover{border-color:var(--cw-black)}
+.trades{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px;font-size:12px}
+.trades .tl{font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cw-grey);font-size:10.5px;margin-right:4px}
+.trades button{font-family:inherit;font-size:12.5px;font-weight:700;background:#fff;border:1.5px solid var(--cw-border);border-radius:16px;padding:5px 12px;cursor:pointer;color:var(--cw-black)}
+.trades button.on{background:var(--accent-tint);border-color:var(--accent);}
+.trades button span{font-weight:400;color:var(--cw-grey)}
+
+/* ---------- cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:18px;align-items:start}
+
+.opp{background:#fff;border:2px solid var(--cw-black);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+.opp .band{display:flex;align-items:center;gap:10px;background:var(--accent-tint);border-bottom:1px solid var(--cw-border);padding:8px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.opp .band .sq{width:10px;height:10px;background:var(--accent);border-radius:2px;flex:none}
+.opp .band .trade{color:var(--cw-black)}
+.opp .band .area{color:var(--cw-grey);font-weight:400;letter-spacing:0;text-transform:none;font-size:12px;margin-left:auto;text-align:right}
+.opp .band .new{background:var(--cw-black);color:#fff;border-radius:3px;padding:1px 6px;font-size:10px}
+.opp .body{padding:14px 16px 12px}
+.opp h3{font-size:15.5px;line-height:1.3;margin-bottom:4px}
+.opp .fac{font-size:12.5px;color:var(--cw-grey);margin-bottom:10px}
+.payrow{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.payrow .amt{font-size:22px;font-weight:700;color:var(--cw-black);letter-spacing:-.01em}
+.payrow .per{font-size:12.5px;color:var(--cw-grey)}
+.payrow .quote{font-size:13px;font-weight:700;border:1.5px solid var(--cw-black);border-radius:4px;padding:4px 10px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--cw-border);border-bottom:1px solid var(--cw-border);margin-bottom:10px}
+.facts div{padding:8px 8px 8px 0;min-width:0}
+.facts div+div{padding-left:10px;border-left:1px solid var(--cw-border)}
+.facts b{display:block;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cw-grey)}
+.facts span{font-size:12.5px;font-weight:700;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.facts span.wrap2{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.due{font-size:12.5px;font-weight:700;color:var(--cw-red);display:flex;gap:6px;align-items:flex-start;margin-bottom:12px}
+.due svg{flex:none;margin-top:2px}
+.foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.foot .by{font-size:11.5px;color:var(--cw-grey);flex:1;min-width:140px}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:13px;font-weight:700;text-decoration:none;border-radius:6px;padding:9px 14px;cursor:pointer;border:2px solid transparent;line-height:1.2}
+.btn-red{background:var(--cw-red);color:#fff}
+.btn-red:hover{background:var(--cw-red-dark)}
+.btn-ghost{background:#fff;color:var(--cw-black);border-color:var(--cw-border)}
+.btn-ghost:hover{border-color:var(--cw-black)}
+.btn-ghost.open{border-color:var(--cw-black);background:var(--cw-light)}
+/* expanded details */
+.more{display:none;border-top:2px solid var(--cw-border);background:#FCFCFC;padding:14px 16px 16px;font-size:13px}
+.opp.open .more{display:block}
+.more .kv{margin:0 0 10px}
+.more .kv b{display:block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cw-grey)}
+.more .kv p{white-space:pre-line}
+.more .two{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+@media(max-width:600px){.more .two{grid-template-columns:1fr}}
+.empty{border:1px dashed var(--cw-border);border-radius:8px;padding:36px 20px;text-align:center;color:var(--cw-grey);font-size:14px;grid-column:1/-1}
+.empty b{display:block;color:var(--cw-black);font-size:16px;margin-bottom:4px}
+
+.kit-flag{display:flex;gap:12px;align-items:flex-start;background:#FBF3D6;border:1.5px solid var(--cw-gold);border-radius:8px;padding:10px 14px;margin:6px 0 12px;font-size:12.5px;line-height:1.5}
+.kit-flag .ic{flex:none;width:30px;height:30px;border-radius:6px;background:var(--cw-black);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700}
+.kit-flag b.kf-head{text-transform:uppercase;letter-spacing:.06em;font-size:10.5px;display:block;margin-bottom:2px}
+.fsm-strip{display:flex;align-items:center;gap:12px;border-top:1px solid var(--cw-border);margin-top:8px;padding-top:12px}
+.fsm-strip img{width:46px;height:50px;border-radius:6px;object-fit:cover;flex:none;background:var(--cw-light)}
+.fsm-strip .who{font-size:12.5px;line-height:1.4}
+.fsm-strip .who b{display:block;font-size:13.5px}
+.fsm-strip .who span{color:var(--cw-grey);font-size:11.5px;display:block}
+.fsm-strip .ptag{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cw-grey);border:1px solid var(--cw-border);border-radius:4px;padding:2px 8px;white-space:nowrap}
+.packet-box{background:var(--cw-light);border-left:4px solid var(--cw-black);border-radius:0 10px 10px 0;
   padding:20px 22px;margin:40px 0 10px}
 .packet-box h3{font-size:15px;margin-bottom:8px}
 .packet-box p{font-size:13.5px;margin-bottom:10px;max-width:70ch}
@@ -305,29 +349,29 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 .notify-box .nb-cta{margin-top:12px}
 @media(max-width:640px){.notify-box{flex-direction:column;gap:12px}}
 
-/* first-night-ready flag + posting FSM strip (added 2026-07-15; kit flag gated to janitorial-family recurring contracts 2026-07-15) */
-.kit-flag{display:flex;gap:12px;align-items:flex-start;background:#FBF3D6;border:2px solid var(--cw-red);
-  border-radius:10px;padding:12px 16px;margin:0 0 14px;font-size:13px;line-height:1.5}
-.kit-flag .ic{flex:none;width:34px;height:34px;border-radius:8px;background:var(--cw-red);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700}
-.kit-flag b.kf-head{color:var(--cw-red);text-transform:uppercase;letter-spacing:.06em;font-size:11px;display:block;margin-bottom:2px}
-.fsm-strip{display:flex;align-items:center;gap:14px;border-top:1px solid var(--cw-border);
-  margin-top:16px;padding-top:14px}
-.fsm-strip img{width:54px;height:58px;border-radius:8px;object-fit:cover;flex:none;margin:0}
-.fsm-strip .who{font-size:13px;line-height:1.45}
-.fsm-strip .who b{display:block;font-size:14px;color:var(--cw-black)}
-.fsm-strip .who span{color:var(--cw-grey);font-size:12px;display:block;font-weight:400}
-.fsm-strip .ptag{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--cw-grey);border:1px solid var(--cw-border);
-  border-radius:4px;padding:2px 8px;white-space:nowrap}
-
+@media(max-width:520px){.facts{grid-template-columns:1fr 1fr}.facts div+div{border-left:none;padding-left:0}.facts div:nth-child(even){border-left:1px solid var(--cw-border);padding-left:10px}}
 </style>
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-</head><body><header class="site-head"><div class="wrap bar"><a href="resources.html"><img class="logo" src="https://emailer.emfluence.com/clients/citywide/uploadedfiles/signature_logo.png" alt="City Wide Facility Solutions"></a><button class="menu-toggle" aria-label="Menu">&#9776;</button><nav><a href="resources.html">Home</a><a href="opportunities.html" class="nav-opps active">Open Opportunities</a><div class="dd"><a class="dd-label" href="new-vendors.html">New Vendors</a><div class="dd-menu"><a href="new-vendors.html?region=lv">Las Vegas</a><a href="new-vendors.html?region=nnv">Northern Nevada</a></div></div><div class="dd"><a class="dd-label" href="#" onclick="return false;">Guides</a><div class="dd-menu"><div class="dd-head">Crew Guides</div><a href="planner.html">New Building Planner</a><a href="workloading.html">Workloading & Crew Sizing</a><a href="equipment.html">Choosing Your Equipment</a><a href="color-coding.html">Color Coding System</a><a href="medical.html">Medical Facility Cleaning</a><a href="cleanroom.html">Clean Room Cleaning</a><a href="gmp.html">GMP & Food Facility Cleaning</a></div></div><div class="dd"><a class="dd-label" href="invoice.html">Invoices &amp; Paperwork</a><div class="dd-menu"><div class="dd-head">Get Paid</div><a href="invoice.html">Submit Your Monthly Invoice</a><div class="dd-head">Orders</div><a href="building-supplies.html">Order Building Supplies</a><a href="index.html">Shop Supplies &amp; Uniforms</a><div class="dd-head">Paperwork</div><a href="cleaner-roster.html">Add or Remove a Cleaner</a><a href="upload.html">Upload Insurance &amp; Compliance Docs</a><a href="https://citywidelv.github.io/cw-ops-desk/work-order.html?src=vendor" target="_blank" rel="noopener">Maintenance Work Ticket</a><a href="https://form.asana.com/?k=FRCnQmbTGjAVPieFt4bnWQ&amp;d=13140959242873" target="_blank" rel="noopener">Background Check &amp; Name Badge</a><a href="https://www.onlinecprcertification.net/bloodborne-pathogens-training-certification.php" target="_blank" rel="noopener">Bloodborne Pathogens Certification</a></div></div><a class="btn-order" href="index.html">Order Supplies</a></nav></div></header><section class="opps-hero has-photo"><div class="ph-bg" style="background-image:url('images/crew-landscape.jpg')"></div><div class="ph-scrim"></div><div class="wrap"><span class="live"><i></i><span id="liveCount">Loading the board&hellip;</span></span><h1>Open Opportunities</h1><p class="lede">Real accounts and projects that need a crew right now. When a posting fits your crew and your route, hit the button and tell us your staffing plan, your supervision plan, and the equipment you bring. First qualified answers get the walkthrough.</p></div></section><section class="section"><div class="wrap"><div class="opps-filter"><button class="on" data-r="all">All Regions</button><button data-r="Las Vegas">Las Vegas</button><button data-r="Northern Nevada">Northern Nevada</button></div><div class="opp-group"><h2>Recurring Contracts <span class="cnt" id="cCount">&hellip;</span></h2><p class="sub">Ongoing accounts: steady monthly work on a set schedule.</p><div class="opp-list" id="cList"><div class="opp-state">Loading&hellip;</div></div></div><div class="opp-group"><h2>One-Time Projects <span class="cnt" id="pCount">&hellip;</span></h2><p class="sub">Work orders: strip &amp; wax, post-construction, pressure washing, and other single jobs.</p><div class="opp-list" id="pList"><div class="opp-state">Loading&hellip;</div></div></div><div class="notify-box"><span class="nb-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span><div><div class="nb-kicker">Get First Call on New Work</div><h3>Tell Us What Your Crew Does</h3><p>We post work as it opens, and we reach out first to the crews we know can do it. Fill out the vendor evaluation once and pick your services: janitorial, floor care, landscaping, the trades, restoration, and more. When a posting matches what you do, you hear from us.</p><p><b>Already filled it out?</b> If you completed it before July 2026, send it again. The services checklist is new, and it is the part that drives your notifications.</p><div class="nb-cta"><a class="btn btn-red" href="https://form.jotform.com/tjroberts/vendor-evaluation-form" target="_blank" rel="noopener">Complete the Vendor Evaluation</a></div></div></div><div class="packet-box"><h3>Before You Raise Your Hand: the Vendor Packet</h3><p>To reserve a walkthrough slot you must have a signed vendor packet on file with City Wide. One packet covers you, unless you work both Las Vegas and Northern Nevada; then we need one on file with each office. Insurance and waiver documents are not required until you are awarded an account.</p><a class="btn btn-pdf" href="mailto:lvcompliance@gocitywide.com?subject=Vendor%20Packet%20Status%20Inquiry">Request or Check Your Packet</a></div></div></section><footer class="site-foot"><div class="wrap"><div class="cols"><div><b style="color:#fff">City Wide Facility Solutions</b> &middot; Las Vegas &amp; Northern Nevada<br>Vendor Resource Center</div><div><a href="index.html">Order Supplies</a> &nbsp;&nbsp; <a href="resources.html">Resource Center</a> &nbsp;&nbsp; <a href="https://www.gocitywide.com" target="_blank" rel="noopener">GoCityWide.com</a></div></div><div class="fine">For crew and vendor reference. Quantities and methods are guidance; your account scope of work always comes first. Questions? Contact your City Wide Facility Solutions representative.</div></div></footer>
+</head><body><header class="site-head"><div class="wrap bar"><a href="resources.html"><img class="logo" src="https://emailer.emfluence.com/clients/citywide/uploadedfiles/signature_logo.png" alt="City Wide Facility Solutions"></a><button class="menu-toggle" aria-label="Menu">&#9776;</button><nav><a href="resources.html">Home</a><a href="opportunities.html" class="nav-opps active">Open Opportunities</a><div class="dd"><a class="dd-label" href="new-vendors.html">New Vendors</a><div class="dd-menu"><a href="new-vendors.html?region=lv">Las Vegas</a><a href="new-vendors.html?region=nnv">Northern Nevada</a></div></div><div class="dd"><a class="dd-label" href="#" onclick="return false;">Guides</a><div class="dd-menu"><div class="dd-head">Crew Guides</div><a href="planner.html">New Building Planner</a><a href="workloading.html">Workloading & Crew Sizing</a><a href="equipment.html">Choosing Your Equipment</a><a href="color-coding.html">Color Coding System</a><a href="medical.html">Medical Facility Cleaning</a><a href="cleanroom.html">Clean Room Cleaning</a><a href="gmp.html">GMP & Food Facility Cleaning</a></div></div><div class="dd"><a class="dd-label" href="invoice.html">Invoices &amp; Paperwork</a><div class="dd-menu"><div class="dd-head">Get Paid</div><a href="invoice.html">Submit Your Monthly Invoice</a><div class="dd-head">Orders</div><a href="building-supplies.html">Order Building Supplies</a><a href="index.html">Shop Supplies &amp; Uniforms</a><div class="dd-head">Paperwork</div><a href="cleaner-roster.html">Add or Remove a Cleaner</a><a href="upload.html">Upload Insurance &amp; Compliance Docs</a><a href="https://citywidelv.github.io/cw-ops-desk/work-order.html?src=vendor" target="_blank" rel="noopener">Maintenance Work Ticket</a><a href="https://form.asana.com/?k=FRCnQmbTGjAVPieFt4bnWQ&amp;d=13140959242873" target="_blank" rel="noopener">Background Check &amp; Name Badge</a><a href="https://www.onlinecprcertification.net/bloodborne-pathogens-training-certification.php" target="_blank" rel="noopener">Bloodborne Pathogens Certification</a></div></div><a class="btn-order" href="index.html">Order Supplies</a></nav></div></header><section class="opps-hero has-photo"><div class="ph-bg" style="background-image:url('images/crew-landscape.jpg')"></div><div class="ph-scrim"></div><div class="wrap"><span class="live"><i></i><span id="liveCount">Loading the board&hellip;</span></span><h1>Open Opportunities</h1><p class="lede">Real accounts and projects that need a crew right now. Pick your region and the kind of work you do, then hit the button on any posting that fits your crew and your route. First qualified answers get the walkthrough.</p></div></section><section class="section"><div class="wrap"><div class="chooser">
+    <div class="step" id="stepR"><div class="lbl"><span class="n">1</span>Where do you work?</div>
+      <div class="opts">
+        <button class="opt" data-r="Las Vegas"><b>Las Vegas</b><small id="cntLV">&hellip;</small></button>
+        <button class="opt" data-r="Northern Nevada"><b>Northern Nevada</b><small id="cntNNV">&hellip;</small></button>
+      </div></div>
+    <div class="step locked" id="stepT"><div class="lbl"><span class="n">2</span>What kind of work?</div>
+      <div class="opts">
+        <button class="opt" data-t="contract" disabled><b>Recurring Contracts</b><small id="cntC">Ongoing accounts on a set schedule</small></button>
+        <button class="opt" data-t="project" disabled><b>One-Time Projects</b><small id="cntP">Strip &amp; wax, post-construction, single jobs</small></button>
+      </div></div>
+  </div>
+
+  <div id="board"></div>
+
+  <div class="notify-box"><span class="nb-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span><div><div class="nb-kicker">Get First Call on New Work</div><h3>Tell Us What Your Crew Does</h3><p>We post work as it opens, and we reach out first to the crews we know can do it. Fill out the vendor evaluation once and pick your services: janitorial, floor care, landscaping, the trades, restoration, and more. When a posting matches what you do, you hear from us.</p><p><b>Already filled it out?</b> If you completed it before July 2026, send it again. The services checklist is new, and it is the part that drives your notifications.</p><div class="nb-cta"><a class="btn btn-red" href="https://form.jotform.com/tjroberts/vendor-evaluation-form" target="_blank" rel="noopener">Complete the Vendor Evaluation</a></div></div></div><div class="packet-box"><h3>Before You Raise Your Hand: the Vendor Packet</h3><p>To reserve a walkthrough slot you must have a signed vendor packet on file with City Wide. One packet covers you, unless you work both Las Vegas and Northern Nevada; then we need one on file with each office. Insurance and waiver documents are not required until you are awarded an account.</p><a class="btn btn-pdf" href="mailto:lvcompliance@gocitywide.com?subject=Vendor%20Packet%20Status%20Inquiry">Request or Check Your Packet</a></div></div></section><footer class="site-foot"><div class="wrap"><div class="cols"><div><b style="color:#fff">City Wide Facility Solutions</b> &middot; Las Vegas &amp; Northern Nevada<br>Vendor Resource Center</div><div><a href="index.html">Order Supplies</a> &nbsp;&nbsp; <a href="resources.html">Resource Center</a> &nbsp;&nbsp; <a href="https://www.gocitywide.com" target="_blank" rel="noopener">GoCityWide.com</a></div></div><div class="fine">For crew and vendor reference. Quantities and methods are guidance; your account scope of work always comes first. Questions? Contact your City Wide Facility Solutions representative.</div></div></footer>
 <script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.querySelector('.site-head nav');
@@ -337,120 +381,100 @@ td .note{display:block;font-weight:400;color:var(--cw-grey);font-size:12px;margi
 
 <script>
 var FEED = "https://script.google.com/macros/s/AKfycbzfNnrpidCbWB1DeUNgXvRhDFMQgApfpn-3C9GU45wMEHcJpWFl8ZQVo6PUBSRfEVfRdg/exec";
-var REGION = "all";
+var ALL = [];
+var REGION = null, TYPE = null, TRADE = "all", OPEN = {};
+var NOW = new Date();
 function esc(s){var d=document.createElement("div");d.textContent=String(s==null?"":s);return d.innerHTML;}
-
-/* Be First-Night Ready only makes sense for recurring janitorial-family work.
-   Gate it by trade + posting type so a pressure wash or handyman work order
-   never tells a vendor to prep the New Building Starter Kit. */
-function showKit(o){
-  return o && o.type === "contract" &&
-    /janitorial|day porter|post-construction|specialty/i.test(String(o.trade || ""));
-}
-function kitFlag(o){
-  return '<div class="kit-flag"><span class="ic">!</span><div><b class="kf-head">Be First-Night Ready</b>'
-    + 'Before your first visit, open the <a href="planner.html">New Building Starter Kit</a> and dial in the list for a '
-    + '<b>' + esc(o.facility_type || 'building') + '</b>. Show up on night one with every chemical and piece of equipment this building needs.</div></div>';
-}
-function fsmStrip(o){
-  var f = o.fsm_info;
-  if (f && f.name){
-    return '<div class="fsm-strip"><img src="' + esc(f.photo) + '" alt="' + esc(f.name) + '">'
-      + '<div class="who"><b>' + esc(f.name) + '</b><span>' + esc(f.title) + '</span>'
-      + '<span>City Wide Facility Solutions &middot; ' + esc(f.region) + '</span></div>'
-      + '<span class="ptag">Posted by</span></div>';
-  }
-  if (o.contact_name){
-    return '<div class="fsm-strip"><div class="who"><b>' + esc(o.contact_name) + '</b>'
-      + '<span>City Wide Facility Solutions</span></div><span class="ptag">Posted by</span></div>';
-  }
-  return "";
-}
-function fact(label,val){
-  if(!val) return "";
-  return '<div class="opp-fact"><b>'+label+'</b><span>'+esc(val)+"</span></div>";
-}
-function kv(label,val){
-  if(!val) return "";
-  return '<div class="kv"><b>'+label+"</b>"+esc(val)+"</div>";
-}
-function respondMeta(o){
-  var mode = o.pay_type==="quote" ? "quote" : "interest";
-  try{ var f=JSON.parse(o.response_form||""); if(f&&f.mode) mode=f.mode; }catch(e){}
-  return { href: "respond.html?id="+encodeURIComponent(o.id),
-           label: mode==="quote" ? "Submit Your Quote" : "I&rsquo;m Interested: Apply Now" };
-}
-function fmtPay(v){
-  if(v===null||v===undefined||v==="") return "";
-  var n = Number(String(v).replace(/[$,]/g,""));
-  if(!isNaN(n) && n>0) return "$"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
-  return String(v);
-}
+function isC(o){return o.type==="contract";}
+function postedDate(o){var d=new Date(o.posted);return isNaN(d)?null:d;}
+function ageDays(o){var d=postedDate(o);return d?Math.floor((NOW-d)/864e5):null;}
+function fmtPosted(o){var d=postedDate(o);return d?d.toLocaleDateString("en-US",{month:"short",day:"numeric"}):esc(o.posted);}
+function fmtPay(v){var n=Number(String(v).replace(/[$,]/g,""));return(!isNaN(n)&&n>0)?"$"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}):String(v);}
+function showKit(o){return isC(o)&&/janitorial|day porter|post-construction|specialty/i.test(o.trade||"");}
+function respondMeta(o){var m=o.pay_type==="quote"?"quote":"interest";try{var f=JSON.parse(o.response_form||"");if(f&&f.mode)m=f.mode;}catch(e){}return{href:"respond.html?id="+encodeURIComponent(o.id),label:m==="quote"?"Submit Your Quote":"I’m Interested: Submit a Letter of Interest"};}
+function kv(l,v){return v?'<div class="kv"><b>'+l+'</b><p>'+esc(v)+'</p></div>':"";}
+function fact(l,v,wrap){return '<div><b>'+l+'</b><span class="'+(wrap?'wrap2':'')+'" title="'+esc(v||"")+'">'+(v?esc(v):"<span style=\"color:#999;font-weight:400\">n/a</span>")+'</span></div>';}
+function fsmStrip(o){var f=o.fsm_info;if(f&&f.name)return '<div class="fsm-strip"><img src="'+esc(f.photo)+'" alt=""><div class="who"><b>'+esc(f.name)+'</b><span>'+esc(f.title)+'</span><span>City Wide Facility Solutions &middot; '+esc(f.region)+'</span></div><span class="ptag">Posted by</span></div>';
+  if(o.contact_name)return '<div class="fsm-strip"><div class="who"><b>'+esc(o.contact_name)+'</b><span>City Wide Facility Solutions</span></div><span class="ptag">Posted by</span></div>';return"";}
 function card(o){
-  var pay = o.pay_type==="quote"
-    ? '<div class="opp-pay"><span class="quote">Quote Requested: name your price</span></div>'
-    : (o.pay_amount ? '<div class="opp-pay"><span class="amt">'+esc(fmtPay(o.pay_amount))+
-       '</span><span class="per">'+esc(o.pay_period||"")+"</span></div>" : "");
-  var facts = fact("Square Feet", o.sqft && Number(o.sqft) ? Number(o.sqft).toLocaleString()+" sq ft" : o.sqft)
-    + fact("Frequency", o.frequency==="One-time" ? "One-time project" : o.frequency)
-    + fact("Restrooms", o.restrooms)
-    + fact("Clean Window", o.clean_window)
-    + fact("Start", o.start_date)
-    + fact("Walkthrough", o.walkthrough);
-  var more = kv("Scope", o.scope_summary) + kv("Required chemicals", o.chemicals)
-    + kv("Bring your own", o.equipment_required) + kv("Provided on site", o.equipment_provided)
-    + kv("Certifications & experience", o.certifications)
-    + kv("Expectations", o.special_requirements) + kv("Pay notes", o.pay_notes)
-    + kv("Posted", o.posted) + kv("Posting ID", o.id);
-  return '<article class="opp-card">'
-    + '<div class="opp-top"><span class="opp-badge b-region">'+esc(o.region)+"</span>"
-    + '<span class="opp-badge b-trade">'+esc(o.trade)+"</span>"
-    + '<span class="opp-badge b-new">Open</span></div>'
-    + "<h3>"+esc(o.title)+"</h3>"
-    + '<div class="where">'+esc(o.facility_type)+(o.area?" &middot; "+esc(o.area):"")+"</div>"
-    + pay
-    + '<div class="opp-facts">'+facts+"</div>"
-    + (o.deadline ? '<div class="opp-deadline">Respond by '+esc(o.deadline)+"</div>" : "")
-    + '<details class="opp-more"><summary>Full details &amp; requirements</summary>'+more+"</details>"
-    + (showKit(o) ? kitFlag(o) : "")
-    + (function(){ var m=respondMeta(o);
-        return '<div class="opp-cta"><a class="btn btn-red" href="'+m.href+'">'+m.label+"</a></div>"; })()
-    + fsmStrip(o)
-    + "</article>";
+  var m=respondMeta(o), age=ageDays(o), isNew=age!==null&&age<=3;
+  var pay=o.pay_type==="quote"?'<div class="payrow"><span class="quote">Quote requested: name your price</span></div>'
+    :(o.pay_amount?'<div class="payrow"><span class="amt">'+esc(fmtPay(o.pay_amount))+'</span><span class="per">'+esc(o.pay_period||"")+'</span></div>':"");
+  var facts=isC(o)
+    ? fact("Frequency",o.frequency,true)+fact("Sq Ft",o.sqft&&Number(o.sqft)?Number(o.sqft).toLocaleString():o.sqft)+fact("Restrooms",o.restrooms)+fact("Start",o.start_date,true)
+    : fact("Frequency",o.frequency==="One-time"?"One-time project":o.frequency,true)+fact("Sq Ft",o.sqft&&Number(o.sqft)?Number(o.sqft).toLocaleString():o.sqft)+fact("Start",o.start_date,true)+fact("Walkthrough",o.walkthrough,true);
+  var more='<div class="two">'+kv("Clean window",o.clean_window)+kv("Walkthrough",o.walkthrough)+'</div>'
+    +kv("Scope",o.scope_summary)+'<div class="two">'+kv("Required chemicals",o.chemicals)+kv("Bring your own",o.equipment_required)+kv("Provided on site",o.equipment_provided)+kv("Certifications & experience",o.certifications)+'</div>'
+    +kv("Expectations",o.special_requirements)+kv("Pay notes",o.pay_notes)
+    +(showKit(o)?'<div class="kit-flag"><span class="ic">!</span><div><b class="kf-head">Be First-Night Ready</b>Before your first visit, open the <a href="planner.html">New Building Starter Kit</a> and dial in the list for a <b>'+esc(o.facility_type||"building")+'</b>. Show up on night one with every chemical and piece of equipment this building needs.</div></div>':"")
+    +'<div class="two">'+kv("Posted",o.posted)+kv("Posting ID",o.id)+'</div>'+fsmStrip(o);
+  var by=(o.fsm_info&&o.fsm_info.name)||o.contact_name||"";
+  return '<article class="opp'+(OPEN[o.id]?" open":"")+'" id="c-'+esc(o.id)+'">'
+    +'<div class="band"><span class="sq"></span><span class="trade">'+esc(o.trade)+'</span>'+(isNew?'<span class="new">New</span>':"")+'<span class="area">'+esc(o.area||"")+'</span></div>'
+    +'<div class="body"><h3>'+esc(o.title)+'</h3><div class="fac">'+esc(o.facility_type)+'</div>'+pay
+    +'<div class="facts">'+facts+'</div>'
+    +(o.deadline?'<div class="due"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>'+(/^respond/i.test(o.deadline)?esc(o.deadline):'Respond by '+esc(o.deadline))+'</span></div>':"")
+    +'<div class="foot"><span class="by">Posted '+fmtPosted(o)+(by?' &middot; '+esc(by):"")+'</span>'
+    +'<button class="btn btn-ghost'+(OPEN[o.id]?" open":"")+'" data-toggle="'+esc(o.id)+'">'+(OPEN[o.id]?"Hide details":"Full details")+'</button>'
+    +'<a class="btn btn-red" href="'+m.href+'">'+m.label+'</a></div></div>'
+    +'<div class="more">'+more+'</div></article>';
 }
-function render(items){
-  var vis = items.filter(function(o){return REGION==="all"||o.region===REGION;});
-  var contracts = vis.filter(function(o){return o.type==="contract";});
-  var projects = vis.filter(function(o){return o.type!=="contract";});
-  document.getElementById("cCount").textContent = contracts.length;
-  document.getElementById("pCount").textContent = projects.length;
-  document.getElementById("cList").innerHTML = contracts.map(card).join("") ||
-    '<div class="opp-state"><b>No open contracts right now</b>Check back soon; new accounts post here the moment they open.</div>';
-  document.getElementById("pList").innerHTML = projects.map(card).join("") ||
-    '<div class="opp-state"><b>No one-time projects right now</b>Check back soon; project work posts here the moment it opens.</div>';
-  var n = vis.length;
-  document.getElementById("liveCount").textContent = n + (n===1 ? " opening available now" : " openings available now");
+function pool(){return ALL.filter(function(o){return o.region===REGION&&(TYPE==="contract"?isC(o):!isC(o));});}
+function render(){
+  var b=document.getElementById("board");
+  var n=ALL.length;
+  document.getElementById("liveCount").textContent=n+(n===1?" opening available now":" openings available now");
+  var lv=ALL.filter(function(o){return o.region==="Las Vegas";}).length, nnv=n-lv;
+  document.getElementById("cntLV").textContent=lv+" open"; document.getElementById("cntNNV").textContent=nnv+" open";
+  document.querySelectorAll("[data-r]").forEach(function(x){x.classList.toggle("on",x.getAttribute("data-r")===REGION);});
+  var st=document.getElementById("stepT");
+  if(!REGION){st.classList.add("locked");document.querySelectorAll("[data-t]").forEach(function(x){x.disabled=true;x.classList.remove("on");});
+    b.innerHTML='<div class="prompt"><b>Pick your region to start</b>Then choose recurring contracts or one-time projects. The board shows only the work that fits.</div>';return;}
+  st.classList.remove("locked");document.getElementById("stepR").classList.add("done");
+  var rc=ALL.filter(function(o){return o.region===REGION&&isC(o);}).length, rp=ALL.filter(function(o){return o.region===REGION&&!isC(o);}).length;
+  document.getElementById("cntC").textContent=rc+" open in "+REGION; document.getElementById("cntP").textContent=rp+" open in "+REGION;
+  document.querySelectorAll("[data-t]").forEach(function(x){x.disabled=false;x.classList.toggle("on",x.getAttribute("data-t")===TYPE);});
+  if(!TYPE){b.innerHTML='<div class="prompt"><b>Now pick the kind of work</b>Recurring contracts are ongoing accounts. One-time projects are single jobs.</div>';return;}
+  st.classList.add("done");
+  document.documentElement.style.setProperty("--accent",TYPE==="contract"?"var(--cw-teal)":"var(--cw-gold)");
+  document.documentElement.style.setProperty("--accent-tint",TYPE==="contract"?"#E6F6F6":"#FBF3D6");
+  var items=pool().sort(function(a,c){return (postedDate(c)||0)-(postedDate(a)||0);});
+  var trades={};items.forEach(function(o){trades[o.trade]=(trades[o.trade]||0)+1;});
+  var tk=Object.keys(trades).sort(); if(tk.indexOf(TRADE)<0)TRADE="all";
+  var vis=items.filter(function(o){return TRADE==="all"||o.trade===TRADE;});
+  var h='<div class="viewbar"><h2><span class="sw"></span>'+esc(REGION)+' &middot; '+(TYPE==="contract"?"Recurring Contracts":"One-Time Projects")+'</h2><span class="cnt">'+items.length+' open</span>'
+    +'<div class="change"><button data-sw="r">Switch to '+(REGION==="Las Vegas"?"Northern Nevada":"Las Vegas")+'</button><button data-sw="t">See '+(TYPE==="contract"?"one-time projects":"recurring contracts")+'</button></div></div>';
+  if(tk.length>1){h+='<div class="trades"><span class="tl">Trade</span><button data-tr="all" class="'+(TRADE==="all"?"on":"")+'">All <span>'+items.length+'</span></button>'+tk.map(function(t){return '<button data-tr="'+esc(t)+'" class="'+(TRADE===t?"on":"")+'">'+esc(t)+' <span>'+trades[t]+'</span></button>';}).join("")+'</div>';}
+  h+='<div class="grid">'+(vis.map(card).join("")||'<div class="empty"><b>Nothing open here right now</b>New '+(TYPE==="contract"?"accounts":"projects")+' in '+esc(REGION)+' post here the moment they open. Try the other region or work type above.</div>')+'</div>';
+  b.innerHTML=h;
 }
-var ALL=[];
+document.addEventListener("click",function(e){
+  var t=e.target.closest("[data-r],[data-t],[data-sw],[data-tr],[data-toggle]"); if(!t)return;
+  if(t.hasAttribute("data-r")){REGION=t.getAttribute("data-r");TRADE="all";}
+  else if(t.hasAttribute("data-t")){TYPE=t.getAttribute("data-t");TRADE="all";}
+  else if(t.getAttribute("data-sw")==="r"){REGION=REGION==="Las Vegas"?"Northern Nevada":"Las Vegas";TRADE="all";}
+  else if(t.getAttribute("data-sw")==="t"){TYPE=TYPE==="contract"?"project":"contract";TRADE="all";}
+  else if(t.hasAttribute("data-tr")){TRADE=t.getAttribute("data-tr");}
+  else if(t.hasAttribute("data-toggle")){var id=t.getAttribute("data-toggle");OPEN[id]=!OPEN[id];}
+  render(); remember();
+  if(t.hasAttribute("data-t")||t.hasAttribute("data-sw")){var vb=document.querySelector(".viewbar");if(vb)vb.scrollIntoView({behavior:"smooth",block:"start"});}
+});
+function remember(){try{localStorage.setItem("cwOppsView",JSON.stringify({r:REGION,t:TYPE}));}catch(e){}}
 function load(){
   fetch(FEED).then(function(r){return r.json();}).then(function(r){
-    ALL = (r && r.items) ? r.items : [];
-    render(ALL);
+    ALL=(r&&r.items)?r.items:[]; render();
   }).catch(function(){
-    document.getElementById("cList").innerHTML =
-      '<div class="opp-state"><b>Could not load the board</b>Refresh the page, or call the office: Las Vegas (702) 483-1874.</div>';
-    document.getElementById("pList").innerHTML = "";
-    document.getElementById("liveCount").textContent = "Live board";
+    document.getElementById("board").innerHTML='<div class="prompt"><b>Could not load the board</b>Refresh the page, or call the office: Las Vegas (702) 483-1874.</div>';
+    document.getElementById("liveCount").textContent="Live board";
+    document.getElementById("cntLV").textContent=""; document.getElementById("cntNNV").textContent="";
   });
 }
 document.addEventListener("DOMContentLoaded",function(){
+  var q=new URLSearchParams(location.search);var r=q.get("region"),t=q.get("type");
+  if(r==="lv")REGION="Las Vegas";if(r==="nnv")REGION="Northern Nevada";if(t==="contract"||t==="project")TYPE=t;
+  if(!r&&!t){try{var s=JSON.parse(localStorage.getItem("cwOppsView")||"null");if(s){if(s.r==="Las Vegas"||s.r==="Northern Nevada")REGION=s.r;if(s.t==="contract"||s.t==="project")TYPE=s.t;}}catch(e){}}
+  document.getElementById("board").innerHTML='<div class="prompt">Loading the board&hellip;</div>';
   load();
-  Array.prototype.forEach.call(document.querySelectorAll(".opps-filter button"),function(b){
-    b.addEventListener("click",function(){
-      Array.prototype.forEach.call(document.querySelectorAll(".opps-filter button"),function(x){x.classList.remove("on");});
-      b.classList.add("on"); REGION=b.getAttribute("data-r"); render(ALL);
-    });
-  });
 });
 </script>
 </body></html>
